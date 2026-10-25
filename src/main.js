@@ -47,13 +47,13 @@ class Game {
     sunLight.intensity = 1.2;
     sunLight.diffuse = new BABYLON.Color3(1.0, 0.65, 0.35); // Golden amber sunset rays
 
-    // Chase Camera
+    // Chase Camera (Positioned behind car looking forward down the highway)
     this.camera = new BABYLON.FollowCamera('chaseCam', new BABYLON.Vector3(0, 3, -8), this.scene);
     this.camera.radius = 7.5;
     this.camera.heightOffset = 2.4;
-    this.camera.rotationOffset = 0;
-    this.camera.cameraAcceleration = 0.12;
-    this.camera.maxCameraSpeed = 80;
+    this.camera.rotationOffset = 180; // 180 degrees places camera behind the car
+    this.camera.cameraAcceleration = 0.15;
+    this.camera.maxCameraSpeed = 100;
     this.camera.fov = 0.95;
   }
 
@@ -105,6 +105,7 @@ class Game {
 
   startGame() {
     this.state = 'PLAYING';
+    this.camera.rotationOffset = 180;
     this.ui.showHUD();
     sound.resume();
     sound.startEngineSound();
@@ -115,6 +116,7 @@ class Game {
     this.player.position.set(0, 0.45, 0);
     this.player.speedKmh = 0;
     this.player.isBoosting = false;
+    this.camera.rotationOffset = 180;
     this.traffic.reset();
     this.obstacles.reset();
 
@@ -125,13 +127,17 @@ class Game {
 
   update(deltaTime) {
     if (this.state === 'START') {
-      // Gentle camera orbit preview while on start screen
+      // Gentle camera orbit preview behind the car looking down the highway
       const t = Date.now() * 0.0005;
-      this.camera.rotationOffset = Math.sin(t) * 15;
+      this.camera.rotationOffset = 180 + Math.sin(t) * 12;
       return;
     }
 
     if (this.state !== 'PLAYING') return;
+
+    // Keep camera positioned behind car, looking forward along +Z highway
+    const steerOffset = (this.player.inputs.left ? -3 : (this.player.inputs.right ? 3 : 0));
+    this.camera.rotationOffset = BABYLON.Scalar.Lerp(this.camera.rotationOffset, 180 + steerOffset, 0.1);
 
     // 1. Update Game Timers
     this.elapsedTime += deltaTime;
