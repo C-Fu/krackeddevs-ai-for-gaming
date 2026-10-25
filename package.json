@@ -1,0 +1,20 @@
+{
+  "name": "king-myvi-highway-legends",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AI for Gaming Workshop Demo - King Myvi: Highway Legends (Point A to Point B Babylon.js Prototype)",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@babylonjs/core": "^7.50.0",
+    "@babylonjs/inspector": "^7.54.3",
+    "@babylonjs/loaders": "^7.50.0"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  }
+}

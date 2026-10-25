@@ -1,0 +1,500 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #0b0d19;
+  font-family: 'Rajdhani', -apple-system, sans-serif;
+  color: #fff;
+}
+
+#renderCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  outline: none;
+}
+
+/* Utilities */
+.hidden {
+  display: none !important;
+}
+
+/* Top Level Overlays */
+.overlay-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(9, 11, 23, 0.88);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-card {
+  background: linear-gradient(135deg, rgba(22, 28, 48, 0.95), rgba(13, 17, 33, 0.95));
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.2);
+  border-radius: 16px;
+  padding: 32px 40px;
+  max-width: 580px;
+  width: 90%;
+  text-align: center;
+}
+
+.modal-card.victory {
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+}
+
+.modal-card.failure {
+  border-color: rgba(255, 60, 60, 0.5);
+  box-shadow: 0 0 50px rgba(255, 60, 60, 0.3);
+}
+
+.badge-pill {
+  display: inline-block;
+  padding: 4px 14px;
+  background: rgba(0, 240, 255, 0.15);
+  border: 1px solid #00f0ff;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: #00f0ff;
+  margin-bottom: 12px;
+}
+
+.badge-pill.victory-pill {
+  background: rgba(255, 215, 0, 0.2);
+  border-color: #ffd700;
+  color: #ffd700;
+}
+
+.game-title {
+  font-family: 'Orbitron', monospace;
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: #ffd700;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+  letter-spacing: 4px;
+}
+
+.tagline {
+  font-size: 1.05rem;
+  color: #c4cce3;
+  margin: 14px 0 24px;
+  line-height: 1.4;
+}
+
+.mechanics-brief {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 16px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mechanic-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.m-icon {
+  font-size: 1.8rem;
+  min-width: 40px;
+  text-align: center;
+}
+
+.mechanic-item h4 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.95rem;
+  color: #00f0ff;
+}
+
+.mechanic-item p {
+  font-size: 0.88rem;
+  color: #a0aec0;
+  margin-top: 2px;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #ff0055, #ff5500);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 14px 32px;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(255, 0, 85, 0.7);
+}
+
+.footer-note {
+  font-size: 0.78rem;
+  color: #718096;
+  margin-top: 20px;
+}
+
+.result-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.modal-card.victory .result-title {
+  color: #ffd700;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.modal-card.failure .result-title {
+  color: #ff3333;
+  text-shadow: 0 0 20px rgba(255, 51, 51, 0.5);
+}
+
+.result-desc {
+  color: #cbd5e0;
+  margin-bottom: 20px;
+  font-size: 1.05rem;
+}
+
+.stats-box {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+/* In-Game HUD */
+.hud-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 24px;
+  box-sizing: border-box;
+  z-index: 50;
+}
+
+.hud-card {
+  background: rgba(13, 17, 33, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 240, 255, 0.25);
+  border-radius: 10px;
+  padding: 12px 18px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.hud-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.distance-card {
+  min-width: 200px;
+}
+
+.label {
+  font-size: 0.75rem;
+  letter-spacing: 1.5px;
+  color: #718096;
+  font-weight: 700;
+  display: block;
+}
+
+.digital-val {
+  font-family: 'Orbitron', monospace;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #00f0ff;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+.unit {
+  font-size: 0.9rem;
+  color: #718096;
+  margin-left: 4px;
+}
+
+.value-row {
+  display: flex;
+  align-items: baseline;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00f0ff, #00ff88);
+  border-radius: 3px;
+  transition: width 0.1s linear;
+}
+
+.mission-card {
+  text-align: center;
+}
+
+.alert-pill {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffd700;
+  padding: 4px 12px;
+  background: rgba(255, 215, 0, 0.15);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  border-radius: 12px;
+  margin-top: 4px;
+}
+
+.timer-card {
+  text-align: right;
+  min-width: 160px;
+}
+
+.timer-val {
+  color: #ffaa00;
+  text-shadow: 0 0 10px rgba(255, 170, 0, 0.5);
+}
+
+/* Event Banner */
+.event-banner {
+  align-self: center;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #00ff88;
+  background: rgba(0, 255, 136, 0.15);
+  border: 2px solid #00ff88;
+  padding: 10px 28px;
+  border-radius: 8px;
+  text-shadow: 0 0 15px #00ff88;
+  animation: pulseBanner 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseBanner {
+  from { transform: scale(0.96); }
+  to { transform: scale(1.04); }
+}
+
+/* Bottom Dashboard */
+.hud-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.highbeam-card {
+  min-width: 200px;
+}
+
+.hb-icon-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hb-icon {
+  font-size: 1.3rem;
+  color: #00f0ff;
+  transition: all 0.1s ease;
+}
+
+.hb-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.hb-badge {
+  display: inline-block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin: 6px 0;
+}
+
+.hb-badge.ready {
+  background: rgba(0, 240, 255, 0.2);
+  color: #00f0ff;
+  border: 1px solid #00f0ff;
+}
+
+.hb-badge.flashing {
+  background: rgba(255, 255, 255, 0.95);
+  color: #000;
+  border: 1px solid #fff;
+  box-shadow: 0 0 20px #fff;
+}
+
+.hb-tip {
+  font-size: 0.72rem;
+  color: #a0aec0;
+}
+
+.controls-hint {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.4);
+  padding: 6px 16px;
+  border-radius: 20px;
+}
+
+.speed-card {
+  min-width: 180px;
+  text-align: right;
+}
+
+.speed-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+}
+
+.speed-val {
+  font-size: 2.8rem;
+  line-height: 1;
+}
+
+.speed-unit {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #718096;
+  margin-left: 6px;
+}
+
+.speed-gauge {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+.speed-gauge-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #00ff88, #ffaa00, #ff0055);
+  border-radius: 4px;
+  transition: width 0.08s ease-out;
+}
+
+/* Touch Controls */
+.touch-controls {
+  display: none;
+  pointer-events: auto;
+  width: 100%;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+@media (pointer: coarse) {
+  .touch-controls {
+    display: flex;
+  }
+  .controls-hint {
+    display: none;
+  }
+}
+
+.touch-btn {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 12px;
+  padding: 14px 20px;
+  touch-action: manipulation;
+}
+
+.touch-btn:active {
+  background: rgba(0, 240, 255, 0.5);
+}
+
+.touch-dpad {
+  display: flex;
+  gap: 12px;
+}
+
+.touch-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.touch-pedals {
+  display: flex;
+  gap: 8px;
+}
+
+.pedal-btn.gas {
+  background: rgba(0, 255, 136, 0.25);
+  border-color: #00ff88;
+}
+
+.pedal-btn.brake {
+  background: rgba(255, 51, 85, 0.25);
+  border-color: #ff3355;
+}
+
+.action-btn.hb-btn {
+  background: rgba(0, 240, 255, 0.3);
+  border-color: #00f0ff;
+}
