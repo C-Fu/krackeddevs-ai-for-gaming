@@ -1,4 +1,5 @@
 # 📖 GitHub Wiki Reference Guide (Panduan Wiki Repositori) — Neon Kart 3D
+**[English](https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/readme.md)** | **[Bahasa Melayu (README.ms-MY.md)](https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/readme_ms_my.md)** | **[GitHub Wiki Guide (WIKI.md)](https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/wiki.md)**
 
 This document contains ready-to-use pages for your **GitHub Repository Wiki** (in both **English** and **Bahasa Melayu**). You can copy each section into separate GitHub Wiki pages (`Home`, `Architecture-and-Physics`, `Blender-MCP-Pipeline`, `Git-Checkpoints-and-Troubleshooting`, and `Scaling-to-Full-3D`) or keep this file in your repo as a single-page manual.
 
