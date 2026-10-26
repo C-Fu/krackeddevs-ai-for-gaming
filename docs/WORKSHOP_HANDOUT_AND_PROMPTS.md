@@ -1,12 +1,30 @@
 # Attendee Hands-On Lab Handout & AI Prompt Pack
 ## *Building "King Myvi: Highway Legends" with Antigravity, OpenCode & Blender*
-**[English](WORKSHOP_HANDOUT_AND_PROMPTS.md) | [Bahasa Melayu](WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md)**
+**[English](WORKSHOP_HANDOUT_AND_PROMPTS.md) | [Bahasa Melayu](WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md)**  
+*Workshop Game Suite: [King Myvi (Root)](../README.md) | [Makcik Canteen](../MAKCIK_CANTEEN/README.md) | [Neon Kart 3D](../neon_kart_3d/README.md) | [Design Templates](../TEMPLATE_DESIGN_DOCUMENT/README.md)*
 
 ---
 
 > [!NOTE]
 > **Welcome to the Lab!**  
 > In this 3-hour hands-on session, you will not write JavaScript or 3D shaders by hand. You are acting as the **Creative Director & Lead Producer**, using AI agents (**Antigravity** or **OpenCode**) to architect, code, test, and balance a full 3D game running on Babylon.js.
+
+---
+
+## 🌟 The Golden Rule of Game Prompting: Consultative Scoping
+> [!IMPORTANT]
+> **The #1 Pro-Tip from the Live Session:**  
+> Never ask an LLM to generate an entire Game Design Document (GDD) in a single blind prompt. A single-shot prompt almost always results in bloated scope, generic mechanics, and unrealizable promises.
+>
+> Instead, trigger a **Consultative Diagnostic Interview** by including this exact key phrase:
+> ```text
+> "I want to design a game about [concept]. Before creating the game design documents, ask me relevant questions to scope the target audience, core loop, USP, platform constraints, and art style."
+> ```
+> See real live Copilot dialogue transcripts demonstrating this technique:
+> - 🍛 [Makcik Canteen: Haze Fighter GDD Scoping on Microsoft Copilot](https://copilot.microsoft.com/conversations/join/NppskzM778rkVNxfjVi5D)
+> - 📄 [Game Design Document Suite Scoping on Microsoft Copilot](https://copilot.microsoft.com/conversations/join/a8PJA1mSSRu5JoSRYExV7)
+
+---
 
 ---
 
@@ -76,6 +94,25 @@ Requirements:
 6. Twin front headlight fixtures that can serve as origins for spotlight cones.
 7. Export the resulting model as a binary glTF (.glb) into public/assets/models/myvi.glb.
 ```
+
+### Prompt 2.2: Advanced Multimodal Image-to-Spec & Live Model Steering
+*(As demonstrated during the live workshop upgrade to the 3rd Gen Lava Red Myvi)*:
+
+1. **Multimodal Spec Extraction Prompt** (Upload rear-left & front-left 3D renders to Copilot/Gemini):
+   ```text
+   "Here is a technical reference image of the Perodua Myvi. Provide a technical breakdown 
+   structured specifically for 3D polygonal modeling: overall proportions, rear hatch rake, 
+   taillamp orientation (horizontal wrap-around), spoiler design, floating roof C-pillar cue, 
+   and primary volumes for procedural mesh generation."
+   ```
+2. **Real-Time Blender Steering Prompt** (To the coding agent with active Blender MCP):
+   ```text
+   "The car model is not correct, not like in real life. Change the car model to match this technical spec 
+   and reference image. Replace vertical taillights with horizontal two-piece wrap-around clusters, 
+   add the two-tier spoiler with black fins, floating C-pillar insert, and 15-inch turbine alloys. 
+   Export directly to public/assets/models/myvi.glb."
+   ```
+*(For complete technical details and procedural Python code, see [`docs/BLENDER_3D_PIPELINE.md`](BLENDER_3D_PIPELINE.md)).*
 
 ---
 

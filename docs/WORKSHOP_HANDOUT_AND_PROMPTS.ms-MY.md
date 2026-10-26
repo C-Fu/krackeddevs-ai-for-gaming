@@ -1,12 +1,30 @@
 # Panduan Peserta Bengkel Praktikal & Pek Prom AI
 ## *Membina "King Myvi: Highway Legends" bersama Antigravity, OpenCode & Blender*
-**[English](WORKSHOP_HANDOUT_AND_PROMPTS.md) | [Bahasa Melayu](WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md)**
+**[English](WORKSHOP_HANDOUT_AND_PROMPTS.md) | [Bahasa Melayu](WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md)**  
+*Siri Permainan Bengkel: [King Myvi (Utama)](../README.ms-MY.md) | [Makcik Canteen](../MAKCIK_CANTEEN/README.ms-MY.md) | [Neon Kart 3D](../neon_kart_3d/README.ms-MY.md) | [Templat Reka Bentuk](../TEMPLATE_DESIGN_DOCUMENT/README.ms-MY.md)*
 
 ---
 
 > [!NOTE]
 > **Selamat Datang ke Makmal Bengkel!**  
 > Dalam sesi praktikal 3 jam ini, anda tidak akan menulis kod JavaScript atau shader 3D secara manual. Anda bertindak sebagai **Pengarah Kreatif & Penerbit Utama**, menggunakan ejen AI (**Antigravity** atau **OpenCode**) untuk mereka bentuk seni bina, mengekod, menguji, dan menala permainan 3D penuh yang berjalan di atas Babylon.js.
+
+---
+
+## 🌟 Petua Emas Prom Permainan: Skoping Perundingan (Consultative Scoping)
+> [!IMPORTANT]
+> **Petua Utama (#1 Pro-Tip) dari Sesi Langsung:**  
+> Jangan sekali-kali meminta LLM menjana Dokumen Reka Bentuk Permainan (GDD) secara sekali gus (single-shot) tanpa sekatan skop. Prom buta sebegini hampir selalu menghasilkan skop melampau, mekanik generik, dan janji ciri yang mustahil disiapkan dalam tempoh terhad.
+>
+> Sebaliknya, cetuskan **Temu Duga Diagnostik Perundingan** dengan menyertakan frasa kunci ini:
+> ```text
+> "Saya ingin mereka bentuk permainan tentang [konsep]. Sebelum mencipta dokumen reka bentuk permainan, ajukan soalan-soalan relevan kepada saya untuk menetapkan skop audiens sasaran, gelung teras, USP, kekangan platform, dan gaya seni."
+> ```
+> Lihat transkrip dialog Copilot sebenar yang menunjukkan teknik ini:
+> - 🍛 [Skoping GDD Makcik Canteen: Haze Fighter di Microsoft Copilot](https://copilot.microsoft.com/conversations/join/NppskzM778rkVNxfjVi5D)
+> - 📄 [Penjanaan Suite Templat Reka Bentuk Permainan di Microsoft Copilot](https://copilot.microsoft.com/conversations/join/a8PJA1mSSRu5JoSRYExV7)
+
+---
 
 ---
 
@@ -76,6 +94,25 @@ Keperluan spesifikasi:
 6. Dua lampu hadapan kembar yang berfungsi sebagai titik asal kon lampu sorot.
 7. Eksport model yang dihasilkan sebagai binary glTF (.glb) ke dalam public/assets/models/myvi.glb.
 ```
+
+### Prom 2.2: Pengekstrakan Imej-ke-Spesifikasi Pelbagai Mod & Pembetulan Model Langsung
+*(Seperti yang ditunjukkan semasa peningkatan langsung di bengkel kepada Myvi Merah Lava Generasi ke-3)*:
+
+1. **Prom Pengekstrakan Spesifikasi Multimodal** (Muat naik paparan 3D belakang-kiri & hadapan-kiri ke Copilot/Gemini):
+   ```text
+   "Ini adalah imej rujukan teknikal Perodua Myvi. Sila berikan pecahan teknikal yang 
+   distrukturkan khusus untuk pemodelan poligon 3D: perkadaran keseluruhan, kecuraman pintu but, 
+   orientasi kluster lampu belakang (mendatar membalut sisi), reka bentuk spoiler bumbung dua tingkat, 
+   sisipan bumbung terapung tiang C, dan isipadu utama bagi penjanaan mesh prosedur."
+   ```
+2. **Prom Pembetulan Langsung Ejen Blender MCP** (Kepada ejen pengekodan dengan sambungan Blender aktif):
+   ```text
+   "Model kereta ini tidak tepat dan tidak seperti di dunia sebenar. Ubah model kereta kepada rujukan visual 
+   dan spesifikasi ini. Tukar lampu belakang menegak kepada kluster mendatar dua bahagian membalut sisi, 
+   tambah spoiler dua tingkat bersirip hitam, sisipan hitam bumbung terapung tiang C, dan roda aloi turbin 15 inci. 
+   Eksport terus ke public/assets/models/myvi.glb."
+   ```
+*(Untuk perincian teknikal penuh dan kod Python prosedur, rujuk [`docs/BLENDER_3D_PIPELINE.ms-MY.md`](BLENDER_3D_PIPELINE.ms-MY.md)).*
 
 ---
 

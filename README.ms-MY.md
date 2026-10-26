@@ -14,9 +14,67 @@
 [![Web Audio](https://img.shields.io/badge/Audio-Web%20Audio%20Prosedural-00F0FF?style=for-the-badge)](src/audio.js)
 [![Lesen: MIT](https://img.shields.io/badge/Lesen-MIT-00FF88?style=for-the-badge)](LICENSE)
 
-[🎮 **Main Demo Langsung**](https://c-fu.github.io/krackeddevs-ai-for-gaming/) &bull; [📑 **Buka Slaid Pembentangan**](https://c-fu.github.io/krackeddevs-ai-for-gaming/slides.html) &bull; [📋 **Pelan Bengkel 3 Jam**](docs/AI_FOR_GAMING_MASTER_PLAN.ms-MY.md) &bull; [💬 **Pek Prom Peserta**](docs/WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md)
+[🎮 **Main King Myvi**](https://c-fu.github.io/krackeddevs-ai-for-gaming/) &bull; [🍲 **Makcik Canteen**](MAKCIK_CANTEEN/README.ms-MY.md) &bull; [🏎️ **Neon Kart 3D**](neon_kart_3d/README.md) &bull; [📑 **Slaid Pembentangan**](https://c-fu.github.io/krackeddevs-ai-for-gaming/slides.html) &bull; [📐 **Templat Dokumen Reka Bentuk**](TEMPLATE_DESIGN_DOCUMENT/README.ms-MY.md) &bull; [💬 **Pek Prom**](docs/WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md)
 
 </div>
+
+---
+
+## 🕹️ Ekosistem 3 Permainan Bengkel
+
+Sepanjang bengkel dan sesi langsung **AI for Gaming**, tiga buah permainan 3D penuh yang boleh dimainkan telah dirangka konsepnya, didokumentasikan, dan dibina sepenuhnya menggunakan AI generatif, ejen pengekodan autonomi, dan saluran paip prosedur:
+
+| Permainan | Platform & Enjin | Permainan Teras & Cadangan Nilai Unik (USP) | Dokumen Reka Bentuk & Pautan |
+| :--- | :--- | :--- | :--- |
+| **🚗 King Myvi: Highway Legends** | **Babylon.js 7** + Vite | Larian lebuh raya arked berhalaju tinggi. Pancarkan lampu tinggi (`Spacebar`) untuk memaksa trafik lorong kanan memberi laluan, elak kawah lubang jalan, dan lompat tanjakan tol SmartTAG penuh lorong pada 240 km/j. | • [🎮 Main Demo Langsung](https://c-fu.github.io/krackeddevs-ai-for-gaming/)<br/>• [📄 GDD Permainan](docs/GAME_DESIGN_DOCUMENT.ms-MY.md)<br/>• [🚗 Saliran 3D Myvi](docs/BLENDER_3D_PIPELINE.ms-MY.md)<br/>• [📁 Kod Sumber](src/) |
+| **🍛 Makcik Canteen: Haze Fighter** | **Babylon.js 7** + Vite | Simulator arked kantin sekolah Malaysia. Berbekalkan kipas penghembus industri (`Spacebar`) dan perangkap bom ais kering (`E`), bersihkan kepulan jerebu tebal demi menyelamatkan pelajar lapar dalam kiraan undur waktu rehat 60 saat. *Dibina secara langsung semasa bengkel menggunakan Microsoft Copilot!* | • [🎮 Main Makcik Canteen](MAKCIK_CANTEEN/index.html)<br/>• [📖 README Kantin](MAKCIK_CANTEEN/README.ms-MY.md)<br/>• [📄 Spesifikasi Penuh 7-Dokumen](MAKCIK_CANTEEN/GAME_DESIGN_DOCUMENT.md)<br/>• [💬 Dialog Langsung Copilot](https://copilot.microsoft.com/conversations/join/NppskzM778rkVNxfjVi5D) |
+| **🏎️ Neon Kart 3D** | **Three.js** + Vite | Pelumba drift arked siber bernuansa Synthwave. Menampilkan percikan kuasa drift, kiub misteri terapung, roket penjejak, tompokan minyak, pad pemecut, dan saingan AI berdaya dinamik di litar neon bercahaya. | • [🎮 Main Neon Kart](neon_kart_3d/neon_kart_3d_ai_for_gaming_live_workshop_demo.html)<br/>• [📖 README Neon Kart](neon_kart_3d/README.md)<br/>• [📁 Folder](neon_kart_3d/) |
+
+---
+
+## 💡 Petua Utama Prototip Permainan: "Ajukan Soalan Relevan Kepada Saya"
+
+> [!IMPORTANT]
+> **Rahsia Menghapuskan Halusinasi AI & Pembengkakan Skop (Scope Creep)**  
+> Kesilapan terbesar yang kerap dilakukan oleh pembangun dan pereka permainan apabila menggunakan Model Bahasa Raya (LLM) ialah meminta dokumen reka bentuk permainan (GDD) penuh dalam satu prom buta:  
+> *❌ "Tuliskan dokumen reka bentuk permainan untuk game battle royale cyberpunk multipemain."*  
+> 
+> Kaedah ini hampir pasti menghasilkan mekanik yang melampau, skop yang mustahil disiapkan, dan idea RPG generik yang klise.
+> 
+> Sebaliknya, cetuskan **Dialog Diagnostik Perundingan** dengan memaksa AI bertindak sebagai penemuduga menerusi frasa emas ini:
+> ```text
+> "Saya ingin mereka bentuk permainan tentang [konsep]. Sebelum mencipta dokumen reka bentuk permainan, 
+> ajukan soalan-soalan relevan kepada saya untuk menetapkan skop audiens sasaran, gelung teras, USP, kekangan platform, dan gaya seni."
+> ```
+
+### Bukti Sesi Sebenar di Microsoft Copilot
+Metodologi prompting ini telah dibuktikan secara langsung untuk membina struktur permainan penuh dalam masa kurang 15 minit:
+1. **[Dialog Copilot Makcik Canteen: Haze Fighter](https://copilot.microsoft.com/conversations/join/NppskzM778rkVNxfjVi5D):** Copilot mengemukakan 5 soalan skoping diagnostik (gelung teras, gaya visual, jenis halangan, bantuan kuasa, syarat kemenangan) sebelum merangka 7 dokumen spesifikasi modular.
+2. **[Suite Templat Dokumen Reka Bentuk di Copilot](https://copilot.microsoft.com/conversations/join/a8PJA1mSSRu5JoSRYExV7):** Copilot menstrukturkan suite reka bentuk 9-templat standard industri merangkumi mekanik, fizik, tindanan teknologi, UI/UX, aset, ujian, dan kebolehcapaian.
+
+Terokai suite templat sedia guna yang lengkap dalam [`TEMPLATE_DESIGN_DOCUMENT/`](TEMPLATE_DESIGN_DOCUMENT/README.ms-MY.md).
+
+---
+
+## 🚗 Evolusi 3D Myvi: Visi Pelbagai Mod & Blender MCP
+
+Semasa sesi bengkel, para peserta menyaksikan evolusi masa nyata kenderaan pemain daripada model awal poli rendah yang ringkas kepada **Perodua Myvi Generasi ke-3 (Merah Lava)** yang bertepatan sepenuhnya dengan render rujukan studio Hum3D profesional:
+
+```
+[Imej Rujukan 3D] ──► [Ekstraksi LLM Vision] ──► [Spesifikasi Poligon Teknikal]
+                                                              │
+                                                              ▼
+[Enjin Web Babylon.js] ◄── [Eksport Binari .GLB] ◄── [Jambatan MCP Blender 9876]
+```
+
+### Aliran Kerja 3-Langkah Peningkatan Langsung:
+1. **Prompt Penglihatan Pelbagai Mod (Imej-ke-Spesifikasi):** Daripada menggambarkan Myvi berdasarkan ingatan, render rujukan tiga suku hadapan dan belakang dianalisis oleh model penglihatan untuk menghasilkan pecahan geometri yang tepat (garisan pinggang, spoiler aero dua tingkat dengan sirip sisi hitam, sisipan bumbung terapung tiang C, kluster lampu belakang melintang membalut sisi).
+2. **Pelaksanaan Langsung Model Context Protocol (MCP):** Ejen berhubung terus ke instans Blender yang sedang berjalan melalui soket TCP (`127.0.0.1:9876`), menjana geometri Python `bpy` prosedur pada urutan utama Blender tanpa pengubahsuaian bucu secara manual.
+3. **Prompt Pembetulan Interaktif (Human-in-the-Loop):** Apabila lakaran awal menghasilkan bentuk berkotak generasi lama, pengajar mengarahkan:  
+   > *"The model is not correct, not like in real life. Change the car model to this one."*  
+   Ejen segera menambat semula model kepada rujukan visual sebenar, menjana lampu melengkung, peresap sporty, roda turbin, dan mengeksport `myvi.glb` terus ke direktori enjin permainan web.
+
+*(Ketahui kisah penuh, transkrip prom, dan skrip Python di [`docs/BLENDER_3D_PIPELINE.ms-MY.md`](docs/BLENDER_3D_PIPELINE.ms-MY.md) / [English: `docs/BLENDER_3D_PIPELINE.md`](docs/BLENDER_3D_PIPELINE.md)).*
 
 ---
 
@@ -124,7 +182,7 @@ KD_AI_FOR_GAMING/
 ├── vite.config.js               # Konfigurasi pembina multi-halaman Vite 6
 ├── package.json                 # Pakej kebergantungan: @babylonjs/core, loaders, inspector, vite
 │
-├── src/
+├── src/                         # Kod Sumber King Myvi: Highway Legends
 │   ├── main.js                  # Gelung enjin, kamera kejar (ofset 180°), pencahayaan senja, semakan menang/kalah
 │   ├── myvi.js                  # Fizik arked kereta pemain, olengan badan (8°), lampu sorot, fizik lompatan
 │   ├── traffic.js               # Pengurus trafik AI: sedan, van, lori; mesin keadaan 4-peringkat untuk memberi laluan
@@ -133,28 +191,47 @@ KD_AI_FOR_GAMING/
 │   ├── audio.js                 # Enjin audio sintesis Web Audio tulen (RPM enjin, hon, deruan nitro)
 │   └── ui.js                    # Meter kelajuan, meter baki jarak, pemasa, notifikasi banner, D-pad sentuh
 │
+├── MAKCIK_CANTEEN/              # Makcik Canteen: Haze Fighter (Permainan Sesi Langsung)
+│   ├── index.html               # Titik masuk permainan Babylon.js 7 boleh dimainkan
+│   ├── README.md                # Panduan Bahasa Inggeris & dokumentasi Copilot
+│   ├── README.ms-MY.md          # Panduan Bahasa Melayu
+│   └── *.md                     # Spesifikasi lengkap reka bentuk permainan 7-dokumen
+│
+├── neon_kart_3d/                # Neon Kart 3D (Pelumba Drift Synthwave)
+│   ├── README.md                # Dokumentasi projek
+│   └── neon_kart_3d_ai_for_gaming_live_workshop_demo.html # Permainan Three.js boleh dimainkan
+│
+├── TEMPLATE_DESIGN_DOCUMENT/    # Suite Templat Dokumen Reka Bentuk Permainan Sejagat
+│   ├── README.md                # Panduan suite dalam Bahasa Inggeris
+│   ├── README.ms-MY.md          # Panduan suite dalam Bahasa Melayu
+│   ├── TEMPLATE_*.md            # 9 Templat kosong reka bentuk standard
+│   └── EXAMPLE_*.md             # 3 Kajian kes permainan bengkel sebenar
+│
 ├── tools/
 │   └── blender/
 │       ├── README.md            # Panduan menjalankan skrip melalui Blender MCP atau CLI
-│       ├── generate_myvi.py     # Skrip Python membina kereta Myvi dengan spoiler & roda
+│       ├── build_hum3d_myvi.py  # Skrip penjana model Myvi Merah Lava Generasi ke-3
+│       ├── generate_myvi.py     # Skrip asas Myvi berprosedur
 │       └── generate_environment.py # Skrip Python menjana pokok kelapa sawit, papan tanda & gantri
 │
 ├── public/
 │   └── assets/
 │       └── models/              # Folder output untuk fail model 3D binary glTF (.glb)
-│           ├── myvi.glb         # Model 3D Perodua Myvi (34 KB)
+│           ├── myvi.glb         # Model 3D Perodua Myvi Generasi ke-3 (267 KB)
 │           ├── overhead_gantry.glb # Gantri papan tanda hijau PLUS (18 KB)
 │           └── palm_tree.glb    # Model pokok kelapa sawit tepi jalan (17 KB)
 │
 └── docs/                        # Dokumentasi Penuh Bengkel 3 Jam
     ├── AI_FOR_GAMING_MASTER_PLAN.md        # Pelan induk & skrip pembentang (English)
     ├── AI_FOR_GAMING_MASTER_PLAN.ms-MY.md  # Pelan induk & skrip pembentang (Bahasa Melayu)
-    ├── GAME_DESIGN_DOCUMENT.md             # Dokumen Reka Bentuk Permainan (English)
-    ├── GAME_DESIGN_DOCUMENT.ms-MY.md       # Dokumen Reka Bentuk Permainan (Bahasa Melayu)
-    ├── PROJECT_MANAGEMENT_TEMPLATE.md      # Senarai tugas Agile & matriks fizik (English)
-    ├── PROJECT_MANAGEMENT_TEMPLATE.ms-MY.md# Senarai tugas Agile & matriks fizik (Bahasa Melayu)
-    ├── WORKSHOP_HANDOUT_AND_PROMPTS.md     # Pek prom & panduan peserta (English)
-    └── WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md # Pek prom & panduan peserta (Bahasa Melayu)
+    ├── GAME_DESIGN_DOCUMENT.md             # Dokumen reka bentuk permainan terperinci (English)
+    ├── GAME_DESIGN_DOCUMENT.ms-MY.md       # Dokumen reka bentuk permainan terperinci (Bahasa Melayu)
+    ├── PROJECT_MANAGEMENT_TEMPLATE.md      # Templat pengurusan projek & matriks fizik (English)
+    ├── PROJECT_MANAGEMENT_TEMPLATE.ms-MY.md# Templat pengurusan projek & matriks fizik (Bahasa Melayu)
+    ├── WORKSHOP_HANDOUT_AND_PROMPTS.md     # Panduan peserta & pek prom langkah-demi-langkah (English)
+    ├── WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md# Panduan peserta & pek prom langkah-demi-langkah (Bahasa Melayu)
+    ├── BLENDER_3D_PIPELINE.md              # Saliran pemodelan 3D Myvi & rujukan Hum3D (English)
+    └── BLENDER_3D_PIPELINE.ms-MY.md        # Saliran pemodelan 3D Myvi & rujukan Hum3D (Bahasa Melayu)
 ```
 
 ---
@@ -164,19 +241,19 @@ KD_AI_FOR_GAMING/
 ```mermaid
 flowchart TD
     subgraph "Pra-Pengeluaran (Fasa 1)"
-        GDD["Dokumen Reka Bentuk Permainan (GDD)<br/><i>Prom Sistem Antigravity</i>"]
-        Sheets["Senarai Tugas Google Sheets<br/><i>Matriks Keseimbangan Fizik</i>"]
+        GDD["Dokumen Reka Bentuk Permainan<br/><i>Prom Sistem Antigravity</i>"]
+        Sheets["Tunggakan Kerja Google Sheets<br/><i>Matriks Imbangan Fizik</i>"]
     end
 
     subgraph "Saluran Kandungan 3D (Fasa 2)"
         MCP["Jambatan Blender 5 MCP<br/><i>Bahasa Tabii ke 3D</i>"]
-        GLB["glTF Dedua (.glb)<br/><i>Mesh Kereta & Jalan Modular</i>"]
+        GLB["glTF Binari (.glb)<br/><i>Mesh Jalan & Kereta Modular</i>"]
     end
 
-    subgraph "Penyusunan Enjin (Fasa 3)"
+    subgraph "Pemasangan Enjin (Fasa 3)"
         Babylon["Enjin Babylon.js 7<br/><i>Fizik Arked & Pencahayaan</i>"]
-        TrafficAI["Mesin Keadaan AI Trafik<br/><i>Beralih Lorong Apabila Di-High-Beam</i>"]
-        WebAudio["Penyintesis Web Audio<br/><i>RPM Enjin & Hon Prosedural</i>"]
+        TrafficAI["Mesin Keadaan Trafik AI<br/><i>Beri Laluan pada Lampu Tinggi</i>"]
+        WebAudio["Penyintesis Web Audio<br/><i>RPM & Hon Prosedural</i>"]
     end
 
     subgraph "Pelancaran (Fasa 4)"
@@ -192,91 +269,93 @@ flowchart TD
     Babylon --> Deploy
 ```
 
-1. **Antigravity / OpenCode:** Persekitaran ejen pengekodan autonomi yang menterjemahkan arahan reka bentuk tahap tinggi kepada kod JavaScript modular dan fizik vektor yang sedia untuk pengeluaran.
-2. **Blender MCP (Model Context Protocol):** Sambungan terus dari ejen AI ke enjin Python Blender (`bpy`), membina geometri poli rendah secara prosedural dan mengeksport fail `.glb` terus ke folder aset permainan.
-3. **Babylon.js 7:** Enjin pelayar berasaskan WebGL2/WebGPU yang menyediakan pemaparan PBR, FollowCamera dengan tarikan medan pandangan (FOV) dinamik mengikut kelajuan, penjana bayang-bayang, dan Debug Inspector masa larian.
-4. **API Web Audio Prosedural:** Bebas daripada sebarang kebergantungan fail luaran `.mp3` atau `.wav`. Osilator gelombang gigi gergaji dinamik yang dimodulasikan mengikut kelajuan km/j sebenar, hon harmonik dwi-ton Malaysia, dan bunyi lonjakan frekuensi untuk pecutan nitro.
+1. **Antigravity / OpenCode:** Persekitaran ejen pengekodan autonomi yang menterjemahkan arahan prom reka bentuk peringkat tinggi kepada kod JavaScript modular sedia pengeluaran dan fizik vektor.
+2. **Blender MCP (Model Context Protocol):** Sambungan terus dari ejen AI ke enjin masa nyata Python Blender (`bpy`), membina geometri berprosedur dan mengeksport mesh `.glb` terus ke folder aset permainan.
+3. **Babylon.js 7:** Enjin pelayar WebGL2/WebGPU yang menyediakan pemaparan berasaskan fizik (PBR), FollowCamera dengan regangan FOV dinamik, penjana bayang-bayang, dan Debug Inspector.
+4. **API Web Audio Prosedural:** Bebas kebergantungan fail luaran `.mp3` atau `.wav`. Pengayun enjin gigi gergaji (sawtooth) dinamik yang dimodulasi kelajuan km/j, hon harmoni dwi-nada kereta tempatan, dan cip frekuensi eksponen bagi lonjakan nitro.
 
 ---
 
-## 🎨 Saluran Kandungan 3D: Blender MCP
+## 🎨 Saluran Paip Aset 3D: Blender MCP
 
-Sekiranya anda memasang Blender pada komputer tempatan, anda boleh menjana semula semua aset 3D dalam mod tanpa grafik (headless CLI) atau melalui Model Context Protocol:
+Sekiranya anda memasang perisian Blender secara tempatan, anda boleh menjana semula aset 3D dalam mod tanpa paparan (headless CLI) atau melalui Model Context Protocol:
 
 ```bash
 # Windows
-& "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe" --background --python tools/blender/generate_myvi.py
+& "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe" --background --python tools/blender/build_hum3d_myvi.py
 & "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe" --background --python tools/blender/generate_environment.py
 
 # macOS
-/Applications/Blender.app/Contents/MacOS/Blender --background --python tools/blender/generate_myvi.py
+/Applications/Blender.app/Contents/MacOS/Blender --background --python tools/blender/build_hum3d_myvi.py
 /Applications/Blender.app/Contents/MacOS/Blender --background --python tools/blender/generate_environment.py
 ```
 
-> **Mod Hibrid / Sandaran:**  
-> Jika komputer peserta tidak mempunyai Blender, repositori permulaan ini telah pun menyertakan fail model `.glb` sedia ada serta mesh sandaran prosedural Babylon.js. **Tiada peserta yang akan terhalang.**
+> **Mod Hibrid / Sandaran (Fallback):**  
+> Sekiranya komputer peserta tidak mempunyai perisian Blender, repositori ini telah menyertakan fail model `.glb` sedia guna yang telah disahkan serta penjana geometri sandaran prosedural dalam Babylon.js. **Tiada siapa yang akan terhalang.**
 
 ---
 
-## 📑 Slaid Pembentangan Interaktif
+## 📑 Slaid Pembentangan
 
-Pembentangan 16 slaid interaktif disediakan dalam fail **[`slides.html`](slides.html)**:
+Pembentangan interaktif 16-bahagian disertakan dalam **[`slides.html`](slides.html)**:
 
-* Dibina menggunakan **Reveal.js 5.1** dengan tema visual cyber-sunset lebuh raya Malaysia.
-* Tekan **`S`** untuk membuka **Paparan Nota Pembentang (Speaker Notes)** (mengandungi pemasa masa nyata, pratonton slaid seterusnya, dan skrip penerangan perkataan demi perkataan).
-* Tekan **`ESC`** atau **`O`** untuk membuka paparan grid gambaran keseluruhan slaid.
+* Dibina menggunakan **Reveal.js 5.1** dengan tema visual cyber-sunset tersuai.
+* Tekan **`S`** untuk membuka **Paparan Nota Pembentang (Speaker Notes)** (mengandungi pemasa langsung, pratonton slaid seterusnya, dan skrip pertuturan penuh).
+* Tekan **`ESC`** atau **`O`** untuk membuka paparan gambaran keseluruhan slaid (grid overview).
 * Tekan **`F`** untuk mod pembentangan skrin penuh.
-* Klik butang **`🎮 PLAY LIVE DEMO`** di bar navigasi atas untuk melompat terus ke permainan yang boleh dimainkan.
+* Klik butang **`🎮 MAIN DEMO LANGSUNG`** di bar navigasi atas untuk terus melompat masuk ke dalam permainan.
 
 ---
 
-## 🚀 Panduan Penyebaran / Pelancaran (Deployment)
+## 🚀 Pelancaran & Penyebaran
 
 ### Pilihan A: GitHub Pages (Disyorkan)
-Aliran kerja GitHub Actions automatik telah disediakan dalam [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml):
-1. Tolak kod anda ke repositori GitHub:
+1. Rakam dan tolak kod ke repositori GitHub anda:
    ```bash
    git add .
    git commit -m "feat: lengkapkan demo permainan King Myvi"
    git push origin main
    ```
-2. Dalam repositori GitHub anda:
+2. Di dalam repositori GitHub anda:
    * Pergi ke **Settings &rarr; Pages**.
-   * Di bawah bahagian **Build and deployment &rarr; Source**, pilih **GitHub Actions**.
-3. Permainan dan slaid anda akan dilancarkan secara langsung di seluruh dunia melalui `https://<nama-pengguna>.github.io/<nama-repo>/`!
+   * Di bawah bahagian **Build and deployment &rarr; Source**, pilih **GitHub Actions** (atau pilih cawangan `main` dengan folder `/dist`).
+3. Permainan dan slaid anda kini boleh diakses di seluruh dunia melalui `https://<nama-pengguna>.github.io/<nama-repo>/`!
 
-### Pilihan B: Vercel (Segera)
+### Pilihan B: Vercel (Pantas Serta-Merta)
 ```bash
 npx vercel
 ```
-Tekan `Enter` mengikut tetapan lalai. Vercel akan mengesan konfigurasi Vite secara automatik dan menyediakan URL pengeluaran HTTPS beserta kod QR dalam masa 30 saat.
+Tekan `Enter` untuk pilihan lalai. Vercel secara automatik mengesan konfigurasi Vite dan memberikan URL HTTPS pengeluaran serta kod QR mudah alih dalam masa 30 saat.
 
 ---
 
-## 🏆 Dokumen Utama Bengkel
+## 🏆 Suite & Dokumen Induk Bengkel
 
-| Dokumen (English) | Dokumen (Bahasa Melayu) | Penerangan |
+| Suite Dokumen (Bahasa Melayu) | Document Suite (English) | Penerangan / Description |
 | :--- | :--- | :--- |
-| [AI Master Plan](docs/AI_FOR_GAMING_MASTER_PLAN.md) | [Pelan Induk AI](docs/AI_FOR_GAMING_MASTER_PLAN.ms-MY.md) | Pembahagian 180 minit, rangka kerja pedagogi, dan skrip pembentang. |
-| [Game Design Document (GDD)](docs/GAME_DESIGN_DOCUMENT.md) | [Dokumen Reka Bentuk Permainan](docs/GAME_DESIGN_DOCUMENT.ms-MY.md) | Spesifikasi fizik kenderaan, pokok keadaan trafik AI, dan reka bentuk audio. |
-| [Project Management Template](docs/PROJECT_MANAGEMENT_TEMPLATE.md) | [Templat Pengurusan Projek](docs/PROJECT_MANAGEMENT_TEMPLATE.ms-MY.md) | Senarai tugas Agile (format CSV untuk Google Sheets) & matriks fizik. |
-| [Workshop Handout & Prompts](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md) | [Panduan Peserta & Pek Prom](docs/WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md) | Senarai prom langkah demi langkah sedia salin-tampal untuk Antigravity / OpenCode. |
-| [Blender 3D Pipeline & Gallery](docs/BLENDER_3D_PIPELINE.md) | [Saliran 3D Blender & Galeri](docs/BLENDER_3D_PIPELINE.ms-MY.md) | Pemodelan Myvi Gen 3 secara langsung melalui soket Blender MCP & eksport glTF. |
+| [Pelan Induk AI](docs/AI_FOR_GAMING_MASTER_PLAN.ms-MY.md) | [AI Master Plan](docs/AI_FOR_GAMING_MASTER_PLAN.md) | Pecahan terperinci 180 minit, kerangka pedagogi, dan skrip pembentang. |
+| [Dokumen Reka Bentuk Permainan (GDD)](docs/GAME_DESIGN_DOCUMENT.ms-MY.md) | [Game Design Document (GDD)](docs/GAME_DESIGN_DOCUMENT.md) | Spesifikasi fizik kenderaan, pohon keadaan trafik, arahan seni, dan reka bentuk audio. |
+| [Templat Pengurusan Projek](docs/PROJECT_MANAGEMENT_TEMPLATE.ms-MY.md) | [Project Management Template](docs/PROJECT_MANAGEMENT_TEMPLATE.md) | Tunggakan kerja Agile (blok data CSV untuk Google Sheets) & matriks fizik. |
+| [Panduan Peserta & Pek Prom](docs/WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md) | [Workshop Handout & Prompts](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md) | Prom salin-dan-tampal langkah demi langkah untuk Antigravity & OpenCode. |
+| [Saliran 3D Blender & Galeri](docs/BLENDER_3D_PIPELINE.ms-MY.md) | [Blender 3D Pipeline & Gallery](docs/BLENDER_3D_PIPELINE.md) | Pemodelan prosedur Myvi Generasi ke-3 melalui soket Blender MCP & eksport glTF. |
+| [Dokumentasi Makcik Canteen](MAKCIK_CANTEEN/README.ms-MY.md) | [Makcik Canteen Documentation](MAKCIK_CANTEEN/README.md) | Spesifikasi lengkap 7-dokumen permainan yang dicipta secara langsung dengan Microsoft Copilot. |
+| [Suite Templat Reka Bentuk](TEMPLATE_DESIGN_DOCUMENT/README.ms-MY.md) | [Template Design Document Suite](TEMPLATE_DESIGN_DOCUMENT/README.md) | 9 templat reka bentuk standard & 3 kajian kes permainan bengkel sebenar. |
+| [Dokumentasi Neon Kart 3D](neon_kart_3d/README.md) | [Neon Kart 3D Documentation](neon_kart_3d/README.md) | Permainan drift arked siber Synthwave dibina dengan Three.js dan Vite. |
 
 ---
 
-## 💡 Cabaran Lanjutan Selepas Bengkel
+## 💡 Cabaran Selepas Bengkel
 
-Ingin mengembangkan prototaip ini menjadi keluaran komersial penuh? Cuba cabaran hackathon ini:
+Bersedia untuk memperluaskan prototaip ini menjadi permainan komersial penuh? Sahut cabaran hackathon ini:
 
-1. **Pilihan Kereta Malaysia Tambahan:** Tambah skrin garaj untuk memilih antara **Proton Kancil** (pecutan tinggi, kelajuan maksimum lebih rendah) atau **Proton Wira** dengan talaan drift.
-2. **Peristiwa Hujan Lebat Monsun:** Di Kilometer 3.0, cetuskan ribut hujan tropika secara dinamik: gelapkan langit, kurangkan cengkaman tayar atas asfalt sebanyak 30%, dan aktifkan animasi pengelap cermin depan.
-3. **Papan Pendahulu Dalam Talian:** Sambungkan pangkalan data Postgres percuma [Supabase](https://supabase.com/) untuk mencatat masa terpantas dan skor tertinggi di dalam dewan.
-4. **Peralihan ke Unreal Engine 5:** Eksport logik mekanik dan reka letak trek ke Unreal Engine 5 menggunakan API Python UE dan Penjanaan Kandungan Prosedural (PCG).
+1. **Kenderaan Tempatan Baharu:** Bina skrin pemilihan garaj dengan pilihan kenderaan seperti **Proton Kancil** (pecutan tinggi, kelajuan maksimum rendah) atau **Proton Wira** dengan talaan drift.
+2. **Peristiwa Hujan Monsun:** Di Kilometer 3.0, cetuskan ribut hujan tropika secara dinamik: gelapkan langit, kurangkan geseran tayar di atas asfalt sebanyak 30%, dan aktifkan animasi pengelap cermin hadapan.
+3. **Papan Pendahulu Dalam Talian:** Sambungkan pangkalan data Postgres [Supabase](https://supabase.com/) percuma untuk merekodkan masa terpantas dan skor tertinggi dari seluruh dewan.
+4. **Peralihan ke Unreal Engine 5:** Eksport mekanik permainan dan susun atur laluan ke dalam Unreal Engine 5 menggunakan API Python UE dan Procedural Content Generation (PCG).
 
 ---
 
 ## 📜 Lesen
 
-Diedarkan di bawah **Lesen MIT**. Bebas untuk kegunaan pendidikan, peribadi, dan komersial.  
-Dicipta khas untuk tutorial dan bengkel hands-on **AI for Gaming**.
+Diedarkan di bawah **Lesen Sumber Terbuka MIT**. Bebas digunakan untuk tujuan pendidikan, komersial, dan peribadi.  
+Dicipta khas untuk tutorial praktikal dan masterclass **AI for Gaming**.

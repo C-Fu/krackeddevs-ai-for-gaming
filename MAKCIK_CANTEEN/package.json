@@ -1,0 +1,17 @@
+{
+  "name": "makcik-canteen-haze-fighter",
+  "version": "1.0.0",
+  "description": "Makcik Canteen: Haze Fighter - Babylon.js Proof of Concept Prototype",
+  "main": "index.html",
+  "scripts": {
+    "start": "python server.py"
+  },
+  "keywords": [
+    "babylonjs",
+    "game",
+    "webgl",
+    "arcade"
+  ],
+  "author": "",
+  "license": "MIT"
+}

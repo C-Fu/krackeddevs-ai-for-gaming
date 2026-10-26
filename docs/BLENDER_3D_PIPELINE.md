@@ -1,8 +1,47 @@
 # 🚗 3rd Generation Perodua Myvi (Lava Red / HUM3D Reference) – Blender MCP Pipeline
 
-*[Versi Bahasa Melayu ada di sini: BLENDER_3D_PIPELINE.ms-MY.md](BLENDER_3D_PIPELINE.ms-MY.md)*
+*[Versi Bahasa Melayu ada di sini: BLENDER_3D_PIPELINE.ms-MY.md](BLENDER_3D_PIPELINE.ms-MY.md)*  
+*Part of the [AI for Gaming Workshop Ecosystem](../README.md). Interactive Design Suite: [TEMPLATE_DESIGN_DOCUMENT/](../TEMPLATE_DESIGN_DOCUMENT/README.md)*
 
 This document details the procedural 3D modeling pipeline used to build the **3rd Generation Perodua Myvi (Lava Red)** matching the **Hum3D 3D reference** (`media_1793013754379_8974d7c7.png` & `media_1793013766937_0b5e9563.png`) directly inside the active Blender instance via the `BlenderMCPServer` socket bridge (`127.0.0.1:9876`), followed by automatic binary glTF (`.glb`) export and Babylon.js integration.
+
+---
+
+## 💡 The Prompt Engineering Workflow: How the 3D Myvi Was Conceived & Prompted
+
+During the workshop, attendees learned how to turn a real-world vehicle concept into an optimized 3D game asset in minutes without manual polygon vertex modeling. Here is the exact prompting methodology used:
+
+### 1. Step 1: Multimodal Vision Prompting (Image-to-Spec)
+Instead of asking an AI to "model a Perodua Myvi from memory", the instructor acquired high-resolution 3D reference renders (from Hum3D in Lava Red, showing front-left and rear-left three-quarter perspectives).
+
+The reference image was provided to a multimodal vision LLM (Copilot/Gemini) with a structured extraction prompt:
+```text
+"Here is a reference image of the Perodua Myvi (rear-left view). 
+Provide a technical breakdown structured specifically for 3D polygonal modeling:
+1. Overall Body Form: Proportions, overhangs, cabin height-to-width ratio, roof curvature.
+2. Rear Section: Tailgate rake, rear glass shape, wiper placement, spoiler type.
+3. Lighting Clusters: Orientation (horizontal vs vertical), segmentation (LED vs clear).
+4. Side Profile: Beltline crease flow, C-pillar styling, wheel arch contour.
+5. Primary Volumes & Edge Flows for polygonal modeling."
+```
+
+### 2. Step 2: Live Blender MCP Bridge (Natural Language to Python `bpy`)
+The resulting technical breakdown was fed into an agentic coding environment ([Google Antigravity](https://antigravity.google/) / [OpenCode](https://opencode.ai/)) connected to the active Blender instance via the [Model Context Protocol (MCP)](https://github.com/ahujasid/mcp-for-blender):
+- **Socket Port:** `127.0.0.1:9876` (`BlenderMCPServer` in `addon.py`).
+- **Execution Mechanism:** The AI agent sent JSON payloads containing procedural Python code (`bpy.ops.mesh.primitive_cube_add`, custom vertex arrays, and `Principled BSDF` material shaders) executed directly on Blender's main thread via `bpy.app.timers`.
+- **Zero Manual Export:** The script automatically called `bpy.ops.export_scene.gltf(filepath="myvi.glb", export_format="GLB")`, outputting the binary model directly into the web game's asset pipeline.
+
+### 3. Step 3: Human-in-the-Loop Prompt Refinement
+When an intermediate prompt generated an older-generation boxy Myvi with vertical pillar taillights, the instructor performed prompt steering:
+> **The Steering Prompt:**  
+> *"change the car model to this one"* (anchoring directly to the Hum3D 3rd Gen visual reference).
+
+The AI agent cross-referenced the visual ground truth to correct the model:
+- Swapping vertical pillar lights for **horizontal two-piece wrap-around taillamps**.
+- Adding the signature **two-tier roof spoiler with black side fins**.
+- Adding the **gloss-black floating roof insert on the C-pillar**.
+- Generating 15-inch **two-tone directional turbine alloy wheels**.
+- Embossing the `"HUM3D"` license plate and `"Myvi"` chrome script.
 
 ---
 

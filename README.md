@@ -14,9 +14,67 @@
 [![Web Audio](https://img.shields.io/badge/Audio-Procedural%20Web%20Audio-00F0FF?style=for-the-badge)](src/audio.js)
 [![License: MIT](https://img.shields.io/badge/License-MIT-00FF88?style=for-the-badge)](LICENSE)
 
-[🎮 **Play Live Game (GitHub Pages)**](https://c-fu.github.io/krackeddevs-ai-for-gaming/) &bull; [📑 **Open Slide Deck**](https://c-fu.github.io/krackeddevs-ai-for-gaming/slides.html) &bull; [📋 **3-Hour Run-of-Show**](docs/AI_FOR_GAMING_MASTER_PLAN.md) &bull; [💬 **Attendee Prompt Pack**](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md)
+[🎮 **Play King Myvi**](https://c-fu.github.io/krackeddevs-ai-for-gaming/) &bull; [🍲 **Makcik Canteen**](MAKCIK_CANTEEN/README.md) &bull; [🏎️ **Neon Kart 3D**](neon_kart_3d/README.md) &bull; [📑 **Slide Deck**](https://c-fu.github.io/krackeddevs-ai-for-gaming/slides.html) &bull; [📐 **Design Doc Templates**](TEMPLATE_DESIGN_DOCUMENT/README.md) &bull; [💬 **Prompt Pack**](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md)
 
 </div>
+
+---
+
+## 🕹️ The 3 Workshop Games Ecosystem
+
+During the **AI for Gaming** workshop and live sessions, three complete playable 3D games were conceptualized, documented, and built using generative AI, autonomous coding agents, and procedural pipelines:
+
+| Game | Platform & Engine | Core Gameplay & Unique Selling Propositions (USPs) | Design Docs & Links |
+| :--- | :--- | :--- | :--- |
+| **🚗 King Myvi: Highway Legends** | **Babylon.js 7** + Vite | High-octane arcade highway runner. Flash high-beams (`Spacebar`) to force slow right-lane traffic to yield, dodge asphalt potholes, and jump full-lane SmartTAG toll ramps at 240 km/h. | • [🎮 Play Live Demo](https://c-fu.github.io/krackeddevs-ai-for-gaming/)<br/>• [📄 Game GDD](docs/GAME_DESIGN_DOCUMENT.md)<br/>• [🚗 3D Myvi Pipeline](docs/BLENDER_3D_PIPELINE.md)<br/>• [📁 Source Code](src/) |
+| **🍛 Makcik Canteen: Haze Fighter** | **Babylon.js 7** + Vite | Malaysian school canteen arcade simulator. Armed with an industrial blower fan (`Spacebar`) and dry ice bomb traps (`E`), clear choking haze clouds to rescue hungry students during a chaotic 60-second recess countdown. *Built live during the workshop session!* | • [🎮 Play Makcik Canteen](MAKCIK_CANTEEN/index.html)<br/>• [📖 Canteen README](MAKCIK_CANTEEN/README.md)<br/>• [📄 Complete 7-Doc Spec](MAKCIK_CANTEEN/GAME_DESIGN_DOCUMENT.md)<br/>• [💬 Live Copilot Chat](https://copilot.microsoft.com/conversations/join/NppskzM778rkVNxfjVi5D) |
+| **🏎️ Neon Kart 3D** | **Three.js** + Vite | Synthwave cyber-arcade drift racer. Features drift boost sparks, floating mystery item cubes, homing rockets, oil slicks, speed pads, and dynamic rubber-banding AI rivals on a glowing neon circuit. | • [🎮 Play Neon Kart](neon_kart_3d/neon_kart_3d_ai_for_gaming_live_workshop_demo.html)<br/>• [📖 Neon Kart README](neon_kart_3d/README.md)<br/>• [📁 Folder](neon_kart_3d/) |
+
+---
+
+## 💡 The #1 Game Prototyping Pro-Tip: "Ask Me Relevant Questions"
+
+> [!IMPORTANT]
+> **The Secret to Eliminating AI Hallucination & Scope Creep**  
+> The single biggest mistake developers and game designers make when using Large Language Models (LLMs) is asking for a full Game Design Document in a single blind prompt:  
+> *❌ "Write me a game design document for a multiplayer cyberpunk battle royale."*  
+> 
+> This guarantees bloated mechanics, unrealistic scope, and generic RPG cliches.
+> 
+> Instead, trigger a **Consultative Diagnostic Dialogue** by forcing the AI into interview mode with this golden phrase:
+> ```text
+> "I want to design a game about [concept]. Before creating the game design documents, 
+> ask me relevant questions to scope the target audience, core loop, USP, platform constraints, and art style."
+> ```
+
+### Real Workshop Evidence on Microsoft Copilot
+This exact prompting methodology was demonstrated live to create full game architectures in under 15 minutes:
+1. **[Makcik Canteen: Haze Fighter Copilot Dialogue](https://copilot.microsoft.com/conversations/join/NppskzM778rkVNxfjVi5D):** Copilot asked 5 diagnostic scoping questions (core loop, visual style, obstacle types, power-ups, victory conditions) before drafting the 7 modular specification documents.
+2. **[Game Design Document Template Suite on Copilot](https://copilot.microsoft.com/conversations/join/a8PJA1mSSRu5JoSRYExV7):** Copilot structured an industry-standard 9-template game design suite covering mechanics, physics, tech stack, UI/UX, assets, testing, and accessibility.
+
+Explore the complete ready-to-use template suite in [`TEMPLATE_DESIGN_DOCUMENT/`](TEMPLATE_DESIGN_DOCUMENT/README.md).
+
+---
+
+## 🚗 The 3D Myvi Evolution: Multimodal Vision & Blender MCP
+
+During the workshop, attendees witnessed the real-time evolution of the player vehicle from an initial low-poly placeholder into the **3rd Generation Perodua Myvi (Lava Red)** matching professional Hum3D studio reference renders:
+
+```
+[Reference 3D Renders] ──► [Vision LLM Extraction] ──► [Technical Polygonal Spec]
+                                                               │
+                                                               ▼
+[Live Game Babylon.js] ◄── [Binary .GLB Export] ◄── [Blender MCP Port 9876]
+```
+
+### The 3-Step Live Enhancement Workflow:
+1. **Multimodal Vision Prompting (Image-to-Spec):** Instead of describing a Myvi from memory, high-res 3/4 front and rear reference renders were analyzed by a vision model to produce a strict geometric breakdown (beltline crease, two-tier aero spoiler with black side fins, floating roof C-pillar insert, horizontal wrap-around taillamps).
+2. **Model Context Protocol (MCP) Live Execution:** The agent connected directly to a running Blender instance via TCP socket (`127.0.0.1:9876`), generating procedural Python `bpy` geometry on Blender's main thread with zero manual vertex manipulation.
+3. **Human-in-the-Loop Steering Prompt:** When an earlier boxy silhouette was generated, the user prompted:  
+   > *"The model is not correct, not like in real life. Change the car model to this one."*  
+   The agent re-anchored to the visual ground truth, generated the wrap-around lamps, sports diffusers, turbine wheels, and exported `myvi.glb` directly into the web engine.
+
+*(Read the full story, prompt transcripts, and Python scripts in [`docs/BLENDER_3D_PIPELINE.md`](docs/BLENDER_3D_PIPELINE.md) / [BM: `docs/BLENDER_3D_PIPELINE.ms-MY.md`](docs/BLENDER_3D_PIPELINE.ms-MY.md)).*
 
 ---
 
@@ -89,8 +147,8 @@ In Malaysia, the white Perodua Myvi is culturally renowned as the undisputed *"K
 ### 1. Clone & Install
 ```bash
 # Clone the repository
-git clone https://github.com/<your-username>/king-myvi-highway-legends.git
-cd king-myvi-highway-legends
+git clone https://github.com/C-Fu/krackeddevs-ai-for-gaming.git
+cd krackeddevs-ai-for-gaming
 
 # Install dependencies (Babylon.js, loaders, inspector, Vite)
 npm install
@@ -121,7 +179,7 @@ KD_AI_FOR_GAMING/
 ├── vite.config.js               # Multi-page Vite 6 build configuration
 ├── package.json                 # Dependencies: @babylonjs/core, loaders, inspector, vite
 │
-├── src/
+├── src/                         # King Myvi: Highway Legends Source Code
 │   ├── main.js                  # Engine loop, chase camera (180° offset), scene lighting, win/loss
 │   ├── myvi.js                  # Player car arcade physics, banking roll (8°), spotlights, jump physics
 │   ├── traffic.js               # AI traffic manager: sedans, vans, lorries; 4-stage yield state machine
@@ -130,16 +188,33 @@ KD_AI_FOR_GAMING/
 │   ├── audio.js                 # Pure Web Audio procedural sound engine (RPM synth, horn, boost whoosh)
 │   └── ui.js                    # Speedometer, distance remaining meter, timer, banner popups, touch D-pad
 │
+├── MAKCIK_CANTEEN/              # Makcik Canteen: Haze Fighter (Live Workshop Game)
+│   ├── index.html               # Playable Babylon.js 7 game entry
+│   ├── README.md                # English guide & Copilot dialogue documentation
+│   ├── README.ms-MY.md          # Bahasa Melayu guide
+│   └── *.md                     # Complete 7-doc game design specification
+│
+├── neon_kart_3d/                # Neon Kart 3D (Synthwave Drift Racer)
+│   ├── README.md                # Project documentation
+│   └── neon_kart_3d_ai_for_gaming_live_workshop_demo.html # Playable Three.js game
+│
+├── TEMPLATE_DESIGN_DOCUMENT/    # Universal Game Design Document Suite
+│   ├── README.md                # Suite guide & Copilot dialogue breakdown
+│   ├── README.ms-MY.md          # Panduan suite dalam Bahasa Melayu
+│   ├── TEMPLATE_*.md            # 9 Reusable blank design doc templates
+│   └── EXAMPLE_*.md             # 3 Real workshop game case studies
+│
 ├── tools/
 │   └── blender/
 │       ├── README.md            # Guide for running scripts via Blender MCP or CLI
-│       ├── generate_myvi.py     # Python script generating the low-poly Myvi car with spoiler & wheels
+│       ├── build_hum3d_myvi.py  # Procedural 3rd Gen Lava Red Myvi model generator
+│       ├── generate_myvi.py     # Base procedural Myvi script
 │       └── generate_environment.py # Python script generating palm trees, overhead signs & gantries
 │
 ├── public/
 │   └── assets/
 │       └── models/              # Output directory for exported 3D binary glTF (.glb) files
-│           ├── myvi.glb         # Low-poly Malaysian Myvi model (34 KB)
+│           ├── myvi.glb         # 3rd Gen Malaysian Myvi model (267 KB)
 │           ├── overhead_gantry.glb # PLUS Highway green overhead gantry sign (18 KB)
 │           └── palm_tree.glb    # Roadside low-poly oil palm tree (17 KB)
 │
@@ -147,7 +222,8 @@ KD_AI_FOR_GAMING/
     ├── AI_FOR_GAMING_MASTER_PLAN.md    # Minute-by-minute run-of-show, speaker script, stage directions
     ├── GAME_DESIGN_DOCUMENT.md         # Full game design document with mathematical mechanics specs
     ├── PROJECT_MANAGEMENT_TEMPLATE.md  # Agile backlog (CSV format) & vehicle physics balancing matrix
-    └── WORKSHOP_HANDOUT_AND_PROMPTS.md # Step-by-step attendee prompt pack for Antigravity & OpenCode
+    ├── WORKSHOP_HANDOUT_AND_PROMPTS.md # Step-by-step attendee prompt pack for Antigravity & OpenCode
+    └── BLENDER_3D_PIPELINE.md          # Procedural 3D Myvi pipeline & Hum3D visual feature breakdown
 ```
 
 ---
@@ -198,11 +274,11 @@ If you have Blender installed locally, you can regenerate the 3D assets in headl
 
 ```bash
 # Windows
-& "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe" --background --python tools/blender/generate_myvi.py
+& "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe" --background --python tools/blender/build_hum3d_myvi.py
 & "C:\Program Files\Blender Foundation\Blender 5.2\blender.exe" --background --python tools/blender/generate_environment.py
 
 # macOS
-/Applications/Blender.app/Contents/MacOS/Blender --background --python tools/blender/generate_myvi.py
+/Applications/Blender.app/Contents/MacOS/Blender --background --python tools/blender/build_hum3d_myvi.py
 /Applications/Blender.app/Contents/MacOS/Blender --background --python tools/blender/generate_environment.py
 ```
 
@@ -245,15 +321,18 @@ Press `Enter` through the defaults. Vercel automatically detects the Vite config
 
 ---
 
-## 🏆 Workshop Master Documents
+## 🏆 Workshop Master Documents & Suites
 
-| Document (English) | Dokumen (Bahasa Melayu) | Description / Penerangan |
+| Document Suite (English) | Dokumen (Bahasa Melayu) | Description / Penerangan |
 | :--- | :--- | :--- |
 | [AI Master Plan](docs/AI_FOR_GAMING_MASTER_PLAN.md) | [Pelan Induk AI](docs/AI_FOR_GAMING_MASTER_PLAN.ms-MY.md) | 180-minute detailed breakdown, pedagogical framework, and speaker script. |
 | [Game Design Document (GDD)](docs/GAME_DESIGN_DOCUMENT.md) | [Dokumen Reka Bentuk Permainan](docs/GAME_DESIGN_DOCUMENT.ms-MY.md) | Vehicle physics specs, traffic state trees, art direction, and sound design. |
 | [Project Management Template](docs/PROJECT_MANAGEMENT_TEMPLATE.md) | [Templat Pengurusan Projek](docs/PROJECT_MANAGEMENT_TEMPLATE.ms-MY.md) | Agile backlog (CSV data block for Google Sheets) & vehicle physics matrix. |
 | [Workshop Handout & Prompts](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md) | [Panduan Peserta & Pek Prom](docs/WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md) | Step-by-step copy-paste prompts for Antigravity & OpenCode. |
 | [Blender 3D Pipeline & Gallery](docs/BLENDER_3D_PIPELINE.md) | [Saliran 3D Blender & Galeri](docs/BLENDER_3D_PIPELINE.ms-MY.md) | Procedural Gen 3 Myvi modeling via live Blender MCP socket & glTF export. |
+| [Makcik Canteen Documentation](MAKCIK_CANTEEN/README.md) | [Dokumentasi Makcik Canteen](MAKCIK_CANTEEN/README.ms-MY.md) | Full 7-doc game specification created live with Microsoft Copilot. |
+| [Template Design Document Suite](TEMPLATE_DESIGN_DOCUMENT/README.md) | [Suite Templat Reka Bentuk](TEMPLATE_DESIGN_DOCUMENT/README.ms-MY.md) | 9 standard blank game templates & 3 real workshop case studies. |
+| [Neon Kart 3D Documentation](neon_kart_3d/README.md) | [Dokumentasi Neon Kart 3D](neon_kart_3d/README.md) | Synthwave cyber drift racer built with Three.js and Vite. |
 
 ---
 

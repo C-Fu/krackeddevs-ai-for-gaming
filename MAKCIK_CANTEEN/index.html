@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Makcik Canteen: Haze Fighter (Babylon.js Prototype)</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Babylon.js Official CDN -->
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/gui/babylon.gui.min.js"></script>
+</head>
+<body>
+    <!-- 3D Canvas Rendering Target -->
+    <div id="canvasContainer">
+        <canvas id="renderCanvas"></canvas>
+    </div>
+
+    <!-- In-Game HUD -->
+    <div id="gameHUD" class="hidden">
+        <div class="hud-top-bar">
+            <!-- Timer Countdown -->
+            <div class="hud-card timer-box">
+                <span class="timer-icon">⏰</span>
+                <span id="timerValue" class="timer-val">60s</span>
+            </div>
+
+            <!-- Air Quality / Haze Meter -->
+            <div class="hud-card haze-box">
+                <div class="haze-label-row">
+                    <span>Tahap Jerebu (Haze)</span>
+                    <span id="apiStatusText">API: 385 • BERBAHAYA</span>
+                </div>
+                <div class="haze-meter-track">
+                    <div id="hazeMeterFill" class="haze-meter-fill"></div>
+                </div>
+            </div>
+
+            <!-- Dry Ice Bomb Stock -->
+            <div class="hud-card bomb-box">
+                <span class="bomb-label">Bom Ais Kering</span>
+                <div id="bombStockContainer" class="bomb-icons">
+                    <span class="bomb-icon active">❄️</span>
+                    <span class="bomb-icon active">❄️</span>
+                    <span class="bomb-icon active">❄️</span>
+                </div>
+            </div>
+
+            <!-- Score & Sound -->
+            <div class="hud-card score-box">
+                <span class="score-title">SKOR</span>
+                <span id="scoreValue" class="score-num">0</span>
+            </div>
+
+            <button id="muteBtn" class="btn-mute">🔊 Mute</button>
+        </div>
+
+        <!-- Center Active Powerup Notification Badges -->
+        <div id="buffStatusContainer"></div>
+
+        <!-- Mobile Touch Controls -->
+        <div id="mobileControls">
+            <div id="joystickZone" class="joystick-zone">
+                <div id="joystickKnob" class="joystick-knob"></div>
+            </div>
+            <div class="mobile-action-buttons">
+                <div id="mobileFanBtn" class="mobile-btn btn-fan-action">
+                    <span>💨</span>
+                    <span class="btn-label-tiny">Kipas</span>
+                </div>
+                <div id="mobileBombBtn" class="mobile-btn btn-bomb-action">
+                    <span>❄️</span>
+                    <span class="btn-label-tiny">Bom Ais</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D World Floating Speech Bubble for Makcik -->
+    <div id="makcikBubble" class="hidden">Cepat sikit lah!</div>
+
+    <!-- START MODAL -->
+    <div id="startModal" class="modal-overlay">
+        <div class="modal-content">
+            <h1 class="modal-title">MAKCIK CANTEEN</h1>
+            <h2 class="modal-subtitle">HAZE FIGHTER • PROTOTAIP BABYLON.JS</h2>
+            
+            <div class="modal-story">
+                <strong>MISI KANTIN:</strong> Ali (16, SMK Sri Bangsar) dan kawan-kawan nak rehat makan nasi lemak dalam <strong>60 saat</strong>! Tapi asap jerebu tebal telah melanda kantin sekolah! Bantu Makcik bersihkan semua awan jerebu menggunakan <strong>Kipas Industri</strong> dan <strong>Bom Ais Kering</strong> sebelum murid-murid sampai!
+            </div>
+
+            <div class="controls-grid">
+                <div class="control-item">
+                    <span class="key-badge">W A S D / ⬆️⬅️⬇️➡️</span>
+                    <span class="control-desc">Gerakkan Makcik</span>
+                </div>
+                <div class="control-item">
+                    <span class="key-badge">SPACE / KLIK KANAN</span>
+                    <span class="control-desc">Nyalakan Kipas Angin (Blow)</span>
+                </div>
+                <div class="control-item">
+                    <span class="key-badge">KLIK KIRI / E</span>
+                    <span class="control-desc">Baling Bom Ais Kering (AOE)</span>
+                </div>
+                <div class="control-item">
+                    <span class="key-badge">ITEM DROPS</span>
+                    <span class="control-desc">Kipas Mega, Ais Laju, Kopi O Kaw</span>
+                </div>
+            </div>
+
+            <button id="startBtn" class="btn-primary">MULAKAN SHIFT MAKCIK (START)</button>
+        </div>
+    </div>
+
+    <!-- WIN MODAL -->
+    <div id="winModal" class="modal-overlay hidden">
+        <div class="modal-content modal-win">
+            <h1 class="modal-title">🎉 TAHNIAH MAKCIK!</h1>
+            <h2 class="modal-subtitle">KANTIN BERSIH & SEGAR!</h2>
+
+            <p style="color: #ecf0f1; font-size: 15px; margin-bottom: 12px;">
+                Semua jerebu berjaya ditiup dan dibekukan! Murid-murid sekolah gembira dapat menikmati sarapan Nasi Lemak dan Milo Dinosaur!
+            </p>
+
+            <div class="star-rating">⭐⭐⭐</div>
+
+            <div class="stats-card">
+                <div class="stat-col">
+                    <span class="stat-lbl">Masa Berbaki</span>
+                    <span id="winTimeRemaining" class="stat-val">24.5s</span>
+                </div>
+                <div class="stat-col">
+                    <span class="stat-lbl">Kualiti Udara (API)</span>
+                    <span class="stat-val" style="color: #2ecc71;">25 (BAIK)</span>
+                </div>
+                <div class="stat-col">
+                    <span class="stat-lbl">Skor Akhir</span>
+                    <span id="winScore" class="stat-val">5800</span>
+                </div>
+            </div>
+
+            <button id="retryWinBtn" class="btn-primary" style="background: linear-gradient(135deg, #2ecc71, #27ae60);">MAIN SEMULA (PLAY AGAIN)</button>
+        </div>
+    </div>
+
+    <!-- LOSE MODAL -->
+    <div id="loseModal" class="modal-overlay hidden">
+        <div class="modal-content modal-lose">
+            <h1 class="modal-title">💨 ALAMAK! WAKTU HABIS!</h1>
+            <h2 class="modal-subtitle">KANTIN MASIH PENUH JEREBU!</h2>
+
+            <p style="color: #ecf0f1; font-size: 15px; margin-bottom: 12px;">
+                Budak-budak sekolah dah sampai ke kantin dan batuk-batuk tercekik asap jerebu! Waktu rehat terpaksa ditangguhkan!
+            </p>
+
+            <div class="stats-card">
+                <div class="stat-col">
+                    <span class="stat-lbl">Jerebu Berbaki</span>
+                    <span id="loseHazeRemaining" class="stat-val" style="color: #e74c3c;">8 awan</span>
+                </div>
+                <div class="stat-col">
+                    <span class="stat-lbl">Status Udara</span>
+                    <span class="stat-val" style="color: #e74c3c;">BERBAHAYA</span>
+                </div>
+            </div>
+
+            <button id="retryLoseBtn" class="btn-primary">CUBA LAGI (RETRY)</button>
+        </div>
+    </div>
+
+    <!-- Game Scripts -->
+    <script src="js/audio.js"></script>
+    <script src="js/canteen.js"></script>
+    <script src="js/makcik.js"></script>
+    <script src="js/haze.js"></script>
+    <script src="js/weapons.js"></script>
+    <script src="js/powerups.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
