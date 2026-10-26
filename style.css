@@ -163,6 +163,40 @@ body, html {
   box-shadow: 0 0 30px rgba(255, 0, 85, 0.7);
 }
 
+.start-btn-group {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(0, 240, 255, 0.12);
+  border: 1px solid #00f0ff;
+  border-radius: 8px;
+  color: #00f0ff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 13px 24px;
+  text-decoration: none;
+  letter-spacing: 1.2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+}
+
+.btn-secondary:hover {
+  background: rgba(0, 240, 255, 0.3);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
+}
+
 .footer-note {
   font-size: 0.78rem;
   color: #718096;
