@@ -6,12 +6,13 @@
 
 [![Babylon.js 7.x](https://img.shields.io/badge/Engine-Babylon.js%207.x-2D8CFF?style=for-the-badge&logo=babylonjs&logoColor=white)](https://www.babylonjs.com/)
 [![Vite 6](https://img.shields.io/badge/Bundler-Vite%206-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-22c55e?style=for-the-badge&logo=githubpages&logoColor=white)](https://c-fu.github.io/krackeddevs-ai-for-gaming/)
 [![Blender 5 MCP](https://img.shields.io/badge/3D%20Pipeline-Blender%205%20MCP-E87D0D?style=for-the-badge&logo=blender&logoColor=white)](https://www.blender.org/)
-[![Reveal.js](https://img.shields.io/badge/Slides-Reveal.js%205-FF2A6D?style=for-the-badge&logo=reveal.js&logoColor=white)](slides.html)
+[![Reveal.js](https://img.shields.io/badge/Slides-Reveal.js%205-FF2A6D?style=for-the-badge&logo=reveal.js&logoColor=white)](https://c-fu.github.io/krackeddevs-ai-for-gaming/slides.html)
 [![Web Audio](https://img.shields.io/badge/Audio-Procedural%20Web%20Audio-00F0FF?style=for-the-badge)](src/audio.js)
 [![License: MIT](https://img.shields.io/badge/License-MIT-00FF88?style=for-the-badge)](LICENSE)
 
-[🎮 **Play Live Game**](http://localhost:5173) &bull; [📑 **Open Slide Deck**](slides.html) &bull; [📋 **3-Hour Run-of-Show**](docs/AI_FOR_GAMING_MASTER_PLAN.md) &bull; [💬 **Attendee Prompt Pack**](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md)
+[🎮 **Play Live Game (GitHub Pages)**](https://c-fu.github.io/krackeddevs-ai-for-gaming/) &bull; [📑 **Open Slide Deck**](https://c-fu.github.io/krackeddevs-ai-for-gaming/slides.html) &bull; [📋 **3-Hour Run-of-Show**](docs/AI_FOR_GAMING_MASTER_PLAN.md) &bull; [💬 **Attendee Prompt Pack**](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md)
 
 </div>
 
