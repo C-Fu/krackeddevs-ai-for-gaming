@@ -261,6 +261,7 @@ Tekan `Enter` mengikut tetapan lalai. Vercel akan mengesan konfigurasi Vite seca
 | [Game Design Document (GDD)](docs/GAME_DESIGN_DOCUMENT.md) | [Dokumen Reka Bentuk Permainan](docs/GAME_DESIGN_DOCUMENT.ms-MY.md) | Spesifikasi fizik kenderaan, pokok keadaan trafik AI, dan reka bentuk audio. |
 | [Project Management Template](docs/PROJECT_MANAGEMENT_TEMPLATE.md) | [Templat Pengurusan Projek](docs/PROJECT_MANAGEMENT_TEMPLATE.ms-MY.md) | Senarai tugas Agile (format CSV untuk Google Sheets) & matriks fizik. |
 | [Workshop Handout & Prompts](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md) | [Panduan Peserta & Pek Prom](docs/WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md) | Senarai prom langkah demi langkah sedia salin-tampal untuk Antigravity / OpenCode. |
+| [Blender 3D Pipeline & Gallery](docs/BLENDER_3D_PIPELINE.md) | [Saliran 3D Blender & Galeri](docs/BLENDER_3D_PIPELINE.ms-MY.md) | Pemodelan Myvi Gen 3 secara langsung melalui soket Blender MCP & eksport glTF. |
 
 ---
 

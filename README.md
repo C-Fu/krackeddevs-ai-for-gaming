@@ -253,6 +253,7 @@ Press `Enter` through the defaults. Vercel automatically detects the Vite config
 | [Game Design Document (GDD)](docs/GAME_DESIGN_DOCUMENT.md) | [Dokumen Reka Bentuk Permainan](docs/GAME_DESIGN_DOCUMENT.ms-MY.md) | Vehicle physics specs, traffic state trees, art direction, and sound design. |
 | [Project Management Template](docs/PROJECT_MANAGEMENT_TEMPLATE.md) | [Templat Pengurusan Projek](docs/PROJECT_MANAGEMENT_TEMPLATE.ms-MY.md) | Agile backlog (CSV data block for Google Sheets) & vehicle physics matrix. |
 | [Workshop Handout & Prompts](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md) | [Panduan Peserta & Pek Prom](docs/WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md) | Step-by-step copy-paste prompts for Antigravity & OpenCode. |
+| [Blender 3D Pipeline & Gallery](docs/BLENDER_3D_PIPELINE.md) | [Saliran 3D Blender & Galeri](docs/BLENDER_3D_PIPELINE.ms-MY.md) | Procedural Gen 3 Myvi modeling via live Blender MCP socket & glTF export. |
 
 ---
 
