@@ -41,23 +41,50 @@ export class MyviVehicle {
 
     this.createCarMesh();
     this.setupHeadlights();
+    this.loadGlbModel();
+  }
+
+  loadGlbModel() {
+    this.modelWheels = [];
+    BABYLON.SceneLoader.ImportMeshAsync('', './assets/models/', 'myvi.glb', this.scene)
+      .then(result => {
+        console.log('Successfully loaded Blender-generated 3D Myvi model:', result);
+        // Hide procedural fallback meshes once glb model is active
+        if (this.proceduralMeshes) {
+          this.proceduralMeshes.forEach(m => m.setEnabled(false));
+        }
+
+        const modelRoot = result.meshes[0];
+        modelRoot.parent = this.rootNode;
+        modelRoot.position.set(0, 0, 0);
+
+        // Find wheel meshes for spin animation
+        this.modelWheels = result.meshes.filter(m => {
+          const n = (m.name || '').toLowerCase();
+          return n.includes('tire') || n.includes('rim') || n.includes('spoke') || n.includes('wheel');
+        });
+      })
+      .catch(err => {
+        console.log('Using procedural King Myvi fallback mesh:', err);
+      });
   }
 
   createCarMesh() {
     this.rootNode = new BABYLON.TransformNode('myvi_root', this.scene);
     this.rootNode.position = this.position;
+    this.proceduralMeshes = [];
 
     // Materials
     const whitePaint = new BABYLON.StandardMaterial('myviWhite', this.scene);
-    whitePaint.diffuseColor = new BABYLON.Color3(0.96, 0.96, 0.98);
-    whitePaint.specularColor = new BABYLON.Color3(0.8, 0.8, 0.9);
+    whitePaint.diffuseColor = new BABYLON.Color3(0.76, 0.06, 0.09); // Lava Red
+    whitePaint.specularColor = new BABYLON.Color3(0.8, 0.4, 0.4);
     whitePaint.specularPower = 32;
 
     const darkTrim = new BABYLON.StandardMaterial('myviDark', this.scene);
     darkTrim.diffuseColor = new BABYLON.Color3(0.08, 0.08, 0.09);
 
     const glassMat = new BABYLON.StandardMaterial('myviGlass', this.scene);
-    glassMat.diffuseColor = new BABYLON.Color3(0.12, 0.15, 0.2);
+    glassMat.diffuseColor = new BABYLON.Color3(0.05, 0.08, 0.12);
     glassMat.specularColor = new BABYLON.Color3(1, 1, 1);
     glassMat.alpha = 0.85;
 
@@ -76,6 +103,7 @@ export class MyviVehicle {
     chassis.position.y = 0.35;
     chassis.material = whitePaint;
     chassis.parent = this.rootNode;
+    this.proceduralMeshes.push(chassis);
 
     // Cabin / Roof (hatchback curve)
     const cabin = BABYLON.MeshBuilder.CreateBox('cabin', {
@@ -86,6 +114,7 @@ export class MyviVehicle {
     cabin.position.set(0, 0.9, -0.2);
     cabin.material = glassMat;
     cabin.parent = this.rootNode;
+    this.proceduralMeshes.push(cabin);
 
     // Roof cover
     const roof = BABYLON.MeshBuilder.CreateBox('roof', {
@@ -96,6 +125,7 @@ export class MyviVehicle {
     roof.position.set(0, 1.2, -0.25);
     roof.material = whitePaint;
     roof.parent = this.rootNode;
+    this.proceduralMeshes.push(roof);
 
     // Iconic King Myvi Roof Spoiler
     const spoiler = BABYLON.MeshBuilder.CreateBox('spoiler', {
@@ -106,6 +136,7 @@ export class MyviVehicle {
     spoiler.position.set(0, 1.25, -1.25);
     spoiler.material = darkTrim;
     spoiler.parent = this.rootNode;
+    this.proceduralMeshes.push(spoiler);
 
     // Front Grille & Bumper
     const grille = BABYLON.MeshBuilder.CreateBox('grille', {
@@ -116,6 +147,7 @@ export class MyviVehicle {
     grille.position.set(0, 0.3, 1.8);
     grille.material = darkTrim;
     grille.parent = this.rootNode;
+    this.proceduralMeshes.push(grille);
 
     // 4 Wheels
     this.wheels = [];
@@ -149,6 +181,7 @@ export class MyviVehicle {
       rim.parent = this.rootNode;
 
       this.wheels.push(wheel);
+      this.proceduralMeshes.push(wheel, rim);
     });
 
     // Rear Brake Lights
@@ -160,11 +193,13 @@ export class MyviVehicle {
     brakeL.position.set(-0.65, 0.5, -1.8);
     brakeL.material = this.brakeMat;
     brakeL.parent = this.rootNode;
+    this.proceduralMeshes.push(brakeL);
 
     const brakeR = BABYLON.MeshBuilder.CreateBox('brakeR', { width: 0.3, height: 0.15, depth: 0.08 }, this.scene);
     brakeR.position.set(0.65, 0.5, -1.8);
     brakeR.material = this.brakeMat;
     brakeR.parent = this.rootNode;
+    this.proceduralMeshes.push(brakeR);
   }
 
   setupHeadlights() {
@@ -325,6 +360,11 @@ export class MyviVehicle {
     this.wheels.forEach(w => {
       w.rotation.x += wheelAngularSpeed;
     });
+    if (this.modelWheels && this.modelWheels.length > 0) {
+      this.modelWheels.forEach(w => {
+        w.rotation.x += wheelAngularSpeed;
+      });
+    }
 
     // Update audio engine
     sound.updateEngine(this.speedKmh, this.isBoosting);
