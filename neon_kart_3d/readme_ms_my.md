@@ -1,6 +1,6 @@
 # 🎮 Neon Kart 3D — AI untuk Pembangunan Permainan (Bengkel Amali 3 Jam)
 
-**[English (README.md)](https://www.google.com/search?q=./README.md)** | **Bahasa Melayu** | **[Panduan Wiki GitHub (WIKI.md)](https://www.google.com/search?q=./WIKI.md)**
+**[English](https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/readme.md)** | **[Bahasa Melayu (README.ms-MY.md)](https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/readme_ms_my.md)** | **[GitHub Wiki Guide (WIKI.md)](https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/wiki.md)**
 
 Selamat datang ke repositori rasmi untuk bengkel dan tutorial **"AI for Gaming: Bagaimana AI Mengubah Cara Permainan Dibina"**!
 
