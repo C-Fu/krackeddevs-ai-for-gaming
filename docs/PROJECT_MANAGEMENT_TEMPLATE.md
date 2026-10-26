@@ -1,5 +1,6 @@
 # Project Management & Game Balancing Matrix
 ## King Myvi: Highway Legends (Google Sheets / Excel Template)
+**[English](PROJECT_MANAGEMENT_TEMPLATE.md) | [Bahasa Melayu](PROJECT_MANAGEMENT_TEMPLATE.ms-MY.md)**
 
 ---
 

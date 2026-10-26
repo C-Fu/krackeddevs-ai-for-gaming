@@ -1,5 +1,6 @@
 # AI for Gaming: Master Workshop & Tutorial Blueprint
 ## *How AI is Reshaping Game Design, Content Pipelines, and Playable 3D Worlds*
+**[English](AI_FOR_GAMING_MASTER_PLAN.md) | [Bahasa Melayu](AI_FOR_GAMING_MASTER_PLAN.ms-MY.md)**
 
 ---
 

@@ -1,5 +1,6 @@
 # Attendee Hands-On Lab Handout & AI Prompt Pack
 ## *Building "King Myvi: Highway Legends" with Antigravity, OpenCode & Blender*
+**[English](WORKSHOP_HANDOUT_AND_PROMPTS.md) | [Bahasa Melayu](WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md)**
 
 ---
 

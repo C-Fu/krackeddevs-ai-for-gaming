@@ -4,6 +4,8 @@
 
 <div align="center">
 
+**[English](README.md) | [Bahasa Melayu](README.ms-MY.md)**
+
 [![Babylon.js 7.x](https://img.shields.io/badge/Engine-Babylon.js%207.x-2D8CFF?style=for-the-badge&logo=babylonjs&logoColor=white)](https://www.babylonjs.com/)
 [![Vite 6](https://img.shields.io/badge/Bundler-Vite%206-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![GitHub Pages](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-22c55e?style=for-the-badge&logo=githubpages&logoColor=white)](https://c-fu.github.io/krackeddevs-ai-for-gaming/)
@@ -245,10 +247,12 @@ Press `Enter` through the defaults. Vercel automatically detects the Vite config
 
 ## 🏆 Workshop Master Documents
 
-* **[Workshop Master Plan & Run-of-Show](docs/AI_FOR_GAMING_MASTER_PLAN.md):** 180-minute detailed breakdown, pedagogical framework, and stage directions.
-* **[Game Design Document (GDD)](docs/GAME_DESIGN_DOCUMENT.md):** Comprehensive game design document covering vehicle physics, traffic state trees, art direction, and sound design.
-* **[Project Management Template](docs/PROJECT_MANAGEMENT_TEMPLATE.md):** Ready-to-copy Agile backlog, CSV data block for Google Sheets, and the vehicle physics balancing matrix.
-* **[Attendee Handout & AI Prompt Pack](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md):** Copy-paste prompts for each workshop milestone.
+| Document (English) | Dokumen (Bahasa Melayu) | Description / Penerangan |
+| :--- | :--- | :--- |
+| [AI Master Plan](docs/AI_FOR_GAMING_MASTER_PLAN.md) | [Pelan Induk AI](docs/AI_FOR_GAMING_MASTER_PLAN.ms-MY.md) | 180-minute detailed breakdown, pedagogical framework, and speaker script. |
+| [Game Design Document (GDD)](docs/GAME_DESIGN_DOCUMENT.md) | [Dokumen Reka Bentuk Permainan](docs/GAME_DESIGN_DOCUMENT.ms-MY.md) | Vehicle physics specs, traffic state trees, art direction, and sound design. |
+| [Project Management Template](docs/PROJECT_MANAGEMENT_TEMPLATE.md) | [Templat Pengurusan Projek](docs/PROJECT_MANAGEMENT_TEMPLATE.ms-MY.md) | Agile backlog (CSV data block for Google Sheets) & vehicle physics matrix. |
+| [Workshop Handout & Prompts](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md) | [Panduan Peserta & Pek Prom](docs/WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md) | Step-by-step copy-paste prompts for Antigravity & OpenCode. |
 
 ---
 

@@ -1,5 +1,7 @@
 # Game Design Document (GDD)
 ## King Myvi: Highway Legends
+**[English](GAME_DESIGN_DOCUMENT.md) | [Bahasa Melayu](GAME_DESIGN_DOCUMENT.ms-MY.md)**
+
 **Platform:** Web (Babylon.js 7.x / WebGL / WebGPU)  
 **Genre:** High-Octane 3D Arcade Highway Runner  
 **Target Audience:** Casual Gamers, Arcade Enthusiasts, Malaysian Culture & Meme Fans  
