@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI for Gaming — 3-Hour Hands-On Lab Deck (Reveal.js + Markdown)</title>
+
+  <!-- Reveal.js 5.1.0 Core & Theme CSS (via jsDelivr CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/black.css" id="theme" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --r-background-color: #090d16;
+      --r-main-font: 'Inter', sans-serif;
+      --r-heading-font: 'Inter', sans-serif;
+      --r-code-font: 'JetBrains Mono', monospace;
+      --r-main-font-size: 26px;
+      --r-main-color: #e2e8f0;
+      --r-heading-color: #38bdf8;
+      --r-link-color: #22d3ee;
+      --r-link-color-hover: #facc15;
+      --r-selection-background-color: #0284c7;
+    }
+
+    body {
+      background-color: #090d16;
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.10), transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(244, 63, 94, 0.08), transparent 35%);
+      margin: 0;
+      overflow: hidden;
+    }
+
+    /* Top Interactive Presenter Bar */
+    .deck-toolbar {
+      position: fixed;
+      top: 10px;
+      left: 14px;
+      right: 14px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #cbd5e1;
+    }
+
+    .deck-toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: #38bdf8;
+    }
+
+    .deck-toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .deck-btn {
+      background: #1e293b;
+      color: #f8fafc;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .deck-btn:hover {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #ffffff;
+    }
+
+    .deck-toast {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 60;
+      background: rgba(16, 185, 129, 0.92);
+      color: #022c22;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .deck-toast.show {
+      opacity: 1;
+    }
+
+    /* Reveal Slide Typography & Table Polish */
+    .reveal .slides {
+      text-align: left;
+    }
+
+    .reveal h1, .reveal h2, .reveal h3 {
+      text-transform: none;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+
+    .reveal h1 {
+      font-size: 2.15em;
+      background: linear-gradient(90deg, #38bdf8, #facc15, #f43f5e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.3em;
+    }
+
+    .reveal h2 {
+      font-size: 1.45em;
+      color: #38bdf8;
+      border-bottom: 2px solid rgba(56, 189, 248, 0.28);
+      padding-bottom: 0.2em;
+      margin-bottom: 0.45em;
+    }
+
+    .reveal h3 {
+      font-size: 1.05em;
+      color: #facc15;
+      margin-bottom: 0.3em;
+    }
+
+    .reveal p, .reveal li {
+      font-size: 0.84em;
+      line-height: 1.48;
+      color: #e2e8f0;
+    }
+
+    .reveal ul, .reveal ol {
+      margin-left: 1.1em;
+    }
+
+    .reveal li {
+      margin-bottom: 0.32em;
+    }
+
+    .reveal strong {
+      color: #f8fafc;
+      font-weight: 700;
+    }
+
+    .reveal code {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(30, 41, 59, 0.9);
+      color: #fde047;
+      padding: 2px 6px;
+      border-radius: 5px;
+      font-size: 0.86em;
+    }
+
+    .reveal pre {
+      width: 100%;
+      margin: 0.5em 0;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      position: relative;
+    }
+
+    .reveal pre code {
+      padding: 14px 16px;
+      font-size: 0.72em;
+      line-height: 1.42;
+      max-height: 360px;
+      background: #0f172a;
+      color: #f8fafc;
+    }
+
+    .copy-code-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 6px;
+      padding: 3px 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .copy-code-btn:hover {
+      background: #38bdf8;
+      color: #090d16;
+    }
+
+    .reveal blockquote {
+      width: 96%;
+      margin: 0.5em 0;
+      padding: 12px 18px;
+      background: rgba(15, 23, 42, 0.9);
+      border-left: 4px solid #facc15;
+      border-radius: 8px;
+      font-style: normal;
+      font-size: 0.78em;
+      color: #fef08a;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .reveal table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0.45em 0;
+      font-size: 0.68em;
+      background: rgba(15, 23, 42, 0.75);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .reveal table th {
+      background: #1e293b;
+      color: #38bdf8;
+      font-weight: 700;
+      padding: 8px 12px;
+      border-bottom: 2px solid rgba(56, 189, 248, 0.35);
+    }
+
+    .reveal table td {
+      padding: 7px 12px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+      color: #e2e8f0;
+    }
+
+    .reveal table tr:nth-child(even) td {
+      background: rgba(30, 41, 59, 0.45);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Presenter Quick-Jump Toolbar -->
+  <nav class="deck-toolbar">
+    <div class="deck-toolbar-left">
+      <span>🎮 AI FOR GAMING — 3H LAB SLIDES</span>
+      <span id="slide-counter" style="color:#94a3b8;font-weight:500;">Slide 1</span>
+    </div>
+    <div class="deck-toolbar-actions">
+      <button id="btn-jump-start" class="deck-btn">1. Intro</button>
+      <button id="btn-jump-setup" class="deck-btn">2. BYOD Setup</button>
+      <button id="btn-jump-hour1" class="deck-btn">3. Hour 1: GDD &amp; PM</button>
+      <button id="btn-jump-hour2" class="deck-btn">4. Hour 2: Live Build</button>
+      <button id="btn-jump-hour3" class="deck-btn">5. Hour 3: Blender MCP</button>
+      <button id="btn-overview" class="deck-btn" title="Toggle Slide Grid (ESC)">Grid (ESC)</button>
+    </div>
+  </nav>
+
+  <!-- Copy Notification Toast -->
+  <div id="copy-toast" class="deck-toast">Copied prompt / command to clipboard!</div>
+
+  <!-- Reveal.js Presentation Container with Built-In Markdown Plugin -->
+  <div class="reveal">
+    <div class="slides">
+      <section
+        data-markdown
+        data-separator="^\r?\n---\r?\n$"
+        data-separator-vertical="^\r?\n--\r?\n$"
+        data-separator-notes="^Note:"
+      >
+        <textarea data-template>
+# AI for Gaming
+### How AI is Changing the Way Games Are Made
+
+**3-Hour Hands-On Lab: From Zero to Playable 3D Web Kart Racer**
+
+* **Target Game Build:** **Neon Kart 3D** (Mario Kart Style 3D Circuit Racer)
+* **Core Stack:** [Google Antigravity](https://antigravity.google/) • [OpenCode](https://opencode.ai/) • [Google Gemini](https://aistudio.google.com/) • [Blender MCP](https://github.com/ahujasid/mcp-for-blender) • [Three.js](https://threejs.org/)
+* **Coding Required:** **0% Manual Coding** — 100% Agentic Vibe-Coding & Procedural 3D
+
+Note:
+Welcome everyone! Today you will act as Game Directors. Even if you have never written a single line of game code or opened Blender before, you will leave in 3 hours with a playable 3D Kart Racer running in your browser.
+
+---
+
+## 3-Hour Lab Roadmap
+
+| Time Window | Module | What You Will Build Live |
+| :--- | :--- | :--- |
+| **0:00 – 0:20** | **BYOD Setup & Vision** | Install tools on your laptop + connect free **Google Gemini API** & **OpenCode** |
+| **0:20 – 1:00** | **Hour 1: The AI Producer** | Generate our **Game Design Document (`GDD.md`)**, **Project Backlog Sheet**, & **Architecture (`ARCHITECTURE.md`)** |
+| **1:00 – 2:00** | **Hour 2: Agentic Live-Build** | Prompt **Antigravity / OpenCode** to build the 3D circuit track, arcade drift physics, item boxes, & AI rivals |
+| **2:00 – 2:45** | **Hour 3A: Blender MCP & Audio** | Connect **Blender via MCP** to generate custom `.glb` karts + extract local BGM with **`yt-dlp`** |
+| **2:45 – 3:00** | **Hour 3B: Deploy & Full 3D** | 1-click static deploy to **GitHub Pages / Vercel** + roadmap to full **Rapier 3D** physics & shaders |
+
+---
+
+## Why "The Old Way" vs. The AI-Native Game Loop
+
+* **Traditional Solo Game Dev (3–6 Months):**
+  * Weeks stuck learning engine UI, quaternion math, UV unwrapping, and boilerplate state machines.
+* **The AI-Native Game Studio Loop (3 Hours):**
+  1. **Structured Mechanics Spec (`docs/GDD.md`):** AI translates game feel into explicit physics constants.
+  2. **AI Project Management (`.xlsx` / Google Sheets):** AI breaks epics into 10-minute atomic tasks.
+  3. **Modular Architecture (`docs/ARCHITECTURE.md`):** Enforces clean file boundaries + procedural fallbacks.
+  4. **Agentic Coding ([Google Antigravity](https://antigravity.google/) & [OpenCode](https://opencode.ai/)):** Multi-file generation & live browser testing.
+  5. **Procedural 3D ([MCP for Blender](https://github.com/ahujasid/mcp-for-blender)):** LLM controls Blender directly via Python socket server.
+
+---
+
+## Step 0: BYOD Laptop Setup (Windows & macOS)
+
+Run the one-liner for your OS in **PowerShell (Admin)** or **macOS Terminal** to install Node.js, Git, Python `uv`, Blender, `yt-dlp`, and OpenCode CLI:
+
+```powershell
+# WINDOWS (PowerShell)
+winget install OpenJS.NodeJS.LTS Git.Git BlenderFoundation.Blender yt-dlp.yt-dlp Gyan.FFmpeg
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+npm install -g @opencode/cli@latest
+```
+
+```bash
+# macOS (Terminal with Homebrew)
+brew install node git uv yt-dlp ffmpeg
+brew install --cask blender
+npm install -g @opencode/cli@latest
+```
+
+* **GUI IDE Option:** Download [Google Antigravity IDE](https://antigravity.google/download/) (or the VS Code extension).
+
+--
+
+## Connecting Your Free Google Gemini API & OpenCode LLMs
+
+1. **Get a Free Gemini API Key (60 seconds):**
+   * Visit [Google AI Studio (`aistudio.google.com/apikey`)](https://aistudio.google.com/docs/api-key) and click **Create API Key** (free tier includes generous RPM/RPD for `gemini-2.5-pro` and `gemini-2.5-flash`).
+2. **Export Key & Configure `opencode.json` in Your Repo Root:**
+
+```bash
+# macOS / Linux / Git Bash
+export GEMINI_API_KEY="AIzaSyYourFreeKeyHere"
+
+# Windows PowerShell
+$env:GEMINI_API_KEY="AIzaSyYourFreeKeyHere"
+```
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": "google",
+  "model": "google/gemini-2.5-pro",
+  "small_model": "google/gemini-2.5-flash",
+  "mcp": {
+    "blender": {
+      "command": "uvx",
+      "args": ["mcp-for-blender"]
+    }
+  }
+}
+```
+
+> **Tip:** Inside `opencode`, run `/models` at any time to switch between your **Google Gemini** key and built-in **free OpenCode provider models**!
+
+---
+
+## Hour 1 (0:20 – 1:00): AI as Lead Game Designer & Producer
+
+**Why most AI game prompts fail:**
+* Asking *"Make me a 3D Mario Kart game"* produces a 200-line broken demo with unplayable steering.
+* **The Fix:** Never let the AI write code until it writes the **Game Design Document (`docs/GDD.md`)** with explicit numerical handling constants.
+
+| Vehicle Physics Constant | Symbol | Target Value | What It Controls |
+| :--- | :--- | :--- | :--- |
+| **Max Cruising Speed** | `MAX_SPEED` | `45.0 u/s` | Top speed on asphalt straightaways |
+| **Boost Speed Cap** | `BOOST_MAX_SPEED` | `68.0 u/s` | Top speed during Drift Mini-Turbo or Mushroom |
+| **Off-Road Grass Drag** | `OFFROAD_DRAG` | `0.91 / frame` | Penalty when leaving the track spline width |
+| **Drift Turn Multiplier** | `DRIFT_MULT` | `1.5x` | Tighter cornering radius while holding `SPACE` |
+| **Mini-Turbo Charge** | `DRIFT_CHARGE_TIME` | `1.0 sec` | Hold drift for 1s, release `SPACE` for orange turbo burst |
+
+--
+
+## Live Prompt #1: Generate `docs/GDD.md`
+
+Copy and paste this into **[Google Antigravity](https://antigravity.google/)** or **[OpenCode](https://opencode.ai/)**:
+
+> "Act as a Principal Game Designer. We are building **Neon Kart 3D**, a browser-based 3D arcade kart racer inspired by Mario Kart using Three.js. Create `docs/GDD.md` containing:
+> 1. Core 3-lap gameplay loop & win condition.
+> 2. Exact numerical physics constants table (`MAX_SPEED`, `BOOST_MAX_SPEED`, `ACCEL`, `BRAKE`, `COAST_DRAG`, `OFFROAD_DRAG`, `TURN_SPEED`, `DRIFT_MULT`, `DRIFT_CHARGE_TIME`).
+> 3. Closed `CatmullRomCurve3` circuit spline geometry & checkpoint rules preventing backward lap cheating.
+> 4. 3 Mystery Item Box power-ups (Turbo Mushroom, Plasma Shield, Star Overdrive).
+> 5. Waypoint AI rival rubber-banding behavior."
+
+---
+
+## AI Project Management in Google Sheets / Excel
+
+Once `docs/GDD.md` exists, your AI agent becomes your **Technical Producer**:
+
+* **How It Works:**
+  1. We prompt the agent to decompose `docs/GDD.md` into **16 atomic 10–15 minute tasks** across 5 Milestones (`M1: Design & PM`, `M2: Core 3D Engine`, `M3: 3D Assets (MCP)`, `M4: Audio & HUD`, `M5: UI & Deploy`).
+  2. The agent exports `docs/BACKLOG.csv` matching our **Project Management Template (`AI_for_Gaming_Project_Management_Template.xlsx`)**.
+  3. Built-in `COUNTIF`, `COUNTIFS`, and `SUMIF` formulas automatically track Milestone completion % and remaining lab minutes.
+
+--
+
+## Live Prompt #2: Populate the Project Management Sheet
+
+Copy and paste this into **[Google Antigravity](https://antigravity.google/)** or **[OpenCode](https://opencode.ai/)**:
+
+> "Read `docs/GDD.md` and generate a 16-task solo developer sprint backlog saved to `docs/BACKLOG.csv` with exact columns:
+> `Task ID, Milestone, Task Name, Department, Primary AI Tool, Priority, Est. Mins, Status, Deliverable Target`
+> Group tasks into 5 milestones totaling 180 minutes: `M1: Design & PM`, `M2: Core 3D Engine`, `M3: 3D Assets (MCP)`, `M4: Audio & HUD`, and `M5: UI & Deploy`. Mark M1 tasks as `DONE` and M2–M5 as `PENDING`."
+
+---
+
+## Designing Clean Game Architecture (`docs/ARCHITECTURE.md`)
+
+**Rule #1 of Vibe-Coding Games:** Separate **Config**, **World**, **Entities**, **Audio**, and **UI** into distinct files so the AI never overwrites your physics when editing the HUD.
+
+```text
+neon-kart-3d/
+├── index.html                  # HUD overlay + Vite entry
+├── opencode.json               # Gemini API + Blender MCP config
+├── docs/
+│   ├── GDD.md                  # Physics constants & item rules
+│   ├── ARCHITECTURE.md         # Module contracts & fallback rules
+│   └── BACKLOG.csv             # Sprint backlog for Google Sheets / Excel
+├── public/assets/
+│   ├── models/                 # Blender MCP exports (kart.glb, arch.glb)
+│   └── audio/                  # yt-dlp / Suno BGM (bgm.mp3)
+└── src/
+    ├── main.js                 # Game loop & state machine
+    ├── config/constants.js     # GDD physics & tuning constants
+    ├── world/trackBuilder.js   # CatmullRomCurve3 road, curbs, pads
+    ├── world/assetLoader.js    # GLTFLoader with procedural fallback!
+    ├── entities/kartController.js # Drift, boost, & steering math
+    ├── entities/aiDriver.js    # Spline waypoint rivals
+    ├── audio/soundManager.js   # Web Audio API synth + MP3 BGM
+    └── ui/hud.js               # Speedometer, lap timer, item slot
+```
+
+> **Workshop Secret Weapon ("Graceful Procedural Fallback"):** `assetLoader.js` automatically renders a sleek procedural Three.js kart if `public/assets/models/kart.glb` doesn't exist yet—so Hour 2 runs 100% bug-free before we open Blender in Hour 3!
+
+---
+
+## Hour 2 (1:00 – 2:00): Agentic Live-Build (Zero Manual Coding)
+
+Now we hand `docs/GDD.md` and `docs/ARCHITECTURE.md` to **[Google Antigravity](https://antigravity.google/)** or **[OpenCode](https://opencode.ai/)** to build the playable prototype:
+
+* **1:00 – 1:20 | Step 1 — 3D Scene & Circuit Track:**
+  * Generates `CatmullRomCurve3` closed asphalt loop, alternating red/white rumble curbs, start/finish neon archway, and smooth third-person chase camera.
+* **1:20 – 1:45 | Step 2 — Arcade Kart Physics, Drift & Items:**
+  * Implements WASD steering, `SPACE` drift-boost charging, glowing cyan Speed Pads, rotating golden Mystery Item Boxes, and 2 AI rival karts.
+* **1:45 – 2:00 | Step 3 — Live Playtest & Vibe-Tuning Loop:**
+  * Run `npm run dev` and ask the agent to tweak camera FOV kick, drift angle, and HUD styling in real time.
+
+--
+
+## Live Prompt #3: Build the Playable 3D Web Prototype
+
+Copy and paste this into **[Google Antigravity](https://antigravity.google/)** or **[OpenCode](https://opencode.ai/)**:
+
+> "Read `docs/GDD.md` and `docs/ARCHITECTURE.md`. Implement the complete playable 3D web game using Three.js and Vite:
+> 1. Closed `CatmullRomCurve3` circuit track with asphalt vertex colors, red/white curbs, start archway, 4 cyan speed boost pads, and 6 rotating golden item boxes.
+> 2. Player kart with WASD/Arrow driving, Spacebar drift with 1.0s charge for a Mini-Turbo boost, off-road grass slowdown, and `E` key to trigger picked-up items (Turbo Mushroom, Plasma Shield, Star Overdrive).
+> 3. 2 AI rival karts following the track spline with rubber-banding.
+> 4. Web Audio API procedural engine pitch synthesizer + SFX.
+> 5. Glassmorphic HUD displaying Position (1st–3rd), Lap (1/3), Lap Timer, Best Lap (`localStorage`), Speedometer, and live GDD Physics Tuning sliders.
+> 6. Ensure `assetLoader.js` loads `/assets/models/kart.glb` if present and falls back to a procedural Cyber Kart mesh."
+
+---
+
+## Hour 3A (2:00 – 2:30): Procedural 3D Pipeline with Blender + MCP
+
+How **[MCP for Blender (`ahujasid/mcp-for-blender`)](https://github.com/ahujasid/mcp-for-blender)** changes 3D art creation:
+
+```text
+[ Google Antigravity / OpenCode (Gemini 2.5 Pro) ]
+                       │
+        (MCP Protocol via uvx mcp-for-blender)
+                       ▼
+      [ Blender 4.x Socket Server (Port 9876) ]
+                       │
+   Executes bpy Python: Bevel Chassis + 4 Neon Wheels + PBR Shaders
+                       ▼
+     Auto-Exports -> public/assets/models/kart.glb
+```
+
+1. Open **Blender** -> `Edit > Preferences > Add-ons` -> Enable **Interface: Blender MCP**.
+2. Press `N` in the 3D Viewport -> Open the **BlenderMCP** tab -> Click **Start Server**.
+3. Your coding agent can now inspect the 3D scene, create meshes, assign metallic/emissive materials, and export `.glb` files directly into your game repo!
+
+--
+
+## Live Prompt #4: Generate & Export Custom 3D Kart via Blender MCP
+
+Copy and paste this into **[Google Antigravity](https://antigravity.google/)** or **[OpenCode](https://opencode.ai/)** while Blender MCP is active:
+
+> "Using the `blender` MCP tool, clear the default Blender scene and procedurally model a low-poly Cyber Racing Kart centered at `(0,0,0)` facing `-Y`:
+> 1. Create a bevelled aerodynamic chassis (`1.7m` wide, `2.7m` long) with a metallic cyan PBR material (`metalness=0.6`, `roughness=0.25`).
+> 2. Add 4 cylinder wheels with dark tire treads and glowing yellow/cyan emissive rims.
+> 3. Add a rear elevated wing spoiler and a dark cockpit visor with a yellow driver helmet.
+> 4. Apply all transforms, keep total triangle count under 3,500 tris, and export the scene as a binary glTF file to `public/assets/models/kart.glb`."
+
+* **Bonus AI 3D Tools for Organic Props:** Use **[Meshy](https://www.meshy.ai/)** or **[Tripo3D](https://www.tripo3d.ai/)** to generate textured 3D trophies or trees from text prompts in 60 seconds, plus CC0 skies from **[Poly Haven](https://polyhaven.com/)** and **[Kenney](https://kenney.nl/assets)**.
+
+---
+
+## Hour 3B (2:30 – 2:45): Audio Automation (`yt-dlp` + AI SFX) & Deployment
+
+* **1. Local Lab Prototyping Audio via [`yt-dlp`](https://github.com/yt-dlp/yt-dlp):**
+   Pull any royalty-free synthwave track from YouTube into your local repo during the workshop:
+
+```bash
+yt-dlp -x --audio-format mp3 --audio-quality 128K "https://www.youtube.com/watch?v=YOUR_SYNTHWAVE_ID" -o "public/assets/audio/bgm.%(ext)s"
+```
+
+* **2. Production Licensing Best Practice:**
+  * Keep YouTube audio strictly on `localhost` for testing. Before pushing to a public URL, swap `bgm.mp3` with an AI-generated track from **[Suno](https://suno.com/)** or SFX from **[ElevenLabs Sound Effects](https://elevenlabs.io/docs/overview/capabilities/sound-effects)**.
+* **3. 1-Click Static Web Deployment (No Database Needed):**
+
+```bash
+# Set base: './' in vite.config.js, then build static bundle:
+npm run build
+
+# Deploy to Vercel, Netlify Drop, or GitHub Pages in 30 seconds:
+npx vercel --prod
+```
+
+---
+
+## Hour 3C (2:45 – 3:00): Scaling from Prototype to Full Immersive 3D Game
+
+Once your 3-hour prototype is live, here is the exact architectural upgrade path to turn **Neon Kart 3D** into a full commercial web game:
+
+| Upgrade Layer | Prototype (Today's 3H Build) | Full Immersive 3D Game (Next Step) | Prompt / Tool to Upgrade |
+| :--- | :--- | :--- | :--- |
+| **Physics & Collisions** | Spline distance + arcade raycast kinematics | **[Rapier 3D (`@dimforge/rapier3d-compat`)](https://rapier.rs/)** rigid-body raycast vehicle suspension + trimesh track colliders | Ask OpenCode to wrap track mesh in `RAPIER.ColliderDesc.trimesh` |
+| **Lighting & Shaders** | Directional light + exponential fog | **[Poly Haven](https://polyhaven.com/) 4K HDRI** environment reflections + Three.js `EffectComposer` + `UnrealBloomPass` | Load `.hdr` via `RGBELoader` + add bloom post-processing |
+| **3D World & Animation** | Static `.glb` kart & procedural track | Skeletal wheel/suspension rigging in **Blender MCP** + multi-biome procedural spline tracks | Export animated actions in `.glb` and play via `THREE.AnimationMixer` |
+| **Multiplayer** | 2 local spline AI rivals + `localStorage` | Real-time 8-player rooms via **WebSockets / PartyKit / WebRTC** | Sync `(x, z, heading, speed, item)` state packets at 20 Hz |
+
+---
+
+## Workshop Wrap-Up & Deliverable Checklist
+
+By completing today's 3-hour lab, you now have:
+1. **Structured AI Game Design (`docs/GDD.md`)** — Turning creative ideas into deterministic physics & rules.
+2. **Automated Project Management (`AI_for_Gaming_Project_Management_Template.xlsx`)** — AI-populated backlog, milestones, and scope triage.
+3. **Clean Modular Architecture (`docs/ARCHITECTURE.md`)** — Decoupled code with graceful procedural asset fallbacks.
+4. **End-to-End Agentic Pipeline** — **[Google Antigravity](https://antigravity.google/)** + **[OpenCode](https://opencode.ai/)** + **[Google Gemini](https://aistudio.google.com/)** + **[MCP for Blender](https://github.com/ahujasid/mcp-for-blender)**.
+5. **Playable 3D Web Prototype (`neon_kart_3d_prototype.html`)** — Live on your machine and ready to share on **[GitHub Pages](https://pages.github.com/)**, **[Vercel](https://vercel.com/)**, or **[Netlify](https://www.netlify.com/)**.
+
+### Let's Start Building! 🚀
+*Press `ESC` for Slide Overview • Use the top toolbar to jump to any lab module • Click **Copy** on any prompt block.*
+        </textarea>
+      </section>
+    </div>
+  </div>
+
+  <!-- Reveal.js 5.1.0 & Built-In Plugins (Markdown, Highlight, Notes) -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/markdown/markdown.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+
+  <script>
+    function showToast(msg) {
+      const toast = document.getElementById('copy-toast');
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2000);
+    }
+
+    function copyTextToClipboard(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('Copied to clipboard!');
+        }).catch(() => {
+          fallbackCopy(text);
+        });
+      } else {
+        fallbackCopy(text);
+      }
+    }
+
+    function fallbackCopy(text) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand('copy');
+        showToast('Copied to clipboard!');
+      } catch (e) {}
+      document.body.removeChild(ta);
+    }
+
+    window.addEventListener('load', () => {
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        center: true,
+        slideNumber: 'c/t',
+        width: 1200,
+        height: 700,
+        margin: 0.08,
+        transition: 'slide',
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+      }).then(() => {
+        // Attach 1-click Copy buttons to every code block and blockquote prompt
+        document.querySelectorAll('.reveal pre').forEach((pre) => {
+          const btn = document.createElement('button');
+          btn.className = 'copy-code-btn';
+          btn.textContent = 'Copy Code';
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const codeEl = pre.querySelector('code');
+            if (codeEl) copyTextToClipboard(codeEl.innerText.trim());
+          });
+          pre.appendChild(btn);
+        });
+
+        document.querySelectorAll('.reveal blockquote').forEach((bq) => {
+          bq.style.position = 'relative';
+          const btn = document.createElement('button');
+          btn.className = 'copy-code-btn';
+          btn.textContent = 'Copy Prompt';
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            copyTextToClipboard(bq.innerText.replace('Copy Prompt', '').trim());
+          });
+          bq.appendChild(btn);
+        });
+
+        // Update slide counter in top bar
+        const counterEl = document.getElementById('slide-counter');
+        const updateCounter = () => {
+          const idx = Reveal.getIndices();
+          counterEl.textContent = `Slide ${idx.h + 1}${idx.v > 0 ? '.' + (idx.v + 1) : ''}`;
+        };
+        Reveal.on('slidechanged', updateCounter);
+        updateCounter();
+      });
+
+      // Top navigation buttons
+      document.getElementById('btn-jump-start').addEventListener('click', () => Reveal.slide(0, 0));
+      document.getElementById('btn-jump-setup').addEventListener('click', () => Reveal.slide(3, 0));
+      document.getElementById('btn-jump-hour1').addEventListener('click', () => Reveal.slide(4, 0));
+      document.getElementById('btn-jump-hour2').addEventListener('click', () => Reveal.slide(7, 0));
+      document.getElementById('btn-jump-hour3').addEventListener('click', () => Reveal.slide(8, 0));
+      document.getElementById('btn-overview').addEventListener('click', () => Reveal.toggleOverview());
+    });
+  </script>
+</body>
+</html>
