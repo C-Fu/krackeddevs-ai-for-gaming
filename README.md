@@ -73,6 +73,7 @@ flowchart LR
 ## 📁 Workshop Documentation & Artifacts
 
 All master documents are structured for the workshop:
+* **[Interactive Slide Deck](slides.html):** Full Reveal.js presentation with built-in speaker notes (`'S'` key) and slide overview (`ESC`).
 * **[Workshop Master Plan & Run-of-Show](AI_FOR_GAMING_MASTER_PLAN.md):** 3-hour minute-by-minute session plan, slide breakdown, and stage directions.
 * **[Game Design Document (GDD)](GAME_DESIGN_DOCUMENT.md):** Complete specifications for mechanics, AI state machines, art, and audio.
 * **[Project Management Template](PROJECT_MANAGEMENT_TEMPLATE.md):** Agile backlog, CSV import for Google Sheets, and physics balancing matrix.
