@@ -84,3 +84,24 @@ flowchart LR
 The generation script is saved at [`tools/blender/build_hum3d_myvi.py`](../tools/blender/build_hum3d_myvi.py). It connects to the open Blender instance, generates the geometry, positions the beauty cameras, activates `MATERIAL` shading mode, and exports:
 * Primary asset: `public/assets/models/myvi.glb` (267 KB)
 * Production bundle: `dist/assets/models/myvi.glb`
+
+
+---
+
+## 🏛️ Alternative to Modeling from Scratch: SketchUp 3D Warehouse Downloader
+
+While the procedural Blender MCP pipeline is ideal for generating custom stylized vehicles and procedural terrain, building complex real-world architecture (such as the Petronas Twin Towers / KLCC, PLUS highway toll plazas, roadside stalls, or canteen props) from scratch in Blender can take significant time.
+
+For rapid asset sourcing, the project includes [`sketchup_downloader/`](../sketchup_downloader/README.md) (*[BM: `sketchup_downloader/README.ms-MY.md`](../sketchup_downloader/README.ms-MY.md)*). It lets you bypass account logins and download production-ready **`.glb` models directly from Trimble SketchUp 3D Warehouse's public CDN**:
+
+```powershell
+# Windows 1-Liner: Download any 3D Warehouse model directly as GLB
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/C-Fu/krackeddevs-ai-for-gaming/main/sketchup_downloader/get_sketchup_model.ps1))) "https://3dwarehouse.sketchup.com/model/16965783-d6e1-4abf-b2d6-ef87f1b25747/Ombak-KLCC" -Download
+```
+
+```bash
+# macOS / Linux 1-Liner
+curl -sSL https://raw.githubusercontent.com/C-Fu/krackeddevs-ai-for-gaming/main/sketchup_downloader/get_sketchup_model.sh | bash -s -- --download "https://3dwarehouse.sketchup.com/model/16965783-d6e1-4abf-b2d6-ef87f1b25747/Ombak-KLCC"
+```
+
+You can then import the downloaded `.glb` file directly into your Blender scene or place it straight into `public/assets/models/` for Babylon.js!

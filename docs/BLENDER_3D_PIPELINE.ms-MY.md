@@ -84,3 +84,24 @@ flowchart LR
 Skrip penjanaan disimpan di [`tools/blender/build_hum3d_myvi.py`](../tools/blender/build_hum3d_myvi.py). Skrip ini menyambung ke instans Blender yang aktif, menjana geometri, meletakkan kamera pencahayaan, mengaktifkan mod lorekan `MATERIAL`, dan mengeksport:
 * Aset utama: `public/assets/models/myvi.glb` (267 KB)
 * Berkas pengeluaran: `dist/assets/models/myvi.glb`
+
+
+---
+
+## 🏛️ Alternatif Pemodelan dari Awal: Pemuat Turun SketchUp 3D Warehouse
+
+Walaupun saliran Blender MCP berprosedur sangat berkuasa untuk menjana kenderaan bergaya tersuai dan rupa bumi maya, membina seni bina dunia sebenar yang kompleks (seperti Menara Berkembar Petronas / KLCC, plaza tol lebuh raya PLUS, gerai tepi jalan, atau prop kantin sekolah) dari awal dalam Blender boleh memakan masa yang panjang.
+
+Bagi pemerolehan aset pantas, projek ini menyertakan kit alat [`sketchup_downloader/`](../sketchup_downloader/README.ms-MY.md) (*[English: `sketchup_downloader/README.md`](../sketchup_downloader/README.md)*). Kit ini membolehkan anda memintas keperluan log masuk akaun dan memuat turun model **`.glb` sedia guna terus dari CDN awam Trimble SketchUp 3D Warehouse**:
+
+```powershell
+# Windows 1-Baris: Muat turun mana-mana model 3D Warehouse terus sebagai GLB
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/C-Fu/krackeddevs-ai-for-gaming/main/sketchup_downloader/get_sketchup_model.ps1))) "https://3dwarehouse.sketchup.com/model/16965783-d6e1-4abf-b2d6-ef87f1b25747/Ombak-KLCC" -Download
+```
+
+```bash
+# macOS / Linux 1-Baris
+curl -sSL https://raw.githubusercontent.com/C-Fu/krackeddevs-ai-for-gaming/main/sketchup_downloader/get_sketchup_model.sh | bash -s -- --download "https://3dwarehouse.sketchup.com/model/16965783-d6e1-4abf-b2d6-ef87f1b25747/Ombak-KLCC"
+```
+
+Anda kemudian boleh mengimport fail `.glb` yang dimuat turun terus ke dalam babak Blender anda atau meletakkannya terus ke dalam `public/assets/models/` untuk enjin Babylon.js!

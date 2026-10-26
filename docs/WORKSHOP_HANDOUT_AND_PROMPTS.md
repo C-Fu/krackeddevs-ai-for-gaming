@@ -1,7 +1,7 @@
 # Attendee Hands-On Lab Handout & AI Prompt Pack
 ## *Building "King Myvi: Highway Legends" with Antigravity, OpenCode & Blender*
 **[English](WORKSHOP_HANDOUT_AND_PROMPTS.md) | [Bahasa Melayu](WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md)**  
-*Workshop Game Suite: [King Myvi (Root)](../README.md) | [Makcik Canteen](../MAKCIK_CANTEEN/README.md) | [Neon Kart 3D](../neon_kart_3d/README.md) | [Design Templates](../TEMPLATE_DESIGN_DOCUMENT/README.md)*
+*Workshop Game Suite: [King Myvi (Root)](../README.md) | [Makcik Canteen](../MAKCIK_CANTEEN/README.md) | [Neon Kart 3D](../neon_kart_3d/README.md) | [3D Warehouse Downloader](../sketchup_downloader/README.md) | [Design Templates](../TEMPLATE_DESIGN_DOCUMENT/README.md)*
 
 ---
 
@@ -113,6 +113,21 @@ Requirements:
    Export directly to public/assets/models/myvi.glb."
    ```
 *(For complete technical details and procedural Python code, see [`docs/BLENDER_3D_PIPELINE.md`](BLENDER_3D_PIPELINE.md)).*
+
+### Prototyping Shortcut: Sourcing Real 3D Models from 3D Warehouse (`sketchup_downloader/`)
+Don't have Blender or want real-world Malaysian architecture and props (KLCC, PLUS toll plazas, mamak stalls)? Instead of modeling from scratch, download production-ready **`.glb` models directly from Trimble SketchUp 3D Warehouse** without creating an account or logging in:
+
+**Windows (PowerShell):**
+```powershell
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/C-Fu/krackeddevs-ai-for-gaming/main/sketchup_downloader/get_sketchup_model.ps1))) "https://3dwarehouse.sketchup.com/model/16965783-d6e1-4abf-b2d6-ef87f1b25747/Ombak-KLCC" -Download
+```
+
+**macOS / Linux (Bash):**
+```bash
+curl -sSL https://raw.githubusercontent.com/C-Fu/krackeddevs-ai-for-gaming/main/sketchup_downloader/get_sketchup_model.sh | bash -s -- --download "https://3dwarehouse.sketchup.com/model/16965783-d6e1-4abf-b2d6-ef87f1b25747/Ombak-KLCC"
+```
+
+Save the downloaded `.glb` file into `public/assets/models/` and prompt your AI agent to load it into the Babylon.js scene! *(See [`sketchup_downloader/README.md`](../sketchup_downloader/README.md) for converter utilities and batch download options).*
 
 ---
 

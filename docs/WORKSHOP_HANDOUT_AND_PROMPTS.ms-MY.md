@@ -1,7 +1,7 @@
 # Panduan Peserta Bengkel Praktikal & Pek Prom AI
 ## *Membina "King Myvi: Highway Legends" bersama Antigravity, OpenCode & Blender*
 **[English](WORKSHOP_HANDOUT_AND_PROMPTS.md) | [Bahasa Melayu](WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md)**  
-*Siri Permainan Bengkel: [King Myvi (Utama)](../README.ms-MY.md) | [Makcik Canteen](../MAKCIK_CANTEEN/README.ms-MY.md) | [Neon Kart 3D](../neon_kart_3d/README.ms-MY.md) | [Templat Reka Bentuk](../TEMPLATE_DESIGN_DOCUMENT/README.ms-MY.md)*
+*Siri Permainan Bengkel: [King Myvi (Utama)](../README.ms-MY.md) | [Makcik Canteen](../MAKCIK_CANTEEN/README.ms-MY.md) | [Neon Kart 3D](../neon_kart_3d/README.ms-MY.md) | [Pemuat Turun 3D Warehouse](../sketchup_downloader/README.ms-MY.md) | [Templat Reka Bentuk](../TEMPLATE_DESIGN_DOCUMENT/README.ms-MY.md)*
 
 ---
 
@@ -113,6 +113,21 @@ Keperluan spesifikasi:
    Eksport terus ke public/assets/models/myvi.glb."
    ```
 *(Untuk perincian teknikal penuh dan kod Python prosedur, rujuk [`docs/BLENDER_3D_PIPELINE.ms-MY.md`](BLENDER_3D_PIPELINE.ms-MY.md)).*
+
+### Jalan Pintas Prototip: Memperoleh Model 3D Percuma dari 3D Warehouse (`sketchup_downloader/`)
+Tiada perisian Blender atau ingin mendapatkan mercu tanda tempatan dan seni bina Malaysia yang terperinci (KLCC, plaza tol PLUS, gerai mamak, perabot kantin)? Alih-alih membina model dari awal, muat turun model **`.glb` sedia guna terus daripada Trimble SketchUp 3D Warehouse** tanpa perlu mendaftar akaun atau log masuk:
+
+**Windows (PowerShell):**
+```powershell
+& ([scriptblock]::Create((irm https://raw.githubusercontent.com/C-Fu/krackeddevs-ai-for-gaming/main/sketchup_downloader/get_sketchup_model.ps1))) "https://3dwarehouse.sketchup.com/model/16965783-d6e1-4abf-b2d6-ef87f1b25747/Ombak-KLCC" -Download
+```
+
+**macOS / Linux (Bash):**
+```bash
+curl -sSL https://raw.githubusercontent.com/C-Fu/krackeddevs-ai-for-gaming/main/sketchup_downloader/get_sketchup_model.sh | bash -s -- --download "https://3dwarehouse.sketchup.com/model/16965783-d6e1-4abf-b2d6-ef87f1b25747/Ombak-KLCC"
+```
+
+Simpan fail `.glb` yang dimuat turun ke dalam `public/assets/models/` dan arahkan ejen AI anda untuk memuatkannya ke dalam babak Babylon.js! *(Lihat [`sketchup_downloader/README.ms-MY.md`](../sketchup_downloader/README.ms-MY.md) untuk perincian utiliti penukaran dan muat turun kelompok).*
 
 ---
 

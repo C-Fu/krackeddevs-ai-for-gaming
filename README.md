@@ -14,7 +14,7 @@
 [![Web Audio](https://img.shields.io/badge/Audio-Procedural%20Web%20Audio-00F0FF?style=for-the-badge)](src/audio.js)
 [![License: MIT](https://img.shields.io/badge/License-MIT-00FF88?style=for-the-badge)](LICENSE)
 
-[🎮 **Play King Myvi**](https://c-fu.github.io/krackeddevs-ai-for-gaming/) &bull; [🍲 **Makcik Canteen**](MAKCIK_CANTEEN/README.md) &bull; [🏎️ **Neon Kart 3D**](neon_kart_3d/README.md) &bull; [📑 **Slide Deck**](https://c-fu.github.io/krackeddevs-ai-for-gaming/slides.html) &bull; [📐 **Design Doc Templates**](TEMPLATE_DESIGN_DOCUMENT/README.md) &bull; [💬 **Prompt Pack**](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md)
+[🎮 **Play King Myvi**](https://c-fu.github.io/krackeddevs-ai-for-gaming/) &bull; [🍲 **Makcik Canteen**](MAKCIK_CANTEEN/README.md) &bull; [🏎️ **Neon Kart 3D**](neon_kart_3d/README.md) &bull; [🏛️ **3D Warehouse Downloader**](sketchup_downloader/README.md) &bull; [📑 **Slide Deck**](https://c-fu.github.io/krackeddevs-ai-for-gaming/slides.html) &bull; [📐 **Design Doc Templates**](TEMPLATE_DESIGN_DOCUMENT/README.md) &bull; [💬 **Prompt Pack**](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md)
 
 </div>
 
@@ -204,6 +204,14 @@ KD_AI_FOR_GAMING/
 │   ├── TEMPLATE_*.md            # 9 Reusable blank design doc templates
 │   └── EXAMPLE_*.md             # 3 Real workshop game case studies
 │
+├── sketchup_downloader/         # Fast 3D Warehouse CDN Downloader & GLB Converter
+│   ├── get_sketchup_model.ps1   # PowerShell link extractor & GLB downloader
+│   ├── get_sketchup_model.sh    # macOS / Linux bash downloader
+│   ├── get_sketchup_model.bat   # Windows double-clickable batch downloader
+│   ├── glb2gltf.ps1 / .sh / .bat# Zero-dependency GLB to glTF unpacker
+│   ├── README.md                # English documentation & 1-liner commands
+│   └── README.ms-MY.md          # Dokumentasi Bahasa Melayu
+│
 ├── tools/
 │   └── blender/
 │       ├── README.md            # Guide for running scripts via Blender MCP or CLI
@@ -240,6 +248,7 @@ flowchart TD
     subgraph "3D Content Pipeline (Phase 2)"
         MCP["Blender 5 MCP Bridge<br/><i>Natural Language to 3D</i>"]
         GLB["Binary glTF (.glb)<br/><i>Modular Road & Car Meshes</i>"]
+        SKP["SketchUp 3D Warehouse<br/><i>sketchup_downloader Toolkit</i>"]
     end
 
     subgraph "Engine Assembly (Phase 3)"
@@ -255,6 +264,7 @@ flowchart TD
     GDD --> Sheets
     Sheets --> Babylon
     MCP --> GLB
+    SKP --> GLB
     GLB --> Babylon
     Babylon --> TrafficAI
     Babylon --> WebAudio
@@ -263,8 +273,9 @@ flowchart TD
 
 1. **Antigravity / OpenCode:** Autonomous coding agent environments that translate high-level game design prompts into modular, production-ready JavaScript and vector physics.
 2. **Blender MCP (Model Context Protocol):** Direct connection from AI agents to Blender's Python runtime (`bpy`), creating procedural low-poly geometry and exporting `.glb` meshes directly to the game's assets folder.
-3. **Babylon.js 7:** WebGL2/WebGPU browser engine providing PBR rendering, FollowCamera with dynamic FOV speed stretching, shadow generators, and the runtime Debug Inspector.
-4. **Procedural Web Audio API:** Zero external `.mp3` or `.wav` dependencies. Dynamic sawtooth engine oscillators modulated by real-time km/h, harmonic dual-tone Malaysian horns, and exponential chirp ramps for nitro boosts.
+3. **SketchUp 3D Warehouse Downloader:** Fast asset sourcing alternative that bypasses manual modeling, extracting production-ready GLB models (e.g. KLCC, toll booths, vehicles) directly from Trimble CDN without login.
+4. **Babylon.js 7:** WebGL2/WebGPU browser engine providing PBR rendering, FollowCamera with dynamic FOV speed stretching, shadow generators, and the runtime Debug Inspector.
+5. **Procedural Web Audio API:** Zero external `.mp3` or `.wav` dependencies. Dynamic sawtooth engine oscillators modulated by real-time km/h, harmonic dual-tone Malaysian horns, and exponential chirp ramps for nitro boosts.
 
 ---
 
@@ -284,6 +295,38 @@ If you have Blender installed locally, you can regenerate the 3D assets in headl
 
 > **Hybrid / Fallback Mode:**  
 > If an attendee's machine doesn't have Blender configured, the starter repository includes verified pre-built `.glb` files and procedural Babylon.js mesh fallbacks. **Nobody gets blocked.**
+
+---
+
+## 🏛️ Sourcing 3D Assets: SketchUp 3D Warehouse Downloader (`sketchup_downloader/`)
+
+> [!TIP]
+> **Don't want to build every 3D model from scratch in Blender?**  
+> While the Blender MCP bridge is ideal for generating custom procedural assets, indie game development often demands complex real-world architecture, local Malaysian landmarks, and detailed environment props (such as the Petronas Twin Towers / KLCC, PLUS toll plazas, roadside mamak stalls, or school canteen furniture).
+>
+> The included **[`sketchup_downloader/`](sketchup_downloader/README.md)** (*[BM: `sketchup_downloader/README.ms-MY.md`](sketchup_downloader/README.ms-MY.md)*) toolkit lets you download **production-ready 3D models (GLB, USDZ, KMZ, SKP)** directly from Trimble SketchUp 3D Warehouse **without creating an account or logging in**!
+
+### ⚡ 1-Liner Quick Download (No Installation Required)
+
+Download any 3D model directly into your game project in a single terminal command:
+
+- **Windows (PowerShell):**
+  ```powershell
+  # Download a GLB model directly from 3D Warehouse:
+  & ([scriptblock]::Create((irm https://raw.githubusercontent.com/C-Fu/krackeddevs-ai-for-gaming/main/sketchup_downloader/get_sketchup_model.ps1))) "https://3dwarehouse.sketchup.com/model/16965783-d6e1-4abf-b2d6-ef87f1b25747/Ombak-KLCC" -Download
+  ```
+- **macOS / Linux (Bash):**
+  ```bash
+  curl -sSL https://raw.githubusercontent.com/C-Fu/krackeddevs-ai-for-gaming/main/sketchup_downloader/get_sketchup_model.sh | bash -s -- --download "https://3dwarehouse.sketchup.com/model/16965783-d6e1-4abf-b2d6-ef87f1b25747/Ombak-KLCC"
+  ```
+
+### 🛠️ Included Tools in `sketchup_downloader/`:
+| Tool | Platforms | Purpose |
+| :--- | :--- | :--- |
+| **`get_sketchup_model.ps1` / `.sh` / `.bat`** | Windows, macOS, Linux | Queries Trimble 3D Warehouse CDN API, bypasses login walls, and downloads `.glb` / `.usdz` assets directly. |
+| **`glb2gltf.ps1` / `.sh` / `.bat`** | Windows, macOS, Linux | Pure Shell / PowerShell zero-dependency unpacker converting `.glb` into editable `.gltf` + `.bin` + separate textures (no Python or npm required!). |
+
+*(For full documentation, batch scripting, and conversion options, see [`sketchup_downloader/README.md`](sketchup_downloader/README.md)).*
 
 ---
 
@@ -330,6 +373,7 @@ Press `Enter` through the defaults. Vercel automatically detects the Vite config
 | [Project Management Template](docs/PROJECT_MANAGEMENT_TEMPLATE.md) | [Templat Pengurusan Projek](docs/PROJECT_MANAGEMENT_TEMPLATE.ms-MY.md) | Agile backlog (CSV data block for Google Sheets) & vehicle physics matrix. |
 | [Workshop Handout & Prompts](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md) | [Panduan Peserta & Pek Prom](docs/WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md) | Step-by-step copy-paste prompts for Antigravity & OpenCode. |
 | [Blender 3D Pipeline & Gallery](docs/BLENDER_3D_PIPELINE.md) | [Saliran 3D Blender & Galeri](docs/BLENDER_3D_PIPELINE.ms-MY.md) | Procedural Gen 3 Myvi modeling via live Blender MCP socket & glTF export. |
+| [SketchUp 3D Warehouse Downloader](sketchup_downloader/README.md) | [Pemuat Turun 3D Warehouse](sketchup_downloader/README.ms-MY.md) | Zero-dependency scripts to download GLB assets from Trimble CDN without login. |
 | [Makcik Canteen Documentation](MAKCIK_CANTEEN/README.md) | [Dokumentasi Makcik Canteen](MAKCIK_CANTEEN/README.ms-MY.md) | Full 7-doc game specification created live with Microsoft Copilot. |
 | [Template Design Document Suite](TEMPLATE_DESIGN_DOCUMENT/README.md) | [Suite Templat Reka Bentuk](TEMPLATE_DESIGN_DOCUMENT/README.ms-MY.md) | 9 standard blank game templates & 3 real workshop case studies. |
 | [Neon Kart 3D Documentation](neon_kart_3d/README.md) | [Dokumentasi Neon Kart 3D](neon_kart_3d/README.md) | Synthwave cyber drift racer built with Three.js and Vite. |

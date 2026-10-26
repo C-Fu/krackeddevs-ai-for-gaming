@@ -14,7 +14,7 @@
 [![Web Audio](https://img.shields.io/badge/Audio-Web%20Audio%20Prosedural-00F0FF?style=for-the-badge)](src/audio.js)
 [![Lesen: MIT](https://img.shields.io/badge/Lesen-MIT-00FF88?style=for-the-badge)](LICENSE)
 
-[🎮 **Main King Myvi**](https://c-fu.github.io/krackeddevs-ai-for-gaming/) &bull; [🍲 **Makcik Canteen**](MAKCIK_CANTEEN/README.ms-MY.md) &bull; [🏎️ **Neon Kart 3D**](neon_kart_3d/README.md) &bull; [📑 **Slaid Pembentangan**](https://c-fu.github.io/krackeddevs-ai-for-gaming/slides.html) &bull; [📐 **Templat Dokumen Reka Bentuk**](TEMPLATE_DESIGN_DOCUMENT/README.ms-MY.md) &bull; [💬 **Pek Prom**](docs/WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md)
+[🎮 **Main King Myvi**](https://c-fu.github.io/krackeddevs-ai-for-gaming/) &bull; [🍲 **Makcik Canteen**](MAKCIK_CANTEEN/README.ms-MY.md) &bull; [🏎️ **Neon Kart 3D**](neon_kart_3d/README.md) &bull; [🏛️ **Pemuat Turun 3D Warehouse**](sketchup_downloader/README.ms-MY.md) &bull; [📑 **Slaid Pembentangan**](https://c-fu.github.io/krackeddevs-ai-for-gaming/slides.html) &bull; [📐 **Templat Dokumen Reka Bentuk**](TEMPLATE_DESIGN_DOCUMENT/README.ms-MY.md) &bull; [💬 **Pek Prom**](docs/WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md)
 
 </div>
 
@@ -207,6 +207,14 @@ KD_AI_FOR_GAMING/
 │   ├── TEMPLATE_*.md            # 9 Templat kosong reka bentuk standard
 │   └── EXAMPLE_*.md             # 3 Kajian kes permainan bengkel sebenar
 │
+├── sketchup_downloader/         # Kit Pemuat Turun CDN 3D Warehouse & Penukar GLB
+│   ├── get_sketchup_model.ps1   # Skrip PowerShell mengekstrak pautan & memuat turun GLB
+│   ├── get_sketchup_model.sh    # Skrip bash untuk macOS / Linux
+│   ├── get_sketchup_model.bat   # Skrip kelompok boleh dwi-klik untuk Windows
+│   ├── glb2gltf.ps1 / .sh / .bat# Penukar GLB ke glTF tanpa kebergantungan luar
+│   ├── README.md                # Dokumentasi Bahasa Inggeris
+│   └── README.ms-MY.md          # Dokumentasi Bahasa Melayu & arahan 1-baris
+│
 ├── tools/
 │   └── blender/
 │       ├── README.md            # Panduan menjalankan skrip melalui Blender MCP atau CLI
@@ -248,6 +256,7 @@ flowchart TD
     subgraph "Saluran Kandungan 3D (Fasa 2)"
         MCP["Jambatan Blender 5 MCP<br/><i>Bahasa Tabii ke 3D</i>"]
         GLB["glTF Binari (.glb)<br/><i>Mesh Jalan & Kereta Modular</i>"]
+        SKP["SketchUp 3D Warehouse<br/><i>Kit sketchup_downloader</i>"]
     end
 
     subgraph "Pemasangan Enjin (Fasa 3)"
@@ -263,6 +272,7 @@ flowchart TD
     GDD --> Sheets
     Sheets --> Babylon
     MCP --> GLB
+    SKP --> GLB
     GLB --> Babylon
     Babylon --> TrafficAI
     Babylon --> WebAudio
@@ -271,8 +281,9 @@ flowchart TD
 
 1. **Antigravity / OpenCode:** Persekitaran ejen pengekodan autonomi yang menterjemahkan arahan prom reka bentuk peringkat tinggi kepada kod JavaScript modular sedia pengeluaran dan fizik vektor.
 2. **Blender MCP (Model Context Protocol):** Sambungan terus dari ejen AI ke enjin masa nyata Python Blender (`bpy`), membina geometri berprosedur dan mengeksport mesh `.glb` terus ke folder aset permainan.
-3. **Babylon.js 7:** Enjin pelayar WebGL2/WebGPU yang menyediakan pemaparan berasaskan fizik (PBR), FollowCamera dengan regangan FOV dinamik, penjana bayang-bayang, dan Debug Inspector.
-4. **API Web Audio Prosedural:** Bebas kebergantungan fail luaran `.mp3` atau `.wav`. Pengayun enjin gigi gergaji (sawtooth) dinamik yang dimodulasi kelajuan km/j, hon harmoni dwi-nada kereta tempatan, dan cip frekuensi eksponen bagi lonjakan nitro.
+3. **Pemuat Turun SketchUp 3D Warehouse:** Alternatif pantas mendapatkan aset 3D tanpa perlu membina dari awal, mengekstrak model GLB sedia guna (contoh: Menara KLCC, pondok tol PLUS, kenderaan, gerai) terus daripada CDN Trimble tanpa memerlukan akaun atau log masuk.
+4. **Babylon.js 7:** Enjin pelayar WebGL2/WebGPU yang menyediakan pemaparan berasaskan fizik (PBR), FollowCamera dengan regangan FOV dinamik, penjana bayang-bayang, dan Debug Inspector.
+5. **API Web Audio Prosedural:** Bebas kebergantungan fail luaran `.mp3` atau `.wav`. Pengayun enjin gigi gergaji (sawtooth) dinamik yang dimodulasi kelajuan km/j, hon harmoni dwi-nada kereta tempatan, dan cip frekuensi eksponen bagi lonjakan nitro.
 
 ---
 
@@ -292,6 +303,38 @@ Sekiranya anda memasang perisian Blender secara tempatan, anda boleh menjana sem
 
 > **Mod Hibrid / Sandaran (Fallback):**  
 > Sekiranya komputer peserta tidak mempunyai perisian Blender, repositori ini telah menyertakan fail model `.glb` sedia guna yang telah disahkan serta penjana geometri sandaran prosedural dalam Babylon.js. **Tiada siapa yang akan terhalang.**
+
+---
+
+## 🏛️ Memperoleh Aset 3D: Pemuat Turun SketchUp 3D Warehouse (`sketchup_downloader/`)
+
+> [!TIP]
+> **Tidak mahu membina setiap model 3D dari awal dalam Blender?**  
+> Walaupun jambatan Blender MCP sangat berkuasa untuk penjanaan berprosedur, pembangunan permainan sering memerlukan mercu tanda dunia sebenar, seni bina Malaysia, dan prop persekitaran terperinci (seperti Menara Berkembar Petronas / KLCC, plaza tol PLUS, gerai mamak tepi jalan, atau meja kerusi kantin sekolah).
+>
+> Repositori ini menyertakan kit alat **[`sketchup_downloader/`](sketchup_downloader/README.ms-MY.md)** (*[English: `sketchup_downloader/README.md`](sketchup_downloader/README.md)*) — penyelesaian ringan tanpa kebergantungan luar untuk **mengekstrak pautan CDN terus dan memuat turun model 3D (GLB, USDZ, KMZ, SKP) dari Trimble SketchUp 3D Warehouse tanpa perlu mendaftar akaun atau log masuk**!
+
+### ⚡ Muat Turun Pantas 1-Baris (Tanpa Pemasangan Perisian)
+
+Muat turun mana-mana model 3D terus ke dalam folder projek permainan anda menerusi satu baris arahan terminal:
+
+- **Windows (PowerShell):**
+  ```powershell
+  # Muat turun model GLB terus dari 3D Warehouse:
+  & ([scriptblock]::Create((irm https://raw.githubusercontent.com/C-Fu/krackeddevs-ai-for-gaming/main/sketchup_downloader/get_sketchup_model.ps1))) "https://3dwarehouse.sketchup.com/model/16965783-d6e1-4abf-b2d6-ef87f1b25747/Ombak-KLCC" -Download
+  ```
+- **macOS / Linux (Bash):**
+  ```bash
+  curl -sSL https://raw.githubusercontent.com/C-Fu/krackeddevs-ai-for-gaming/main/sketchup_downloader/get_sketchup_model.sh | bash -s -- --download "https://3dwarehouse.sketchup.com/model/16965783-d6e1-4abf-b2d6-ef87f1b25747/Ombak-KLCC"
+  ```
+
+### 🛠️ Alatan yang Disertakan dalam `sketchup_downloader/`:
+| Alat | Platform | Kegunaan |
+| :--- | :--- | :--- |
+| **`get_sketchup_model.ps1` / `.sh` / `.bat`** | Windows, macOS, Linux | Menghubungi API CDN Trimble 3D Warehouse, melepasi halangan log masuk, dan memuat turun aset `.glb` / `.usdz` secara terus. |
+| **`glb2gltf.ps1` / `.sh` / `.bat`** | Windows, macOS, Linux | Pembuka fail GLB tanpa kebergantungan luar (PowerShell / Shell tulen) yang menukar `.glb` kepada `.gltf` + `.bin` + tekstur berasingan (tiada Node.js atau Python diperlukan!). |
+
+*(Untuk panduan penuh, skrip kelompok, dan pilihan penukaran, lihat [`sketchup_downloader/README.ms-MY.md`](sketchup_downloader/README.ms-MY.md)).*
 
 ---
 
@@ -338,6 +381,7 @@ Tekan `Enter` untuk pilihan lalai. Vercel secara automatik mengesan konfigurasi 
 | [Templat Pengurusan Projek](docs/PROJECT_MANAGEMENT_TEMPLATE.ms-MY.md) | [Project Management Template](docs/PROJECT_MANAGEMENT_TEMPLATE.md) | Tunggakan kerja Agile (blok data CSV untuk Google Sheets) & matriks fizik. |
 | [Panduan Peserta & Pek Prom](docs/WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md) | [Workshop Handout & Prompts](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md) | Prom salin-dan-tampal langkah demi langkah untuk Antigravity & OpenCode. |
 | [Saliran 3D Blender & Galeri](docs/BLENDER_3D_PIPELINE.ms-MY.md) | [Blender 3D Pipeline & Gallery](docs/BLENDER_3D_PIPELINE.md) | Pemodelan prosedur Myvi Generasi ke-3 melalui soket Blender MCP & eksport glTF. |
+| [Pemuat Turun 3D Warehouse](sketchup_downloader/README.ms-MY.md) | [SketchUp 3D Warehouse Downloader](sketchup_downloader/README.md) | Skrip tanpa kebergantungan untuk memuat turun model GLB daripada CDN Trimble tanpa log masuk. |
 | [Dokumentasi Makcik Canteen](MAKCIK_CANTEEN/README.ms-MY.md) | [Makcik Canteen Documentation](MAKCIK_CANTEEN/README.md) | Spesifikasi lengkap 7-dokumen permainan yang dicipta secara langsung dengan Microsoft Copilot. |
 | [Suite Templat Reka Bentuk](TEMPLATE_DESIGN_DOCUMENT/README.ms-MY.md) | [Template Design Document Suite](TEMPLATE_DESIGN_DOCUMENT/README.md) | 9 templat reka bentuk standard & 3 kajian kes permainan bengkel sebenar. |
 | [Dokumentasi Neon Kart 3D](neon_kart_3d/README.md) | [Neon Kart 3D Documentation](neon_kart_3d/README.md) | Permainan drift arked siber Synthwave dibina dengan Three.js dan Vite. |
