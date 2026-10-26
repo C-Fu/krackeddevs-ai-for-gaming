@@ -1,38 +1,39 @@
-# 🚗 Model 3D Low-Poly Perodua Myvi Gen 3 (Merah Lava) – Saliran Blender MCP
+# 🚗 Model 3D Perodua Myvi Klasik – Saliran Blender MCP
 
 *[English version available here: BLENDER_3D_PIPELINE.md](BLENDER_3D_PIPELINE.md)*
 
-Dokumen ini memperincikan saliran pemodelan 3D prosedur yang digunakan untuk membina model ikonik **Perodua Myvi Generasi ke-3 ("Raja Lebuhraya")** terus di dalam aplikasi Blender yang sedang dibuka melalui jambatan soket `BlenderMCPServer` (`127.0.0.1:9876`), diikuti dengan eksport automatik glTF binari (`.glb`) dan integrasi ke dalam enjin permainan Babylon.js.
+Dokumen ini memperincikan saliran pemodelan 3D prosedur yang digunakan untuk membina model ikonik **Perodua Myvi Klasik (Spesifikasi Sudut Belakang-Kiri)** terus di dalam aplikasi Blender yang dibuka melalui sambungan soket `BlenderMCPServer` (`127.0.0.1:9876`), diikuti dengan eksport automatik glTF binari (`.glb`) dan integrasi ke dalam enjin Babylon.js.
 
 ---
 
-## 🎨 Ciri Reka Bentuk & Penggayaan (Berasaskan Rujukan Rasmi Gen 3)
+## 📐 Pematuhan Terhadap Pecahan Teknikal
 
-1. **Palet Warna Rasmi**:
-   - **Lava Red / Cranberry Red Metallic**: Warna badan utama (`#C21017`, logam 0.32, kekasaran 0.20).
-   - **Kaca Aerodinamik Gelap**: Kanopi tingkap aerodinamik (`#0A0F17`, kekasaran 0.08, pantulan tinggi).
-   - **Kemasan Arang Mampat (Matte Charcoal)**: Salur udara hadapan, peresap udara belakang (diffuser), tiang B, dan sirip sisi spoiler.
-   - **Rim Aloi Permukaan Mesin**: Roda aloi 15 inci dwi-5 jejari, palang gril krom bersayap hadapan, dan lencana Perodua perak.
-2. **Ciri Khas Raja Myvi**:
-   - **Muka Hadapan Agresif**: Cerun bonet tirus, lampu utama LED bersudut tajam dengan kening krom, salur masuk trapezoid yang lebar, serta lampu kabus bulat dalam perumah khas.
-   - **Spoiler Belakang Dua Tingkat Ikonik**: Sayap bumbung belakang berserta bibir aero, Lampu Brek Ketiga Atas (HMSL) bersepadu, dan sirip sisi yang mengapit cermin belakang.
-   - **Perincian Bumbung**: Antena sirip jerung di bahagian belakang bumbung.
-   - **Gaya Belakang Sporty**: Lampu belakang menegak melengkung (jalur panduan LED merah + isyarat undur putih), peresap bampar bawah dengan sirip strakes menegak, serta ruang nombor plat Malaysia.
-   - **Profil Sisi**: Cermin sisi sewarna badan dengan jalur lampu isyarat ambar dan pemegang pintu krom.
+### 1. Bentuk Badan Keseluruhan
+* **Jenis:** Konfigurasi kompak hatchback 5 pintu.
+* **Kadar Perkadaran:** Unjuran belakang yang pendek (short rear overhang), ketinggian kabin yang tinggi berbanding lebar bagi memaksimumkan ruang dalaman (tall cabin height).
+* **Bahasa Permukaan:** Panel berterusan licin dengan alur garisan pinggang (beltline crease) yang halus; gerbang roda sedikit mengembang (flared wheel arches).
+* **Garis Bumbung:** Melengkung lembut, memuncak di atas tempat duduk hadapan dan menirus lembut ke pintu but belakang.
 
----
+### 2. Bahagian Belakang & Kaca
+* **Pintu But (Tailgate):** Rata dan hampir menegak (~sudut 82°) dengan cermin belakang bersepadu.
+* **Cermin Belakang:** Lebar, sedikit trapezoid dengan sempadan pengedap hitam.
+* **Pengelap Cermin Belakang (Rear Wiper):** Satu pengelap cermin hitam dengan bilah mendatar dipasang di **bahagian tengah bawah** cermin belakang.
+* **Spoiler:** Spoiler bibir halus dipasang pada bumbung (subtle roof lip spoiler) yang terunjur sedikit melepasi cermin belakang, lengkap dengan Lampu Brek Ketiga Atas (HMSL).
+* **Lencana & Nombor Plat:**
+  * Bahagian tengah: Lencana tulisan `"MYVI"` krom.
+  * Lencana Perodua perak di atas pemegang but.
+  * Ruang nombor plat lekuk segi empat tepat dengan plat pendaftaran (`"HUM3D"`).
 
-## 🛠️ Senibina: Jambatan Blender MCP Langsung
+### 3. Lampu Belakang Menegak Bersudut
+* **Bentuk & Kedudukan:** Gugusan bersudut yang berorientasikan menegak membalut bucu belakang, bermula dari garis bampar sehingga ke paras garis bumbung di sepanjang tiang C.
+* **Segmen Warna:** Perumah polikarbonat merah di bahagian atas dan bawah, mengapit segmen jernih/putih di tengah yang menempatkan lampu isyarat ambar dan lampu undur.
 
-```mermaid
-flowchart LR
-    IDE["Ejen Antigravity / OpenCode"] -- "Data JSON melalui TCP (Port 9876)" --> MCP["Pelayan Blender MCP (addon.py)"]
-    MCP -- "Pelaksanaan Thread Utama (bpy.app.timers)" --> BLENDER["Viewport Blender 5.2.2 LTS"]
-    BLENDER -- "bpy.ops.export_scene.gltf()" --> GLB["public/assets/models/myvi.glb"]
-    GLB --> BABYLON["Enjin Permainan Babylon.js 7"]
-```
+### 4. Profil Sisi & Tiang C Tebal
+* **Tiang C (C-Pillar):** **Tebal, dicat dengan warna badan**, menyokong struktur pintu but belakang.
+* **Pintu Belakang:** Pintu berengsel konvensional dengan garisan cantuman pintu yang jelas; tingkap menirus ke atas ke arah tiang belakang.
+* **Gerbang Roda:** Kontur bulat dengan sedikit pelebaran di atas roda aloi kompak.
 
-### Skrip Pelaksanaan & Eksport
-Skrip penjanaan disimpan di [`tools/blender/build_myvi_live.py`](../tools/blender/build_myvi_live.py). Skrip ini menyambung ke aplikasi Blender yang dibuka, membina geometri mesh, menetapkan kamera kecantikan, mengaktifkan mod paparan bahan `MATERIAL`, dan mengeksport aset binari ke:
-- Aset utama: `public/assets/models/myvi.glb` (234 KB)
-- Pakej produksi: `dist/assets/models/myvi.glb`
+### 5. Bampar Belakang Bawah
+* **Bampar:** Licin, sewarna badan dengan alur bayang mendatar.
+* **Paip Ekzos:** Tersembunyi sepenuhnya di bawah bampar.
+* **Pemantul Cahaya:** Jalur pemantul merah segi empat tepat kecil di kedua-dua bucu bawah bampar.
