@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI for Gaming | Master Workshop Slides</title>
+  
+  <!-- Reveal.js Core CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reset.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/black.min.css" id="theme" />
+  
+  <!-- Highlight.js Code Theme -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/highlight/monokai.min.css" />
+
+  <!-- Google Fonts: Orbitron & Rajdhani & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;900&family=Rajdhani:wght@600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0b0d19;
+      --card-bg: rgba(18, 23, 42, 0.85);
+      --border-cyan: rgba(0, 240, 255, 0.35);
+      --neon-cyan: #00f0ff;
+      --neon-gold: #ffd700;
+      --neon-pink: #ff0055;
+      --neon-green: #00ff88;
+      --text-muted: #94a3b8;
+    }
+
+    .reveal {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: radial-gradient(circle at 50% 20%, #151a33 0%, #0b0d19 75%);
+      color: #e2e8f0;
+    }
+
+    .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+      font-family: 'Orbitron', monospace;
+      text-transform: none;
+      letter-spacing: 1px;
+      font-weight: 800;
+    }
+
+    .reveal h1 {
+      font-size: 2.6rem;
+      color: #ffffff;
+      text-shadow: 0 0 25px rgba(0, 240, 255, 0.5);
+    }
+
+    .reveal h2 {
+      font-size: 2.1rem;
+      color: #ffffff;
+      margin-bottom: 24px;
+    }
+
+    .reveal h3 {
+      font-size: 1.4rem;
+      color: var(--neon-cyan);
+    }
+
+    .reveal p, .reveal li {
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    /* Top HUD Navigation Bar */
+    .slide-hud-header {
+      position: fixed;
+      top: 16px;
+      left: 24px;
+      right: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      pointer-events: auto;
+      font-family: 'Rajdhani', sans-serif;
+    }
+
+    .hud-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hud-tag {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(0, 240, 255, 0.15);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: 1.5px;
+    }
+
+    .hud-links {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-hud {
+      background: rgba(255, 0, 85, 0.2);
+      border: 1px solid var(--neon-pink);
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-hud:hover {
+      background: var(--neon-pink);
+      box-shadow: 0 0 15px rgba(255, 0, 85, 0.6);
+      color: #fff;
+    }
+
+    .btn-hud-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #cbd5e1;
+    }
+
+    .btn-hud-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    /* Cards & Containers */
+    .glass-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-cyan);
+      border-radius: 14px;
+      padding: 24px 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      text-align: left;
+    }
+
+    .card-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .card-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .card-grid-4 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 14px;
+    }
+
+    /* Highlights & Emphasized Elements */
+    .text-cyan { color: var(--neon-cyan) !important; }
+    .text-gold { color: var(--neon-gold) !important; }
+    .text-pink { color: var(--neon-pink) !important; }
+    .text-green { color: var(--neon-green) !important; }
+    .text-muted { color: var(--text-muted) !important; }
+
+    .badge-pill {
+      display: inline-block;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .pill-cyan { background: rgba(0, 240, 255, 0.15); border: 1px solid var(--neon-cyan); color: var(--neon-cyan); }
+    .pill-gold { background: rgba(255, 215, 0, 0.15); border: 1px solid var(--neon-gold); color: var(--neon-gold); }
+    .pill-pink { background: rgba(255, 0, 85, 0.15); border: 1px solid var(--neon-pink); color: var(--neon-pink); }
+    .pill-green { background: rgba(0, 255, 136, 0.15); border: 1px solid var(--neon-green); color: var(--neon-green); }
+
+    /* Code Blocks */
+    .reveal pre {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      width: 100%;
+      margin: 12px 0;
+    }
+
+    .reveal pre code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.45;
+      padding: 16px 20px;
+      max-height: 480px;
+    }
+
+    /* Step Timeline */
+    .timeline-step {
+      border-left: 3px solid var(--neon-cyan);
+      padding-left: 18px;
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .timeline-step h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    /* Key Metrics */
+    .metric-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .metric-val {
+      font-family: 'Orbitron', monospace;
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .metric-label {
+      font-size: 0.78rem;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* Speaker Notes styling helper */
+    aside.notes {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Global Header -->
+  <div class="slide-hud-header">
+    <div class="hud-brand">
+      <span class="hud-tag">AI FOR GAMING</span>
+      <span style="font-size: 0.95rem; color: #94a3b8;">3-Hour Hands-On Masterclass</span>
+    </div>
+    <div class="hud-links">
+      <a href="./index.html" target="_blank" class="btn-hud">
+        <span>🎮</span> PLAY LIVE DEMO
+      </a>
+      <span class="btn-hud btn-hud-secondary" onclick="Reveal.toggleOverview()">
+        <span>📑</span> OVERVIEW [ESC]
+      </span>
+      <span class="btn-hud btn-hud-secondary" onclick="toggleHelpModal()">
+        <span>⌨️</span> KEYS [?]
+      </span>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ==========================================
+           SLIDE 1: TITLE SLIDE
+           ========================================== -->
+      <section data-transition="zoom">
+        <div class="badge-pill pill-cyan">HANDS-ON LAB & TUTORIAL</div>
+        <h1 style="margin-bottom: 12px;">AI FOR GAMING</h1>
+        <h3 class="text-gold" style="letter-spacing: 3px; font-size: 1.5rem; margin-bottom: 24px;">
+          HOW AI IS RESHAPING THE WAY GAMES ARE MADE
+        </h3>
+        <p style="max-width: 800px; margin: 0 auto 32px; color: #cbd5e1; font-size: 1.15rem;">
+          From Creative Vision to a Fully Playable 3D Web Game in <b>3 Hours</b> using 
+          <span class="text-cyan">Antigravity</span>, <span class="text-green">OpenCode</span>, <span class="text-gold">Blender MCP</span> & <span class="text-pink">Babylon.js</span>.
+        </p>
+
+        <div class="card-grid-4" style="max-width: 900px; margin: 0 auto;">
+          <div class="metric-box">
+            <div class="metric-val text-cyan">180</div>
+            <div class="metric-label">Minutes Total</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val text-gold">0</div>
+            <div class="metric-label">Syntax Lines Typed</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val text-green">1</div>
+            <div class="metric-label">Playable 3D Game</div>
+          </div>
+          <div class="metric-box">
+            <div class="metric-val text-pink">1-Click</div>
+            <div class="metric-label">Web Deploy</div>
+          </div>
+        </div>
+
+        <aside class="notes">
+          WELCOME ATTENDEES:
+          - Welcome to AI for Gaming!
+          - Set expectations: Today, nobody is going to struggle with missing semicolons or WebGL vertex buffers.
+          - Today, you are the Creative Director and Lead Producer.
+          - Your AI agents (Antigravity / OpenCode) are your junior dev engineering team.
+          - By the end of this 3-hour session, you will understand the real-world pipeline of building games with AI, and you will walk away with a live 3D game deployed on the web.
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 2: THE PARADIGM SHIFT
+           ========================================== -->
+      <section data-transition="slide">
+        <div class="badge-pill pill-pink">THE PARADIGM SHIFT</div>
+        <h2>THE OLD WAY VS. THE AGENTIC WAY</h2>
+        
+        <div class="card-grid-2" style="margin-top: 24px;">
+          <div class="glass-card" style="border-color: rgba(255, 60, 60, 0.4);">
+            <h3 style="color: #ff4d4d; margin-bottom: 14px;">❌ Traditional Game Dev</h3>
+            <ul style="color: #cbd5e1; font-size: 0.95rem;">
+              <li style="margin-bottom: 10px;">Requires 8-15 specialists (physics, 3D modellers, riggers, UI, audio, QA).</li>
+              <li style="margin-bottom: 10px;">6 to 18 months just to get a functional vertical slice.</li>
+              <li style="margin-bottom: 10px;">Endless friction jumping between Blender, Maya, Photoshop, and code editors.</li>
+              <li style="margin-bottom: 10px;"><b>90% of beginner projects die</b> in "tutorial purgatory".</li>
+            </ul>
+          </div>
+
+          <div class="glass-card" style="border-color: rgba(0, 255, 136, 0.4);">
+            <h3 style="color: var(--neon-green); margin-bottom: 14px;">⚡ The Agentic AI Era</h3>
+            <ul style="color: #cbd5e1; font-size: 0.95rem;">
+              <li style="margin-bottom: 10px;"><b>Solo Creative Director</b> commanding autonomous agents.</li>
+              <li style="margin-bottom: 10px;"><b>Prompt-driven architecture</b>: From GDD to runnable physics in minutes.</li>
+              <li style="margin-bottom: 10px;"><b>MCP (Model Context Protocol)</b>: Direct agent-to-Blender 3D mesh generation.</li>
+              <li style="margin-bottom: 10px;">Rapid iteration loop: Polish what's fun, discard what isn't immediately.</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside class="notes">
+          KEY TALKING POINT:
+          - The bottleneck in game development was never ideas; it was implementation bandwidth.
+          - With autonomous coding agents, the cost of prototyping has dropped to near zero.
+          - But this brings a new danger: If you can build anything in an hour, WHAT should you build?
+          - That brings us to our core game design philosophy.
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 3: THE CORE PHILOSOPHY
+           ========================================== -->
+      <section data-transition="slide">
+        <div class="badge-pill pill-gold">FOUNDATIONAL DESIGN THESIS</div>
+        <h2>A GAME IS "POINT A TO POINT B" + 1-2 USPS</h2>
+
+        <div class="glass-card" style="margin-bottom: 24px; text-align: center;">
+          <p style="font-size: 1.3rem; color: #fff; margin: 0;">
+            Every successful game boils down to moving from <span class="text-cyan"><b>Point A</b></span> to <span class="text-gold"><b>Point B</b></span>.<br/>
+            What makes it unforgettable are <span class="text-pink"><b>1 or 2 Unique Selling Propositions (USPs)</b></span>.
+          </p>
+        </div>
+
+        <div class="card-grid-3">
+          <div class="glass-card">
+            <h3 class="text-cyan" style="font-size: 1.15rem;">1. Point A (Origin)</h3>
+            <p style="font-size: 0.9rem; color: #cbd5e1;">The starting state, location, challenge, or emotional baseline. Establishes the player's motivation and rules.</p>
+          </div>
+          <div class="glass-card">
+            <h3 class="text-gold" style="font-size: 1.15rem;">2. Point B (Goal)</h3>
+            <p style="font-size: 0.9rem; color: #cbd5e1;">The destination, score milestone, or story climax. Creates urgency, tension, and a clear win/loss boundary.</p>
+          </div>
+          <div class="glass-card">
+            <h3 class="text-pink" style="font-size: 1.15rem;">3. The 1-2 USPs</h3>
+            <p style="font-size: 0.9rem; color: #cbd5e1;">The mechanical or environmental twist. Without USPs, traversal is a boring chore. With USPs, it becomes addictive play.</p>
+          </div>
+        </div>
+
+        <aside class="notes">
+          WHY DO INDIE GAMES FAIL?
+          - Ask the room: "How many of you started a game project and never finished?"
+          - Usually 80% raise hands.
+          - Why? Because people design "An open world MMORPG with survival mechanics and dynamic economy".
+          - Mario Kart: Start line (A) to Finish line (B) + Powerup Weapons (USP).
+          - Subway Surfers: Run from Inspector (A) to Max Distance (B) + 3-Lane Dodge & Train Vaulting (USP).
+          - Keep it laser-focused.
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 4: THE SHOWCASE GAME
+           ========================================== -->
+      <section data-transition="slide">
+        <div class="badge-pill pill-cyan">OUR LIVE WORKSHOP DEMO</div>
+        <h2 style="margin-bottom: 8px;">KING MYVI: HIGHWAY LEGENDS</h2>
+        <p class="text-muted" style="margin-bottom: 24px;">The undisputed Malaysian "King of the Road" meets PLUS North-South Expressway</p>
+
+        <div class="card-grid-2">
+          <div class="glass-card">
+            <h3 class="text-cyan" style="margin-bottom: 12px;">The Core Journey (A &rarr; B)</h3>
+            <div class="timeline-step">
+              <h4 class="text-gold">Point A: Toll Plaza Jalan Duta</h4>
+              <p style="font-size: 0.88rem; color: #cbd5e1;">KM 0.0 &bull; Engine idling &bull; 90-second countdown timer starts.</p>
+            </div>
+            <div class="timeline-step" style="border-color: var(--neon-pink); margin-bottom: 0;">
+              <h4 class="text-pink">Point B: Ayer Keroh Toll Plaza & R&R</h4>
+              <p style="font-size: 0.88rem; color: #cbd5e1;">KM 5.0 (5,000m) &bull; Crossing the illuminated gate achieves Victory!</p>
+            </div>
+          </div>
+
+          <div class="glass-card">
+            <h3 class="text-pink" style="margin-bottom: 12px;">The 2 Cultural USPs</h3>
+            <div class="timeline-step" style="border-color: var(--neon-cyan);">
+              <h4 class="text-cyan">USP 1: The High-Beam Flash (SPACE)</h4>
+              <p style="font-size: 0.88rem; color: #cbd5e1;">Flash slow lorries & sedans in the fast lane; they panic, signal left, and clear your path!</p>
+            </div>
+            <div class="timeline-step" style="border-color: var(--neon-green); margin-bottom: 0;">
+              <h4 class="text-green">USP 2: Potholes & SmartTAG Jumps</h4>
+              <p style="font-size: 0.88rem; color: #cbd5e1;">Dodge road repair potholes (-40% speed penalty) & hit glowing SmartTAG lanes for supersonic 240 km/h ramp jumps!</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="notes">
+          SHOWCASE MOMENT:
+          - Introduce the Malaysian cultural meme: The Perodua Myvi is legendary for high-beaming BMWs in the right lane of PLUS highway.
+          - It's funny, culturally relatable, and technically crisp.
+          - Notice how naturally this maps to our Point A -> Point B + 2 USPs framework.
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 5: 3-HOUR ROADMAP
+           ========================================== -->
+      <section data-transition="slide">
+        <div class="badge-pill pill-gold">SESSION TIMELINE</div>
+        <h2>THE 3-HOUR RUN-OF-SHOW</h2>
+
+        <div class="card-grid-4" style="margin-top: 30px;">
+          <div class="glass-card" style="border-top: 4px solid var(--neon-cyan);">
+            <div class="badge-pill pill-cyan" style="font-size: 0.65rem;">00:00 - 00:45</div>
+            <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 8px;">Phase 1: AI Design</h3>
+            <p style="font-size: 0.82rem; color: #cbd5e1;">
+              &bull; Prompting the GDD<br/>
+              &bull; Mathematical specs<br/>
+              &bull; Google Sheets backlog<br/>
+              &bull; Physics balancing sheet
+            </p>
+          </div>
+
+          <div class="glass-card" style="border-top: 4px solid var(--neon-green);">
+            <div class="badge-pill pill-green" style="font-size: 0.65rem;">00:45 - 01:30</div>
+            <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 8px;">Phase 2: 3D Assets</h3>
+            <p style="font-size: 0.82rem; color: #cbd5e1;">
+              &bull; Blender 5 + MCP bridge<br/>
+              &bull; Procedural Myvi car<br/>
+              &bull; Palm trees & gantries<br/>
+              &bull; Hybrid fallback pack
+            </p>
+          </div>
+
+          <div class="glass-card" style="border-top: 4px solid var(--neon-pink);">
+            <div class="badge-pill pill-pink" style="font-size: 0.65rem;">01:30 - 02:45</div>
+            <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 8px;">Phase 3: Assembly</h3>
+            <p style="font-size: 0.82rem; color: #cbd5e1;">
+              &bull; Babylon.js 7 runtime<br/>
+              &bull; Arcade vehicle physics<br/>
+              &bull; High-Beam traffic AI<br/>
+              &bull; Web Audio procedural SFX
+            </p>
+          </div>
+
+          <div class="glass-card" style="border-top: 4px solid var(--neon-gold);">
+            <div class="badge-pill pill-gold" style="font-size: 0.65rem;">02:45 - 03:00</div>
+            <h3 style="font-size: 1.1rem; color: #fff; margin-bottom: 8px;">Phase 4: Deploy</h3>
+            <p style="font-size: 0.82rem; color: #cbd5e1;">
+              &bull; 1-click GitHub Pages<br/>
+              &bull; Live Inspector tuning<br/>
+              &bull; Mobile playtest QR<br/>
+              &bull; Scaling to UE5 / PCG
+            </p>
+          </div>
+        </div>
+
+        <aside class="notes">
+          PACING & CHECKPOINTS:
+          - Keep strict watch on time.
+          - By minute 45, everyone has their GDD and Sheets backlog.
+          - By minute 90, everyone has verified 3D assets in public/assets/models.
+          - By minute 165, the full game loop is running on localhost.
+          - Last 15 minutes: Deploy and celebrate!
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 6: PHASE 1 - GDD
+           ========================================== -->
+      <section data-transition="slide">
+        <div class="badge-pill pill-cyan">PHASE 1 &bull; 00:00 - 00:30</div>
+        <h2>AI-POWERED GAME DESIGN (GDD)</h2>
+        <p class="text-muted" style="margin-bottom: 20px;">Vague prompts produce garbage. Technical constraints produce games.</p>
+
+        <div class="card-grid-2">
+          <div class="glass-card" style="border-color: rgba(255, 60, 60, 0.4);">
+            <h3 style="color: #ff4d4d; font-size: 1.05rem;">❌ The Amateur Prompt</h3>
+            <pre><code class="language-text">"Make a super cool and fun 
+car racing game with 
+Malaysian highway vibes 
+and high beams."</code></pre>
+            <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 8px;">
+              Result: Generic, unplayable spaghetti code with no physics constraints or quantifiable win/loss logic.
+            </p>
+          </div>
+
+          <div class="glass-card" style="border-color: rgba(0, 240, 255, 0.4);">
+            <h3 class="text-cyan" style="font-size: 1.05rem;">✅ The Creative Director Prompt</h3>
+            <pre><code class="language-text">"Act as a Principal Game Designer. 
+Draft an executable GDD:
+- Point A: KM 0.0 (Jalan Duta Toll).
+- Point B: KM 5.0 (Ayer Keroh Toll).
+- Vehicle: Myvi top speed 180 km/h, 
+  accel 42 km/h/s, banking roll 8°.
+- USP 1: High-beam spotlight cone 45°, 
+  range 42m; traffic reacts in 0.35s 
+  and lateral shifts left over 0.7s.
+- USP 2: Potholes (-40% speed) & 
+  SmartTAG pads (+60 km/h jump)."</code></pre>
+          </div>
+        </div>
+
+        <aside class="notes">
+          TEACHING POINT:
+          - Emphasize to attendees: AI coding agents are mathematical reasoners.
+          - When you give numbers (km/h, angles, ranges, reaction delays), the agent can translate them directly into vector math and state machines.
+          - Show them how we converted our idea into the Game Design Document artifact.
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 7: PHASE 1 - PROJECT MANAGEMENT
+           ========================================== -->
+      <section data-transition="slide">
+        <div class="badge-pill pill-cyan">PHASE 1 &bull; 00:30 - 00:45</div>
+        <h2>THE SPREADSHEET AS GAME ENGINE</h2>
+        <p class="text-muted" style="margin-bottom: 18px;">Why the best game directors live in Google Sheets, not just code</p>
+
+        <div class="card-grid-2">
+          <div class="glass-card">
+            <h3 class="text-gold" style="font-size: 1.1rem; margin-bottom: 10px;">1. The Agile Backlog</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 12px;">
+              Every game feature is broken into an atomic Task ID (ENG-01 to UI-01) with explicit verification criteria.
+            </p>
+            <table style="width: 100%; font-size: 0.75rem; color: #cbd5e1; border-collapse: collapse;">
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);">
+                <th style="padding: 4px;">ID</th><th>Feature</th><th>Est</th><th>Verification</th>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                <td class="text-cyan">ENG-02</td><td>Arcade Controller</td><td>25m</td><td>WASD + 8° chassis roll</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                <td class="text-pink">ENG-03</td><td>High-Beam Flash</td><td>20m</td><td>Traffic shifts left</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="glass-card">
+            <h3 class="text-green" style="font-size: 1.1rem; margin-bottom: 10px;">2. The Physics Balancing Matrix</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 12px;">
+              Separate gameplay math from code. Tune the feel without breaking the engine!
+            </p>
+            <table style="width: 100%; font-size: 0.75rem; color: #cbd5e1; border-collapse: collapse;">
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);">
+                <th style="padding: 4px;">Parameter</th><th>Default</th><th>Unit</th><th>Feel Impact</th>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                <td><code>top_speed</code></td><td class="text-cyan">180</td><td>km/h</td><td>Cruising thrill</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                <td><code>high_beam_range</code></td><td class="text-gold">42.0</td><td>meters</td><td>Overtake buffer</td>
+              </tr>
+              <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
+                <td><code>pothole_penalty</code></td><td class="text-pink">0.40</td><td>%</td><td>Penalty impact</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <aside class="notes">
+          EXERCISE FOR ATTENDEES:
+          - Point attendees to PROJECT_MANAGEMENT_TEMPLATE.md in their repository.
+          - Show them how to paste the raw CSV into Google Sheets in 5 seconds.
+          - Demonstrate asking the AI: "Rebalance this table to make the car driftier and increase high beam sensitivity by 30%".
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 8: PHASE 2 - BLENDER MCP
+           ========================================== -->
+      <section data-transition="slide">
+        <div class="badge-pill pill-green">PHASE 2 &bull; 00:45 - 01:30</div>
+        <h2>THE 3D PIPELINE: BLENDER + MCP</h2>
+        <p class="text-muted" style="margin-bottom: 20px;">Direct agentic control over 3D DCC tools via Model Context Protocol</p>
+
+        <div class="glass-card" style="margin-bottom: 20px;">
+          <div class="card-grid-3" style="align-items: center; text-align: center;">
+            <div>
+              <div class="badge-pill pill-cyan">AGENT</div>
+              <h4 style="font-size: 1.05rem;">Antigravity / OpenCode</h4>
+              <p style="font-size: 0.8rem; color: #94a3b8;">Sends JSON-RPC commands</p>
+            </div>
+            <div style="font-size: 1.8rem; color: var(--neon-cyan);">
+              &rarr; <span style="font-size: 0.9rem; font-family: 'Orbitron';">MCP BRIDGE</span> &rarr;
+            </div>
+            <div>
+              <div class="badge-pill pill-gold">DCC</div>
+              <h4 style="font-size: 1.05rem;">Blender 5.x</h4>
+              <p style="font-size: 0.8rem; color: #94a3b8;">Generates meshes & exports .GLB</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-grid-2">
+          <div class="glass-card">
+            <h3 class="text-green" style="font-size: 1.05rem;">Live Instructor Showcase</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1;">
+              Watch Blender build the Myvi hatchback body, add the iconic rear roof spoiler, create dark alloy wheels, and export to <code>public/assets/models/myvi.glb</code> in 0.09s!
+            </p>
+          </div>
+          <div class="glass-card">
+            <h3 class="text-gold" style="font-size: 1.05rem;">Hybrid Mode (Zero Blocker)</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1;">
+              For attendees with older laptops: The repo includes verified pre-built <code>.glb</code> models and procedural Babylon fallbacks, so nobody is ever stuck on environment setup.
+            </p>
+          </div>
+        </div>
+
+        <aside class="notes">
+          LIVE DEMO:
+          - Switch to Blender window or run the command line:
+            `blender --background --python tools/blender/generate_myvi.py`
+          - Show the terminal output: "Finished glTF export in 0.09s".
+          - Inspect the exported GLB file.
+          - Explain that MCP standardizes this connection so AI agents can control Blender just like a human artist would.
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 9: PHASE 3 - ARCADE PHYSICS
+           ========================================== -->
+      <section data-transition="slide">
+        <div class="badge-pill pill-pink">PHASE 3 &bull; 01:30 - 01:50</div>
+        <h2>BABYLON.JS ARCADE VEHICLE PHYSICS</h2>
+        <p class="text-muted" style="margin-bottom: 18px;">How to give a web game genuine weight, responsiveness, and speed sensation</p>
+
+        <div class="card-grid-3">
+          <div class="glass-card">
+            <h3 class="text-cyan" style="font-size: 1.05rem;">1. Acceleration Curve</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1;">
+              Non-linear torque: reaches 110 km/h in 3s; cruises at 180 km/h; uncapped to 240 km/h during SmartTAG boost.
+            </p>
+          </div>
+          <div class="glass-card">
+            <h3 class="text-gold" style="font-size: 1.05rem;">2. Chassis Banking Tilt</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1;">
+              <code>rootNode.rotation.z = lateralTilt</code><br/>
+              Leaning 8° into sharp turns gives immediate visual feedback of tire grip.
+            </p>
+          </div>
+          <div class="glass-card">
+            <h3 class="text-pink" style="font-size: 1.05rem;">3. Dynamic Camera FOV</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1;">
+              Camera radius pulls back and FOV widens as speed rises past 140 km/h, amplifying the sensation of velocity.
+            </p>
+          </div>
+        </div>
+
+        <div class="glass-card" style="margin-top: 20px;">
+          <h4 class="text-cyan" style="font-size: 0.95rem; margin-bottom: 6px;">The Chase Camera Fix (Key Lesson):</h4>
+          <p style="font-size: 0.85rem; color: #cbd5e1; margin: 0;">
+            In Babylon.js, <code>FollowCamera.rotationOffset = 180°</code> is required to place the camera <b>behind</b> the vehicle looking forward along the +Z expressway. At <code>0°</code>, the camera looks backward at the front bumper!
+          </p>
+        </div>
+
+        <aside class="notes">
+          IMPORTANT BUG/FIX STORY:
+          - Share the real debugging moment we had: "When we first loaded the game, we were staring at the front grille!"
+          - Explain why: FollowCamera default 0 deg looks backward. Setting 180 deg puts it behind the spoiler looking down the highway.
+          - Attendees love hearing real debugging insights because they encounter the exact same things in their own projects.
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 10: PHASE 3 - USP 1 HIGH BEAM
+           ========================================== -->
+      <section data-transition="slide">
+        <div class="badge-pill pill-pink">PHASE 3 &bull; 01:50 - 02:15</div>
+        <h2>USP 1: HIGH-BEAM FLASH & TRAFFIC AI</h2>
+        <p class="text-muted" style="margin-bottom: 20px;">Turning a Malaysian driving habit into an arcade state machine</p>
+
+        <div class="glass-card" style="margin-bottom: 20px;">
+          <div class="card-grid-4" style="text-align: center;">
+            <div style="border-right: 1px solid rgba(255,255,255,0.1); padding-right: 10px;">
+              <span class="badge-pill pill-cyan">STATE 1</span>
+              <h4 style="font-size: 0.95rem;">CRUISING</h4>
+              <p style="font-size: 0.78rem; color: #94a3b8;">Traffic cruises at 80-95 km/h in right lane</p>
+            </div>
+            <div style="border-right: 1px solid rgba(255,255,255,0.1); padding-right: 10px;">
+              <span class="badge-pill pill-gold">STATE 2</span>
+              <h4 style="font-size: 0.95rem;">DETECTED</h4>
+              <p style="font-size: 0.78rem; color: #94a3b8;">Player flashes within 42m behind</p>
+            </div>
+            <div style="border-right: 1px solid rgba(255,255,255,0.1); padding-right: 10px;">
+              <span class="badge-pill pill-pink">STATE 3</span>
+              <h4 style="font-size: 0.95rem;">SIGNALING</h4>
+              <p style="font-size: 0.78rem; color: #94a3b8;">Left amber indicator blinks (0.28s delay)</p>
+            </div>
+            <div>
+              <span class="badge-pill pill-green">STATE 4</span>
+              <h4 style="font-size: 0.95rem;">YIELDED</h4>
+              <p style="font-size: 0.78rem; color: #94a3b8;">Interpolates to middle lane & +250 PTS!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <h3 class="text-cyan" style="font-size: 1.05rem; margin-bottom: 8px;">The Prompt to Build This:</h3>
+          <pre><code class="language-text">"In src/traffic.js, implement an AI state machine:
+When player presses Spacebar (high beams active) and is within 40m behind 
+a vehicle in the right lane (x = 5.8):
+1. Activate the AI car's left blinker mesh.
+2. Wait 0.28s reaction time.
+3. Smoothly lerp x from 5.8 to 0.0 (middle lane) over 0.7s.
+4. Trigger sound.playYieldSuccess() and award +250 points!"</code></pre>
+        </div>
+
+        <aside class="notes">
+          LIVE DEMO STEP:
+          - Have attendees observe the traffic cars.
+          - Show what happens when you tailgate without high-beaming: Collision crash!
+          - Show what happens when you tap Spacebar: The car's left blinker blinks, it swerves to the left, and the banner "FAST LANE CLEARED!" pops up.
+          - It is instant positive feedback.
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 11: PHASE 3 - USP 2 HAZARDS & BOOST
+           ========================================== -->
+      <section data-transition="slide">
+        <div class="badge-pill pill-pink">PHASE 3 &bull; 02:15 - 02:35</div>
+        <h2>USP 2: POTHOLE SLALOM & SMARTTAG BOOST</h2>
+        <p class="text-muted" style="margin-bottom: 20px;">Risk vs. Reward: Balancing speed with navigation precision</p>
+
+        <div class="card-grid-2">
+          <div class="glass-card" style="border-color: rgba(255, 60, 60, 0.4);">
+            <div class="badge-pill pill-pink">THE HAZARD</div>
+            <h3 style="color: #ff4d4d; margin-bottom: 10px;">Road Repair Potholes</h3>
+            <ul style="font-size: 0.88rem; color: #cbd5e1;">
+              <li style="margin-bottom: 8px;">Dark asphalt craters scattered across lanes 1 and 2.</li>
+              <li style="margin-bottom: 8px;"><b>Penalty</b>: Speed drops by 45% instantly + heavy metal thud SFX.</li>
+              <li style="margin-bottom: 8px;"><b>Suspension Wobble</b>: Sine-wave steering disturbance for 1.2s.</li>
+              <li>Forces player to actively weave rather than hold 'W'.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card" style="border-color: rgba(0, 255, 136, 0.4);">
+            <div class="badge-pill pill-green">THE REWARD</div>
+            <h3 style="color: var(--neon-green); margin-bottom: 10px;">SmartTAG Booster Ramps</h3>
+            <ul style="font-size: 0.88rem; color: #cbd5e1;">
+              <li style="margin-bottom: 8px;">Luminescent emerald chevron strips leading into toll plazas.</li>
+              <li style="margin-bottom: 8px;"><b>Impulse Surge</b>: Instant launch to 240 km/h supersonic speed.</li>
+              <li style="margin-bottom: 8px;"><b>Aerial Ramp Jump</b>: Low-gravity arc flying cleanly over slow traffic.</li>
+              <li>Rewarding players who plan lane positioning ahead!</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside class="notes">
+          GAMEPLAY RHYTHM:
+          - Explain the dynamic interplay between the two mechanics:
+          - You are cruising fast lane -> slow lorry appears -> flash high beams -> lorry yields -> suddenly a pothole appears -> swerve left -> hit SmartTAG lane -> launch over traffic!
+          - That creates "Flow State".
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 12: PROCEDURAL AUDIO & HUD
+           ========================================== -->
+      <section data-transition="slide">
+        <div class="badge-pill pill-pink">PHASE 3 &bull; 02:35 - 02:45</div>
+        <h2>PROCEDURAL AUDIO & ARCADE HUD</h2>
+        <p class="text-muted" style="margin-bottom: 20px;">Zero external assets &bull; 100% synthesized in Web Audio API</p>
+
+        <div class="card-grid-2">
+          <div class="glass-card">
+            <h3 class="text-cyan" style="font-size: 1.1rem; margin-bottom: 12px;">Web Audio API Synthesizer</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 10px;">
+              Why procedural audio? Never breaks due to missing files or CORS audio errors!
+            </p>
+            <ul style="font-size: 0.82rem; color: #cbd5e1;">
+              <li><b>Engine RPM</b>: Sawtooth wave modulated from 45Hz (idle) to 225Hz (180 km/h).</li>
+              <li><b>Malaysian Horn ('H')</b>: Dual-chirp harmonic oscillator ("Pon-pon!").</li>
+              <li><b>SmartTAG Whoosh</b>: Ascending frequency chirp with exponential gain decay.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3 class="text-gold" style="font-size: 1.1rem; margin-bottom: 12px;">The Retro-Arcade HUD</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 10px;">
+              Designed with CSS glassmorphism and Orbitron digital fonts:
+            </p>
+            <ul style="font-size: 0.82rem; color: #cbd5e1;">
+              <li><b>Speedometer</b>: Dynamic color shift (Cyan &rarr; Amber &rarr; Neon Red).</li>
+              <li><b>Distance Countdown</b>: Meter from 5,000m down to Point B Toll Plaza.</li>
+              <li><b>Touch Controls</b>: Automatic detection for smartphone screens.</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside class="notes">
+          SHOWCASE AUDIO:
+          - Press 'H' key to demonstrate the Malaysian double horn.
+          - Rev up the car and show how the pitch scales naturally with km/h.
+          - Point out that this is generated in ~100 lines of pure JavaScript using native Web Audio.
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 13: PHASE 4 - DEPLOYMENT
+           ========================================== -->
+      <section data-transition="slide">
+        <div class="badge-pill pill-gold">PHASE 4 &bull; 02:45 - 03:00</div>
+        <h2>1-CLICK DEPLOYMENT & PLAYTESTING</h2>
+        <p class="text-muted" style="margin-bottom: 20px;">Shipping your game to the global web before the workshop ends</p>
+
+        <div class="card-grid-2">
+          <div class="glass-card">
+            <h3 class="text-cyan" style="font-size: 1.1rem; margin-bottom: 12px;">GitHub Pages</h3>
+            <pre><code class="language-bash"># 1. Build production static bundle
+npm run build
+
+# 2. Push to GitHub
+git add .
+git commit -m "feat: complete game"
+git push origin main</code></pre>
+            <p style="font-size: 0.82rem; color: #cbd5e1;">
+              In GitHub: <b>Settings &rarr; Pages &rarr; Source: GitHub Actions (or /dist)</b>. Live in 60s!
+            </p>
+          </div>
+
+          <div class="glass-card">
+            <h3 class="text-green" style="font-size: 1.1rem; margin-bottom: 12px;">Vercel (Fastest)</h3>
+            <pre><code class="language-bash"># Run one command
+npx vercel</code></pre>
+            <p style="font-size: 0.82rem; color: #cbd5e1;">
+              Press Enter 3 times. Vercel automatically detects Vite and delivers a production HTTPS link + QR Code to share with the room!
+            </p>
+          </div>
+        </div>
+
+        <div class="glass-card" style="margin-top: 18px; text-align: center;">
+          <p style="font-size: 1.05rem; color: #fff; margin: 0;">
+            <b>Test on Mobile:</b> The game includes touch controls (&larr; / &rarr;, Gas, Brake, Flash) and responsive canvas resizing.
+          </p>
+        </div>
+
+        <aside class="notes">
+          ROOM PLAYTEST:
+          - Give attendees 5 minutes to deploy their projects.
+          - Have them scan each other's QR codes or test on their phones.
+          - Seeing your game running on a mobile phone within 3 hours is a massive milestone for attendees.
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 14: BABYLON INSPECTOR
+           ========================================== -->
+      <section data-transition="slide">
+        <div class="badge-pill pill-cyan">LIVE DEV TOOLS</div>
+        <h2>THE BABYLON INSPECTOR: TUNING LIVE</h2>
+        <p class="text-muted" style="margin-bottom: 20px;">Press <code>'I'</code> in the game to inspect scene graphs and shaders</p>
+
+        <div class="card-grid-3">
+          <div class="glass-card">
+            <h3 class="text-cyan" style="font-size: 1.05rem;">1. Visual Hierarchy</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1;">
+              Inspect every mesh, transform node, material, and texture in the scene graph in real-time.
+            </p>
+          </div>
+          <div class="glass-card">
+            <h3 class="text-gold" style="font-size: 1.05rem;">2. Post-Processing</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1;">
+              Tweak bloom threshold, glow intensity, sunset fog density, and chromatic aberration on the fly.
+            </p>
+          </div>
+          <div class="glass-card">
+            <h3 class="text-pink" style="font-size: 1.05rem;">3. Performance Profiling</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1;">
+              Monitor real-time draw calls, FPS (aiming for solid 60 FPS), and GPU vertex count.
+            </p>
+          </div>
+        </div>
+
+        <aside class="notes">
+          LIVE DEMO:
+          - Press 'I' on the live game screen.
+          - Show the inspector UI pop up.
+          - Modify the sun light color or fog density live in front of the audience.
+          - Explain that this is how technical artists tweak the visual look and feel.
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 15: SCALING TO AAA / UE5
+           ========================================== -->
+      <section data-transition="slide">
+        <div class="badge-pill pill-gold">THE HORIZON</div>
+        <h2>SCALING UP: THE BRIDGE TO UNREAL & AAA</h2>
+        <p class="text-muted" style="margin-bottom: 20px;">How the exact same agentic pipeline powers high-end game engines</p>
+
+        <div class="card-grid-3">
+          <div class="glass-card">
+            <h3 class="text-cyan" style="font-size: 1.1rem; margin-bottom: 8px;">1. PCG in Unreal 5</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1;">
+              Use LLMs and agents to write Python / Blueprint scripts that populate entire 100km² terrains with Nanite highway assets and traffic splines.
+            </p>
+          </div>
+          <div class="glass-card">
+            <h3 class="text-green" style="font-size: 1.1rem; margin-bottom: 8px;">2. AI State Trees</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1;">
+              Translate our simple 4-state traffic machine into Unreal Engine 5 Mass AI or StateTree for 1,000+ autonomous highway vehicles.
+            </p>
+          </div>
+          <div class="glass-card">
+            <h3 class="text-pink" style="font-size: 1.1rem; margin-bottom: 8px;">3. AI Voice & Music</h3>
+            <p style="font-size: 0.85rem; color: #cbd5e1;">
+              Use Suno / ElevenLabs to dynamically generate localized Malaysian radio traffic banter or dynamic weather audio as you drive.
+            </p>
+          </div>
+        </div>
+
+        <aside class="notes">
+          STRATEGIC PERSPECTIVE:
+          - Remind the room: The skills learned today are NOT limited to Babylon.js.
+          - The mental model of:
+            Prompt -> GDD -> Balancing Sheet -> Procedural Assets -> State Machine -> Runtime Inspection
+            is the exact blueprint for modern AAA studios adopting AI.
+        </aside>
+      </section>
+
+      <!-- ==========================================
+           SLIDE 16: SUMMARY & CHALLENGE
+           ========================================== -->
+      <section data-transition="zoom">
+        <div class="badge-pill pill-cyan">WORKSHOP SUMMARY</div>
+        <h2 style="margin-bottom: 12px;">YOU ARE NOW AN AI GAME BUILDER</h2>
+        <p class="text-gold" style="font-size: 1.25rem; margin-bottom: 24px;">Remember: "Point A to Point B + 1-2 USPs"</p>
+
+        <div class="card-grid-2" style="max-width: 850px; margin: 0 auto 30px;">
+          <div class="glass-card">
+            <h3 class="text-cyan" style="font-size: 1.1rem; margin-bottom: 10px;">What You Mastered:</h3>
+            <ul style="font-size: 0.85rem; color: #cbd5e1;">
+              <li>Autonomous agent coding (Antigravity/OpenCode).</li>
+              <li>Procedural 3D pipelines with Blender MCP.</li>
+              <li>Babylon.js 7 arcade physics & state machines.</li>
+              <li>Pure Web Audio synthesis & responsive HUD.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card" style="border-color: rgba(255, 215, 0, 0.4);">
+            <h3 class="text-gold" style="font-size: 1.1rem; margin-bottom: 10px;">Take-Home Challenges:</h3>
+            <ul style="font-size: 0.85rem; color: #cbd5e1;">
+              <li>Add a second vehicle choice (e.g. Proton Wira or Kancil).</li>
+              <li>Add a dynamic tropical Monsoon Rain storm at KM 3.0.</li>
+              <li>Connect Supabase for a live online High Score leaderboard!</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 16px;">
+          <a href="./index.html" class="btn-hud" style="font-size: 0.95rem; padding: 10px 24px;">
+            <span>🚀</span> LAUNCH FULL GAME DEMO
+          </a>
+        </div>
+
+        <aside class="notes">
+          CLOSING REMARKS:
+          - Thank everyone for their energy and participation.
+          - Open floor for Q&A.
+          - Encourage attendees to push their repos to GitHub and tag you.
+        </aside>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Keyboard Shortcuts Modal -->
+  <div id="helpModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; align-items: center; justify-content: center;">
+    <div class="glass-card" style="max-width: 480px; width: 90%; text-align: center;">
+      <h3 class="text-cyan" style="margin-bottom: 16px;">Keyboard Shortcuts</h3>
+      <table style="width: 100%; font-size: 0.9rem; text-align: left; margin-bottom: 20px;">
+        <tr><td style="padding: 6px;"><b>Space / &rarr;</b></td><td>Next Slide</td></tr>
+        <tr><td style="padding: 6px;"><b>&larr;</b></td><td>Previous Slide</td></tr>
+        <tr><td style="padding: 6px;"><b>Esc / 'O'</b></td><td>Toggle Slide Overview Mode</td></tr>
+        <tr><td style="padding: 6px;"><b>'S'</b></td><td>Open Speaker Notes Window</td></tr>
+        <tr><td style="padding: 6px;"><b>'F'</b></td><td>Toggle Fullscreen Mode</td></tr>
+        <tr><td style="padding: 6px;"><b>'?'</b></td><td>Show/Hide this shortcuts popup</td></tr>
+      </table>
+      <button class="btn-hud" style="margin: 0 auto; display: inline-block;" onclick="toggleHelpModal()">CLOSE</button>
+    </div>
+  </div>
+
+  <!-- Reveal.js Core & Plugins JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/notes/notes.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/highlight/highlight.min.js"></script>
+
+  <script>
+    // Initialize Reveal.js presentation
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      showSlideNumber: 'all',
+      transition: 'slide', // none/fade/slide/convex/concave/zoom
+      backgroundTransition: 'fade',
+      controls: true,
+      controlsTutorial: false,
+      progress: true,
+      center: true,
+      touch: true,
+      plugins: [ RevealHighlight, RevealNotes ]
+    });
+
+    function toggleHelpModal() {
+      const modal = document.getElementById('helpModal');
+      modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === '?') {
+        toggleHelpModal();
+      }
+    });
+  </script>
+</body>
+</html>
