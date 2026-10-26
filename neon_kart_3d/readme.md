@@ -1,6 +1,6 @@
 # 🎮 Neon Kart 3D — AI for Gaming (3-Hour Hands-On Lab)
 
-**English** | **[Bahasa Melayu (README.ms-MY.md)](https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/readme_ms_my.md)** | **[GitHub Wiki Guide (WIKI.md)](WIKI.md)**
+**[English](https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/readme.md)** | **[Bahasa Melayu (README.ms-MY.md)](https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/readme_ms_my.md)** | **[GitHub Wiki Guide (WIKI.md)](https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/wiki.md)**
 
 Welcome to the official repository for **"AI for Gaming: How AI is Changing the Way Games Are Made"**!
 
