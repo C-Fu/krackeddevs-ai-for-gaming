@@ -3,3 +3,11 @@ dist/
 .DS_Store
 Thumbs.db
 *.log
+
+# Aleph GIS files and captures
+tools/aleph/
+tools/setup_plus_highway.py
+docs/ALEPH_PLUS_HIGHWAY_GUIDE.md
+public/assets/models/plus_toll_duta.glb
+public/assets/plus_highway_data.json
+public/assets/textures/
