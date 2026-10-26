@@ -200,7 +200,37 @@ body, html {
 .footer-note {
   font-size: 0.78rem;
   color: #718096;
-  margin-top: 20px;
+  margin-top: 18px;
+  line-height: 1.6;
+}
+
+.footer-links {
+  margin-top: 4px;
+}
+
+.footer-link {
+  color: #00f0ff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 0 4px;
+}
+
+.footer-link:hover {
+  color: #fff;
+  text-shadow: 0 0 8px #00f0ff;
+  text-decoration: underline;
+}
+
+.btn-github {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #e2e8f0;
+}
+
+.btn-github:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #fff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
 }
 
 .result-title {
