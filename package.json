@@ -1,12 +1,12 @@
 {
-  "name": "king-myvi-highway-legends",
+  "name": "krackeddevs-ai-for-gaming",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "AI for Gaming Workshop Demo - King Myvi: Highway Legends (Point A to Point B Babylon.js Prototype)",
+  "description": "AI for Gaming Workshop - 3 Playable 3D Prototypes (King Myvi, Makcik Canteen, Neon Kart 3D)",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node tools/copy-dist.js",
     "preview": "vite preview"
   },
   "dependencies": {

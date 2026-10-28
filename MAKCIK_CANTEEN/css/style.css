@@ -214,6 +214,28 @@ body, html {
     background: rgba(255, 255, 255, 0.25);
 }
 
+.btn-hub-nav {
+    background: rgba(52, 73, 94, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-hub-nav:hover {
+    background: #2980b9;
+    box-shadow: 0 0 12px rgba(41, 128, 185, 0.6);
+    color: #fff;
+}
+
+
 /* Active Buff Center Badges */
 #buffStatusContainer {
     display: flex;

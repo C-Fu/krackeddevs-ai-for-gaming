@@ -14,7 +14,7 @@
 [![Web Audio](https://img.shields.io/badge/Audio-Procedural%20Web%20Audio-00F0FF?style=for-the-badge)](src/audio.js)
 [![License: MIT](https://img.shields.io/badge/License-MIT-00FF88?style=for-the-badge)](LICENSE)
 
-[🎮 **Play King Myvi**](https://c-fu.github.io/krackeddevs-ai-for-gaming/) &bull; [🍲 **Makcik Canteen**](MAKCIK_CANTEEN/README.md) &bull; [🏎️ **Neon Kart 3D**](neon_kart_3d/README.md) &bull; [🏛️ **3D Warehouse Downloader**](sketchup_downloader/README.md) &bull; [📑 **Slide Deck**](https://c-fu.github.io/krackeddevs-ai-for-gaming/slides.html) &bull; [📐 **Design Doc Templates**](TEMPLATE_DESIGN_DOCUMENT/README.md) &bull; [💬 **Prompt Pack**](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md)
+[🕹️ **All Games Hub (3 Boxes)**](https://c-fu.github.io/krackeddevs-ai-for-gaming/) &bull; [🚗 **Play King Myvi**](https://c-fu.github.io/krackeddevs-ai-for-gaming/myvi.html) &bull; [🍲 **Play Makcik Canteen**](https://c-fu.github.io/krackeddevs-ai-for-gaming/MAKCIK_CANTEEN/index.html) &bull; [🏎️ **Play Neon Kart 3D**](https://c-fu.github.io/krackeddevs-ai-for-gaming/neon_kart_3d/index.html) &bull; [🏛️ **3D Warehouse Downloader**](sketchup_downloader/README.md) &bull; [📑 **Slide Deck**](https://c-fu.github.io/krackeddevs-ai-for-gaming/slides.html) &bull; [📐 **Design Doc Templates**](TEMPLATE_DESIGN_DOCUMENT/README.md) &bull; [💬 **Prompt Pack**](docs/WORKSHOP_HANDOUT_AND_PROMPTS.md)
 
 </div>
 
@@ -26,9 +26,9 @@ During the **AI for Gaming** workshop and live sessions, three complete playable
 
 | Game | Platform & Engine | Core Gameplay & Unique Selling Propositions (USPs) | Design Docs & Links |
 | :--- | :--- | :--- | :--- |
-| **🚗 King Myvi: Highway Legends** | **Babylon.js 7** + Vite | High-octane arcade highway runner. Flash high-beams (`Spacebar`) to force slow right-lane traffic to yield, dodge asphalt potholes, and jump full-lane SmartTAG toll ramps at 240 km/h. | • [🎮 Play Live Demo](https://c-fu.github.io/krackeddevs-ai-for-gaming/)<br/>• [📄 Game GDD](docs/GAME_DESIGN_DOCUMENT.md)<br/>• [🚗 3D Myvi Pipeline](docs/BLENDER_3D_PIPELINE.md)<br/>• [📁 Source Code](src/) |
-| **🍛 Makcik Canteen: Haze Fighter** | **Babylon.js 7** + Vite | Malaysian school canteen arcade simulator. Armed with an industrial blower fan (`Spacebar`) and dry ice bomb traps (`E`), clear choking haze clouds to rescue hungry students during a chaotic 60-second recess countdown. *Built live during the workshop session!* | • [🎮 Play Makcik Canteen](MAKCIK_CANTEEN/index.html)<br/>• [📖 Canteen README](MAKCIK_CANTEEN/README.md)<br/>• [📄 Complete 7-Doc Spec](MAKCIK_CANTEEN/GAME_DESIGN_DOCUMENT.md)<br/>• [💬 Live Copilot Chat](https://copilot.microsoft.com/conversations/join/NppskzM778rkVNxfjVi5D) |
-| **🏎️ Neon Kart 3D** | **Three.js** + Vite | Synthwave cyber-arcade drift racer. Features drift boost sparks, floating mystery item cubes, homing rockets, oil slicks, speed pads, and dynamic rubber-banding AI rivals on a glowing neon circuit. | • [🎮 Play Neon Kart](neon_kart_3d/neon_kart_3d_ai_for_gaming_live_workshop_demo.html)<br/>• [📖 Neon Kart README](neon_kart_3d/README.md)<br/>• [📁 Folder](neon_kart_3d/) |
+| **🚗 King Myvi: Highway Legends** | **Babylon.js 7** + Vite | High-octane arcade highway runner. Flash high-beams (`Spacebar`) to force slow right-lane traffic to yield, dodge asphalt potholes, and jump full-lane SmartTAG toll ramps at 240 km/h. | • [🎮 Play Live Game](https://c-fu.github.io/krackeddevs-ai-for-gaming/myvi.html)<br/>• [🏠 3-Game Hub](https://c-fu.github.io/krackeddevs-ai-for-gaming/)<br/>• [📄 Game GDD](docs/GAME_DESIGN_DOCUMENT.md)<br/>• [🚗 3D Myvi Pipeline](docs/BLENDER_3D_PIPELINE.md)<br/>• [📁 Source Code](src/) |
+| **🍛 Makcik Canteen: Haze Fighter** | **Babylon.js 7** + Vite | Malaysian school canteen arcade simulator. Armed with an industrial blower fan (`Spacebar`) and dry ice bomb traps (`E`), clear choking haze clouds to rescue hungry students during a chaotic 60-second recess countdown. *Built live during the workshop session!* | • [🎮 Play Makcik Canteen](https://c-fu.github.io/krackeddevs-ai-for-gaming/MAKCIK_CANTEEN/index.html)<br/>• [📖 Canteen README](MAKCIK_CANTEEN/README.md)<br/>• [📄 Complete 7-Doc Spec](MAKCIK_CANTEEN/GAME_DESIGN_DOCUMENT.md)<br/>• [🔬 Tech & Physics](MAKCIK_CANTEEN/GAME_TECH_STACK.md)<br/>• [💬 Live Copilot Chat](https://copilot.microsoft.com/conversations/join/NppskzM778rkVNxfjVi5D) |
+| **🏎️ Neon Kart 3D** | **Three.js** + Vite | Synthwave cyber-arcade drift racer. Features drift boost sparks, floating mystery item cubes, homing rockets, oil slicks, speed pads, and dynamic rubber-banding AI rivals on a glowing neon circuit. | • [🎮 Play Neon Kart 3D](https://c-fu.github.io/krackeddevs-ai-for-gaming/neon_kart_3d/index.html)<br/>• [📖 3-Hour Lab Runbook](neon_kart_3d/ai_for_gaming_3hour_lab_runbook_and_templates.md)<br/>• [📑 Reveal.js Slides](https://c-fu.github.io/krackeddevs-ai-for-gaming/neon_kart_3d/ai_for_gaming_3_hour_hands_on_lab_deck_reveal_js_markdown.html)<br/>• [📚 GitHub Wiki](neon_kart_3d/wiki.md)<br/>• [📁 Folder](neon_kart_3d/) |
 
 ---
 
@@ -188,6 +188,9 @@ KD_AI_FOR_GAMING/
 │   ├── audio.js                 # Pure Web Audio procedural sound engine (RPM synth, horn, boost whoosh)
 │   └── ui.js                    # Speedometer, distance remaining meter, timer, banner popups, touch D-pad
 │
+├── index.html                   # 3-Game Master Hub (Boxes for King Myvi, Makcik Canteen, Neon Kart)
+├── myvi.html                    # King Myvi: Highway Legends standalone game
+├── slides.html                  # Interactive Workshop Slide Deck (Reveal.js)
 ├── MAKCIK_CANTEEN/              # Makcik Canteen: Haze Fighter (Live Workshop Game)
 │   ├── index.html               # Playable Babylon.js 7 game entry
 │   ├── README.md                # English guide & Copilot dialogue documentation
@@ -195,8 +198,11 @@ KD_AI_FOR_GAMING/
 │   └── *.md                     # Complete 7-doc game design specification
 │
 ├── neon_kart_3d/                # Neon Kart 3D (Synthwave Drift Racer)
+│   ├── index.html               # Playable Three.js game entry (auto-served by GitHub Pages)
+│   ├── neon_kart_3d_ai_for_gaming_live_workshop_demo.html # Standalone Three.js demo
+│   ├── ai_for_gaming_3_hour_hands_on_lab_deck_reveal_js_markdown.html # Slide Deck
 │   ├── README.md                # Project documentation
-│   └── neon_kart_3d_ai_for_gaming_live_workshop_demo.html # Playable Three.js game
+│   └── wiki.md                  # Deep-dive architecture wiki
 │
 ├── TEMPLATE_DESIGN_DOCUMENT/    # Universal Game Design Document Suite
 │   ├── README.md                # Suite guide & Copilot dialogue breakdown

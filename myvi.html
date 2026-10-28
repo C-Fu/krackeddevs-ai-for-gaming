@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>King Myvi: Highway Legends | AI for Gaming Workshop</title>
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Floating Hub Navigation Link -->
+  <a href="./index.html" class="hub-floating-btn" title="Back to All Games Hub">
+    <span>🏠</span> ALL GAMES
+  </a>
+
+  <canvas id="renderCanvas"></canvas>
+
+  <!-- Arcade HUD -->
+  <div id="hud" class="hud-container hidden">
+    <!-- Top Bar -->
+    <div class="hud-top">
+      <div class="hud-card distance-card">
+        <span class="label">DESTINATION: AYER KEROH</span>
+        <div class="value-row">
+          <span id="distanceVal" class="digital-val">5000</span>
+          <span class="unit">M</span>
+        </div>
+        <div class="progress-bar-bg">
+          <div id="distanceProgress" class="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <div class="hud-card mission-card">
+        <span class="label">PLUS HIGHWAY SPRINT</span>
+        <div id="missionAlert" class="alert-pill">CRUISING FAST LANE</div>
+      </div>
+
+      <div class="hud-card timer-card">
+        <span class="label">TIME REMAINING</span>
+        <div class="value-row">
+          <span id="timerVal" class="digital-val timer-val">90.0</span>
+          <span class="unit">S</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center Flash Notification -->
+    <div id="eventBanner" class="event-banner hidden">FAST LANE CLEARED! +250 PTS</div>
+
+    <!-- Bottom Dashboard -->
+    <div class="hud-bottom">
+      <!-- High Beam Status -->
+      <div class="hud-card highbeam-card">
+        <div class="hb-icon-row">
+          <div id="hbIcon" class="hb-icon">⚡⚡</div>
+          <span class="hb-title">HIGH BEAM</span>
+        </div>
+        <div id="hbStatus" class="hb-badge ready">READY [SPACE]</div>
+        <div class="hb-tip">Flash right lane traffic to yield!</div>
+      </div>
+
+      <!-- Center Controls Tip -->
+      <div class="controls-hint">
+        <span><b>WASD / Arrows</b>: Drive</span> &bull;
+        <span><b>SPACE</b>: High Beam</span> &bull;
+        <span><b>H</b>: Horn</span>
+      </div>
+
+      <!-- Speedometer -->
+      <div class="hud-card speed-card">
+        <span class="label">SPEED</span>
+        <div class="speed-row">
+          <span id="speedVal" class="digital-val speed-val">0</span>
+          <span class="speed-unit">KM/H</span>
+        </div>
+        <div class="speed-gauge">
+          <div id="speedGaugeFill" class="speed-gauge-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Touch Controls (Shown only on touchscreen devices) -->
+    <div id="touchControls" class="touch-controls">
+      <div class="touch-dpad">
+        <button id="btnLeft" class="touch-btn">&larr;</button>
+        <button id="btnRight" class="touch-btn">&rarr;</button>
+      </div>
+      <div class="touch-actions">
+        <button id="btnHighBeam" class="touch-btn action-btn hb-btn">FLASH</button>
+        <div class="touch-pedals">
+          <button id="btnBrake" class="touch-btn pedal-btn brake">BRAKE</button>
+          <button id="btnGas" class="touch-btn pedal-btn gas">GAS</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start Screen Overlay -->
+  <div id="startScreen" class="overlay-screen">
+    <div class="modal-card">
+      <div class="badge-pill">AI FOR GAMING TUTORIAL</div>
+      <h1 class="game-title">KING MYVI<br/><span class="subtitle">HIGHWAY LEGENDS</span></h1>
+      <p class="tagline">The North-South Expressway needs its King. Get from <b>Point A</b> to <b>Point B</b> before dinner starts.</p>
+
+      <div class="mechanics-brief">
+        <div class="mechanic-item">
+          <div class="m-icon">⚡</div>
+          <div>
+            <h4>USP 1: High-Beam Flash (SPACE)</h4>
+            <p>Flash slow-moving lorries and sedans in the fast lane to make them move left!</p>
+          </div>
+        </div>
+        <div class="mechanic-item">
+          <div class="m-icon">🚀</div>
+          <div>
+            <h4>USP 2: SmartTAG Ramp & Pothole Slalom</h4>
+            <p>Dodge road potholes (slows you down) & hit green SmartTAG pads for supersonic jumps!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="start-btn-group">
+        <button id="btnStartGame" class="btn-primary">START ENGINE & DRIVE</button>
+        <a href="./index.html" class="btn-secondary" title="Return to All Games Hub">
+          <span>🏠</span> ALL GAMES
+        </a>
+        <a href="./slides.html" target="_blank" class="btn-secondary">
+          <span>📑</span> SLIDES
+        </a>
+        <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming" target="_blank" class="btn-secondary btn-github" title="View Source on GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>GITHUB</span>
+        </a>
+      </div>
+      <div class="footer-note">
+        <span>Built with Babylon.js 7 &bull; Antigravity Agent &bull; Blender MCP</span>
+        <div class="footer-links">
+          <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming" target="_blank" class="footer-link">Source Code</a> &bull;
+          <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/LICENSE" target="_blank" class="footer-link">MIT License</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Game Over Screen -->
+  <div id="gameOverScreen" class="overlay-screen hidden">
+    <div class="modal-card failure">
+      <h2 class="result-title">LATE FOR DINNER!</h2>
+      <p class="result-desc">You got stuck in the infamous PLUS traffic jam. Point B was within reach!</p>
+      <div class="stats-box">
+        <div>Distance Covered: <b id="statDist">0</b> m</div>
+        <div>Traffic Parted: <b id="statYields">0</b> vehicles</div>
+      </div>
+      <div class="start-btn-group" style="margin-top: 18px;">
+        <button id="btnRetry" class="btn-primary">TRY AGAIN</button>
+        <a href="./index.html" class="btn-secondary">🏠 ALL GAMES</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Victory Screen -->
+  <div id="victoryScreen" class="overlay-screen hidden">
+    <div class="modal-card victory">
+      <div class="badge-pill victory-pill">LEGENDARY FINISH</div>
+      <h2 class="result-title">HIGHWAY KING!</h2>
+      <p class="result-desc">You conquered PLUS Expressway and crossed Ayer Keroh Toll Plaza in record time!</p>
+      <div class="stats-box">
+        <div>Time Taken: <b id="statVicTime">0</b> s</div>
+        <div>Fast Lane Parted: <b id="statVicYields">0</b> cars</div>
+        <div>Final Score: <b id="statVicScore">0</b> PTS</div>
+      </div>
+      <div class="start-btn-group" style="margin-top: 18px;">
+        <button id="btnRestartVictory" class="btn-primary">RACE AGAIN</button>
+        <a href="./index.html" class="btn-secondary">🏠 ALL GAMES</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

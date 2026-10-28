@@ -14,7 +14,7 @@
 [![Web Audio](https://img.shields.io/badge/Audio-Web%20Audio%20Prosedural-00F0FF?style=for-the-badge)](src/audio.js)
 [![Lesen: MIT](https://img.shields.io/badge/Lesen-MIT-00FF88?style=for-the-badge)](LICENSE)
 
-[🎮 **Main King Myvi**](https://c-fu.github.io/krackeddevs-ai-for-gaming/) &bull; [🍲 **Makcik Canteen**](MAKCIK_CANTEEN/README.ms-MY.md) &bull; [🏎️ **Neon Kart 3D**](neon_kart_3d/README.md) &bull; [🏛️ **Pemuat Turun 3D Warehouse**](sketchup_downloader/README.ms-MY.md) &bull; [📑 **Slaid Pembentangan**](https://c-fu.github.io/krackeddevs-ai-for-gaming/slides.html) &bull; [📐 **Templat Dokumen Reka Bentuk**](TEMPLATE_DESIGN_DOCUMENT/README.ms-MY.md) &bull; [💬 **Pek Prom**](docs/WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md)
+[🕹️ **Hab Semua Permainan (3 Kotak)**](https://c-fu.github.io/krackeddevs-ai-for-gaming/) &bull; [🚗 **Main King Myvi**](https://c-fu.github.io/krackeddevs-ai-for-gaming/myvi.html) &bull; [🍲 **Main Makcik Canteen**](https://c-fu.github.io/krackeddevs-ai-for-gaming/MAKCIK_CANTEEN/index.html) &bull; [🏎️ **Main Neon Kart 3D**](https://c-fu.github.io/krackeddevs-ai-for-gaming/neon_kart_3d/index.html) &bull; [🏛️ **Pemuat Turun 3D Warehouse**](sketchup_downloader/README.ms-MY.md) &bull; [📑 **Slaid Pembentangan**](https://c-fu.github.io/krackeddevs-ai-for-gaming/slides.html) &bull; [📐 **Templat Dokumen Reka Bentuk**](TEMPLATE_DESIGN_DOCUMENT/README.ms-MY.md) &bull; [💬 **Pek Prom**](docs/WORKSHOP_HANDOUT_AND_PROMPTS.ms-MY.md)
 
 </div>
 
@@ -26,9 +26,9 @@ Sepanjang bengkel dan sesi langsung **AI for Gaming**, tiga buah permainan 3D pe
 
 | Permainan | Platform & Enjin | Permainan Teras & Cadangan Nilai Unik (USP) | Dokumen Reka Bentuk & Pautan |
 | :--- | :--- | :--- | :--- |
-| **🚗 King Myvi: Highway Legends** | **Babylon.js 7** + Vite | Larian lebuh raya arked berhalaju tinggi. Pancarkan lampu tinggi (`Spacebar`) untuk memaksa trafik lorong kanan memberi laluan, elak kawah lubang jalan, dan lompat tanjakan tol SmartTAG penuh lorong pada 240 km/j. | • [🎮 Main Demo Langsung](https://c-fu.github.io/krackeddevs-ai-for-gaming/)<br/>• [📄 GDD Permainan](docs/GAME_DESIGN_DOCUMENT.ms-MY.md)<br/>• [🚗 Saliran 3D Myvi](docs/BLENDER_3D_PIPELINE.ms-MY.md)<br/>• [📁 Kod Sumber](src/) |
-| **🍛 Makcik Canteen: Haze Fighter** | **Babylon.js 7** + Vite | Simulator arked kantin sekolah Malaysia. Berbekalkan kipas penghembus industri (`Spacebar`) dan perangkap bom ais kering (`E`), bersihkan kepulan jerebu tebal demi menyelamatkan pelajar lapar dalam kiraan undur waktu rehat 60 saat. *Dibina secara langsung semasa bengkel menggunakan Microsoft Copilot!* | • [🎮 Main Makcik Canteen](MAKCIK_CANTEEN/index.html)<br/>• [📖 README Kantin](MAKCIK_CANTEEN/README.ms-MY.md)<br/>• [📄 Spesifikasi Penuh 7-Dokumen](MAKCIK_CANTEEN/GAME_DESIGN_DOCUMENT.md)<br/>• [💬 Dialog Langsung Copilot](https://copilot.microsoft.com/conversations/join/NppskzM778rkVNxfjVi5D) |
-| **🏎️ Neon Kart 3D** | **Three.js** + Vite | Pelumba drift arked siber bernuansa Synthwave. Menampilkan percikan kuasa drift, kiub misteri terapung, roket penjejak, tompokan minyak, pad pemecut, dan saingan AI berdaya dinamik di litar neon bercahaya. | • [🎮 Main Neon Kart](neon_kart_3d/neon_kart_3d_ai_for_gaming_live_workshop_demo.html)<br/>• [📖 README Neon Kart](neon_kart_3d/README.md)<br/>• [📁 Folder](neon_kart_3d/) |
+| **🚗 King Myvi: Highway Legends** | **Babylon.js 7** + Vite | Larian lebuh raya arked berhalaju tinggi. Pancarkan lampu tinggi (`Spacebar`) untuk memaksa trafik lorong kanan memberi laluan, elak kawah lubang jalan, dan lompat tanjakan tol SmartTAG penuh lorong pada 240 km/j. | • [🎮 Main Game Langsung](https://c-fu.github.io/krackeddevs-ai-for-gaming/myvi.html)<br/>• [🏠 Hab 3-Permainan](https://c-fu.github.io/krackeddevs-ai-for-gaming/)<br/>• [📄 GDD Permainan](docs/GAME_DESIGN_DOCUMENT.ms-MY.md)<br/>• [🚗 Saliran 3D Myvi](docs/BLENDER_3D_PIPELINE.ms-MY.md)<br/>• [📁 Kod Sumber](src/) |
+| **🍛 Makcik Canteen: Haze Fighter** | **Babylon.js 7** + Vite | Simulator arked kantin sekolah Malaysia. Berbekalkan kipas penghembus industri (`Spacebar`) dan perangkap bom ais kering (`E`), bersihkan kepulan jerebu tebal demi menyelamatkan pelajar lapar dalam kiraan undur waktu rehat 60 saat. *Dibina secara langsung semasa bengkel menggunakan Microsoft Copilot!* | • [🎮 Main Makcik Canteen](https://c-fu.github.io/krackeddevs-ai-for-gaming/MAKCIK_CANTEEN/index.html)<br/>• [📖 README Kantin](MAKCIK_CANTEEN/README.ms-MY.md)<br/>• [📄 Spesifikasi Penuh 7-Dokumen](MAKCIK_CANTEEN/GAME_DESIGN_DOCUMENT.md)<br/>• [🔬 Teknologi & Fizik](MAKCIK_CANTEEN/GAME_TECH_STACK.md)<br/>• [💬 Dialog Langsung Copilot](https://copilot.microsoft.com/conversations/join/NppskzM778rkVNxfjVi5D) |
+| **🏎️ Neon Kart 3D** | **Three.js** + Vite | Pelumba drift arked siber bernuansa Synthwave. Menampilkan percikan kuasa drift, kiub misteri terapung, roket penjejak, tompokan minyak, pad pemecut, dan saingan AI berdaya dinamik di litar neon bercahaya. | • [🎮 Main Neon Kart 3D](https://c-fu.github.io/krackeddevs-ai-for-gaming/neon_kart_3d/index.html)<br/>• [📖 Buku Panduan Makmal 3 Jam](neon_kart_3d/ai_for_gaming_3hour_lab_runbook_and_templates.md)<br/>• [📑 Slaid Reveal.js](https://c-fu.github.io/krackeddevs-ai-for-gaming/neon_kart_3d/ai_for_gaming_3_hour_hands_on_lab_deck_reveal_js_markdown.html)<br/>• [📚 Wiki GitHub](neon_kart_3d/wiki.md)<br/>• [📁 Folder](neon_kart_3d/) |
 
 ---
 
@@ -191,6 +191,9 @@ KD_AI_FOR_GAMING/
 │   ├── audio.js                 # Enjin audio sintesis Web Audio tulen (RPM enjin, hon, deruan nitro)
 │   └── ui.js                    # Meter kelajuan, meter baki jarak, pemasa, notifikasi banner, D-pad sentuh
 │
+├── index.html                   # Hab Utama 3-Permainan (3 Kotak pilihan untuk Myvi, Makcik Canteen, Neon Kart)
+├── myvi.html                    # Permainan penuh King Myvi: Highway Legends
+├── slides.html                  # Slaid Bengkel Interaktif (Reveal.js)
 ├── MAKCIK_CANTEEN/              # Makcik Canteen: Haze Fighter (Permainan Sesi Langsung)
 │   ├── index.html               # Titik masuk permainan Babylon.js 7 boleh dimainkan
 │   ├── README.md                # Panduan Bahasa Inggeris & dokumentasi Copilot
@@ -198,8 +201,11 @@ KD_AI_FOR_GAMING/
 │   └── *.md                     # Spesifikasi lengkap reka bentuk permainan 7-dokumen
 │
 ├── neon_kart_3d/                # Neon Kart 3D (Pelumba Drift Synthwave)
+│   ├── index.html               # Titik masuk permainan Three.js boleh dimainkan (dihidangkan automatik di GitHub Pages)
+│   ├── neon_kart_3d_ai_for_gaming_live_workshop_demo.html # Permainan Three.js boleh dimainkan
+│   ├── ai_for_gaming_3_hour_hands_on_lab_deck_reveal_js_markdown.html # Slaid Reveal.js
 │   ├── README.md                # Dokumentasi projek
-│   └── neon_kart_3d_ai_for_gaming_live_workshop_demo.html # Permainan Three.js boleh dimainkan
+│   └── wiki.md                  # Wiki seni bina litar 3D Three.js
 │
 ├── TEMPLATE_DESIGN_DOCUMENT/    # Suite Templat Dokumen Reka Bentuk Permainan Sejagat
 │   ├── README.md                # Panduan suite dalam Bahasa Inggeris

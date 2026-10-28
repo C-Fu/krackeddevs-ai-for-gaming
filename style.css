@@ -562,3 +562,35 @@ body, html {
   background: rgba(0, 240, 255, 0.3);
   border-color: #00f0ff;
 }
+
+/* Floating Hub Back Button */
+.hub-floating-btn {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  z-index: 120;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 240, 255, 0.5);
+  border-radius: 8px;
+  color: #00f0ff;
+  font-family: 'Orbitron', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+}
+
+.hub-floating-btn:hover {
+  background: rgba(0, 240, 255, 0.3);
+  color: #fff;
+  box-shadow: 0 0 25px rgba(0, 240, 255, 0.6);
+  transform: translateY(-2px);
+}
+

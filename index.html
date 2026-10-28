@@ -2,168 +2,1164 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <title>King Myvi: Highway Legends | AI for Gaming Workshop</title>
-  <link rel="stylesheet" href="./style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KrackedDevs • AI for Gaming | 3 Playable 3D Games & Documentation</title>
+  <meta name="description" content="Play 3 complete 3D web games built live using AI coding agents, procedural generation, and Blender MCP. Explore game design documents, prompt runbooks, and workshop slides." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #070913;
+      --bg-card: rgba(16, 22, 40, 0.78);
+      --bg-card-hover: rgba(24, 32, 58, 0.9);
+      --border-color: rgba(56, 189, 248, 0.22);
+      --border-hover: rgba(56, 189, 248, 0.6);
+      --neon-cyan: #00f0ff;
+      --neon-gold: #ffd700;
+      --neon-pink: #ff0055;
+      --neon-green: #00ff88;
+      --neon-purple: #a855f7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient Background Glow & Canvas */
+    #bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Top Navigation Bar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 32px;
+      background: rgba(7, 9, 19, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      box-shadow: 0 0 16px rgba(0, 240, 255, 0.4);
+    }
+
+    .brand-title {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      background: linear-gradient(90deg, #fff, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-tag {
+      font-size: 0.72rem;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      background: rgba(0, 240, 255, 0.15);
+      color: var(--neon-cyan);
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      padding: 2px 8px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      color: #e2e8f0;
+    }
+
+    .nav-btn:hover {
+      background: rgba(0, 240, 255, 0.15);
+      border-color: var(--neon-cyan);
+      color: #fff;
+      box-shadow: 0 0 14px rgba(0, 240, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .nav-btn.primary {
+      background: linear-gradient(90deg, rgba(255, 0, 85, 0.25), rgba(255, 85, 0, 0.25));
+      border-color: var(--neon-pink);
+      color: #fff;
+    }
+
+    .nav-btn.primary:hover {
+      background: linear-gradient(90deg, var(--neon-pink), #ff5500);
+      box-shadow: 0 0 18px rgba(255, 0, 85, 0.5);
+    }
+
+    /* Hero Section */
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px 24px 30px;
+      text-align: center;
+    }
+
+    .hero-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+      color: var(--neon-cyan);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.18);
+      margin-bottom: 22px;
+    }
+
+    .hero-badge-pill .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--neon-cyan);
+      box-shadow: 0 0 8px var(--neon-cyan);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #00f0ff 0%, #ffd700 50%, #ff0055 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    .hero-subtitle {
+      max-width: 820px;
+      margin: 0 auto 36px;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    .hero-shortcuts {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-shortcuts kbd {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 2px 7px;
+      border-radius: 4px;
+      color: #38bdf8;
+      font-family: 'Orbitron', monospace;
+    }
+
+    /* Main 3 Boxes Section */
+    .games-section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 10px 24px 60px;
+      width: 100%;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-counter {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* 3 Boxes Grid */
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 28px;
+    }
+
+    /* Game Card Box */
+    .game-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .game-card:hover {
+      transform: translateY(-6px);
+      background: var(--bg-card-hover);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+    }
+
+    /* Card Themes */
+    .card-myvi {
+      border-top: 4px solid #ff5500;
+    }
+    .card-myvi:hover {
+      border-color: rgba(255, 85, 0, 0.7);
+      box-shadow: 0 16px 40px rgba(255, 85, 0, 0.25);
+    }
+
+    .card-canteen {
+      border-top: 4px solid #2ecc71;
+    }
+    .card-canteen:hover {
+      border-color: rgba(46, 204, 113, 0.7);
+      box-shadow: 0 16px 40px rgba(46, 204, 113, 0.25);
+    }
+
+    .card-neonkart {
+      border-top: 4px solid #00f0ff;
+    }
+    .card-neonkart:hover {
+      border-color: rgba(0, 240, 255, 0.7);
+      box-shadow: 0 16px 40px rgba(0, 240, 255, 0.25);
+    }
+
+    /* Card Banner Header */
+    .card-banner {
+      padding: 24px 24px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.12;
+      background-size: cover;
+      background-position: center;
+      pointer-events: none;
+    }
+
+    .card-myvi .card-banner {
+      background: linear-gradient(135deg, rgba(255, 85, 0, 0.2), rgba(255, 0, 85, 0.08));
+    }
+    .card-canteen .card-banner {
+      background: linear-gradient(135deg, rgba(46, 204, 113, 0.2), rgba(241, 196, 15, 0.08));
+    }
+    .card-neonkart .card-banner {
+      background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(168, 85, 247, 0.1));
+    }
+
+    .banner-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .engine-pill {
+      font-family: 'Orbitron', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
+    }
+
+    .number-tag {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.4rem;
+      font-weight: 900;
+      opacity: 0.3;
+    }
+
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .card-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      line-height: 1.25;
+      margin-bottom: 4px;
+    }
+
+    .card-genre {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 4px;
+    }
+
+    .card-myvi .card-genre { color: #ff9f43; }
+    .card-canteen .card-genre { color: #2ecc71; }
+    .card-neonkart .card-genre { color: #38bdf8; }
+
+    /* Card Body */
+    .card-body {
+      padding: 0 24px 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-desc {
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: #cbd5e1;
+      margin-bottom: 18px;
+      flex-grow: 1;
+    }
+
+    /* Key Features List */
+    .mechanics-list {
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mech-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.84rem;
+      color: #e2e8f0;
+      line-height: 1.4;
+    }
+
+    .mech-icon {
+      font-size: 1.1rem;
+      min-width: 22px;
+      text-align: center;
+    }
+
+    .mech-text b {
+      color: #fff;
+    }
+
+    /* Action Buttons Area */
+    .card-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Primary Play Button */
+    .btn-play-game {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-decoration: none;
+      color: #fff;
+      transition: all 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .card-myvi .btn-play-game {
+      background: linear-gradient(90deg, #ff0055, #ff5500);
+      box-shadow: 0 0 22px rgba(255, 0, 85, 0.45);
+    }
+    .card-myvi .btn-play-game:hover {
+      background: linear-gradient(90deg, #ff1a6b, #ff6b1a);
+      box-shadow: 0 0 32px rgba(255, 0, 85, 0.7);
+      transform: translateY(-2px);
+    }
+
+    .card-canteen .btn-play-game {
+      background: linear-gradient(90deg, #16a085, #27ae60);
+      box-shadow: 0 0 22px rgba(39, 174, 96, 0.45);
+    }
+    .card-canteen .btn-play-game:hover {
+      background: linear-gradient(90deg, #1abc9c, #2ecc71);
+      box-shadow: 0 0 32px rgba(46, 204, 113, 0.7);
+      transform: translateY(-2px);
+    }
+
+    .card-neonkart .btn-play-game {
+      background: linear-gradient(90deg, #0284c7, #00f0ff);
+      color: #030712;
+      box-shadow: 0 0 22px rgba(0, 240, 255, 0.45);
+    }
+    .card-neonkart .btn-play-game:hover {
+      background: linear-gradient(90deg, #38bdf8, #67e8f9);
+      box-shadow: 0 0 32px rgba(0, 240, 255, 0.7);
+      transform: translateY(-2px);
+    }
+
+    /* Secondary Action Button Row */
+    .sub-actions-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .btn-sub-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+
+    .btn-sub-link:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    .btn-sub-link.highlight {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+    }
+    .btn-sub-link.highlight:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: #38bdf8;
+      color: #fff;
+    }
+
+    /* Documentation Showcase Section */
+    .docs-section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 20px 24px 70px;
+      width: 100%;
+    }
+
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .doc-category-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 22px;
+      backdrop-filter: blur(10px);
+    }
+
+    .doc-cat-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .doc-cat-icon {
+      font-size: 1.4rem;
+    }
+
+    .doc-cat-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+
+    .doc-link-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .doc-item-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.83rem;
+      transition: all 0.2s ease;
+    }
+
+    .doc-item-link:hover {
+      background: rgba(0, 240, 255, 0.1);
+      border-color: rgba(0, 240, 255, 0.35);
+      color: #fff;
+      transform: translateX(4px);
+    }
+
+    .doc-item-link .tag {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #94a3b8;
+    }
+
+    /* Footer */
+    .site-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 36px 24px;
+      background: rgba(5, 7, 14, 0.95);
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .footer-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: 0.84rem;
+    }
+
+    .footer-nav a {
+      color: #38bdf8;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-nav a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 14px 18px;
+      }
+      .brand-title {
+        font-size: 1rem;
+      }
+      .games-grid {
+        grid-template-columns: 1fr;
+      }
+      .sub-actions-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-  <canvas id="renderCanvas"></canvas>
+  <!-- Ambient Animated Starfield & Grid Horizon -->
+  <canvas id="bg-canvas"></canvas>
 
-  <!-- Arcade HUD -->
-  <div id="hud" class="hud-container hidden">
-    <!-- Top Bar -->
-    <div class="hud-top">
-      <div class="hud-card distance-card">
-        <span class="label">DESTINATION: AYER KEROH</span>
-        <div class="value-row">
-          <span id="distanceVal" class="digital-val">5000</span>
-          <span class="unit">M</span>
+  <div class="page-wrap">
+    <!-- Top Navigation Bar -->
+    <header class="navbar">
+      <a href="./index.html" class="brand">
+        <div class="brand-logo">⚡</div>
+        <div>
+          <span class="brand-title">KRACKEDDEVS</span>
+          <span class="brand-tag">AI FOR GAMING</span>
         </div>
-        <div class="progress-bar-bg">
-          <div id="distanceProgress" class="progress-bar-fill"></div>
-        </div>
-      </div>
+      </a>
 
-      <div class="hud-card mission-card">
-        <span class="label">PLUS HIGHWAY SPRINT</span>
-        <div id="missionAlert" class="alert-pill">CRUISING FAST LANE</div>
-      </div>
-
-      <div class="hud-card timer-card">
-        <span class="label">TIME REMAINING</span>
-        <div class="value-row">
-          <span id="timerVal" class="digital-val timer-val">90.0</span>
-          <span class="unit">S</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Center Flash Notification -->
-    <div id="eventBanner" class="event-banner hidden">FAST LANE CLEARED! +250 PTS</div>
-
-    <!-- Bottom Dashboard -->
-    <div class="hud-bottom">
-      <!-- High Beam Status -->
-      <div class="hud-card highbeam-card">
-        <div class="hb-icon-row">
-          <div id="hbIcon" class="hb-icon">⚡⚡</div>
-          <span class="hb-title">HIGH BEAM</span>
-        </div>
-        <div id="hbStatus" class="hb-badge ready">READY [SPACE]</div>
-        <div class="hb-tip">Flash right lane traffic to yield!</div>
-      </div>
-
-      <!-- Center Controls Tip -->
-      <div class="controls-hint">
-        <span><b>WASD / Arrows</b>: Drive</span> &bull;
-        <span><b>SPACE</b>: High Beam</span> &bull;
-        <span><b>H</b>: Horn</span>
-      </div>
-
-      <!-- Speedometer -->
-      <div class="hud-card speed-card">
-        <span class="label">SPEED</span>
-        <div class="speed-row">
-          <span id="speedVal" class="digital-val speed-val">0</span>
-          <span class="speed-unit">KM/H</span>
-        </div>
-        <div class="speed-gauge">
-          <div id="speedGaugeFill" class="speed-gauge-fill"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile Touch Controls (Shown only on touchscreen devices) -->
-    <div id="touchControls" class="touch-controls">
-      <div class="touch-dpad">
-        <button id="btnLeft" class="touch-btn">&larr;</button>
-        <button id="btnRight" class="touch-btn">&rarr;</button>
-      </div>
-      <div class="touch-actions">
-        <button id="btnHighBeam" class="touch-btn action-btn hb-btn">FLASH</button>
-        <div class="touch-pedals">
-          <button id="btnBrake" class="touch-btn pedal-btn brake">BRAKE</button>
-          <button id="btnGas" class="touch-btn pedal-btn gas">GAS</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Start Screen Overlay -->
-  <div id="startScreen" class="overlay-screen">
-    <div class="modal-card">
-      <div class="badge-pill">AI FOR GAMING TUTORIAL</div>
-      <h1 class="game-title">KING MYVI<br/><span class="subtitle">HIGHWAY LEGENDS</span></h1>
-      <p class="tagline">The North-South Expressway needs its King. Get from <b>Point A</b> to <b>Point B</b> before dinner starts.</p>
-
-      <div class="mechanics-brief">
-        <div class="mechanic-item">
-          <div class="m-icon">⚡</div>
-          <div>
-            <h4>USP 1: High-Beam Flash (SPACE)</h4>
-            <p>Flash slow-moving lorries and sedans in the fast lane to make them move left!</p>
-          </div>
-        </div>
-        <div class="mechanic-item">
-          <div class="m-icon">🚀</div>
-          <div>
-            <h4>USP 2: SmartTAG Ramp & Pothole Slalom</h4>
-            <p>Dodge road potholes (slows you down) & hit green SmartTAG pads for supersonic jumps!</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="start-btn-group">
-        <button id="btnStartGame" class="btn-primary">START ENGINE & DRIVE</button>
-        <a href="./slides.html" target="_blank" class="btn-secondary">
-          <span>📑</span> SLIDES
+      <nav class="nav-links">
+        <a href="./slides.html" class="nav-btn primary" title="View Workshop Slide Deck">
+          <span>📑</span> Slides
         </a>
-        <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming" target="_blank" class="btn-secondary btn-github" title="View Source on GitHub">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-          <span>GITHUB</span>
+        <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming" target="_blank" class="nav-btn" title="GitHub Repository">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>GitHub</span>
         </a>
-      </div>
-      <div class="footer-note">
-        <span>Built with Babylon.js 7 &bull; Antigravity Agent &bull; Blender MCP</span>
-        <div class="footer-links">
-          <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming" target="_blank" class="footer-link">Source Code</a> &bull;
-          <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/LICENSE" target="_blank" class="footer-link">MIT License</a>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+      <section class="hero-container">
+        <div class="hero-badge-pill">
+          <span class="pulse-dot"></span>
+          <span>AI FOR GAMING • 3 PLAYABLE PROTOTYPES</span>
+        </div>
+
+        <h1 class="hero-title">
+          EXPLORE 3 GAMES BUILT WITH<br/>
+          <span class="gradient-text">AGENTIC AI & 3D ENGINES</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Built during the <b>KrackedDevs "AI for Gaming: How AI is Changing the Way Games Are Made"</b> workshop. 
+          Direct AI coding agents and 3D pipelines like a Game Director — zero manual coding required. 
+          Pick any game below to test-drive instantly in your browser or explore full design documents!
+        </p>
+
+        <div class="hero-shortcuts">
+          <span>Quick Launch: <kbd>1</kbd> King Myvi &bull; <kbd>2</kbd> Makcik Canteen &bull; <kbd>3</kbd> Neon Kart &bull; <kbd>S</kbd> Slides</span>
+        </div>
+      </section>
+
+      <!-- The Three Hero Boxes -->
+      <section class="games-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span>🎮</span> Choose a Game Prototype
+          </h2>
+          <span class="section-counter">3 Playable Demos Available</span>
+        </div>
+
+        <div class="games-grid">
+
+          <!-- BOX 1: KING MYVI: HIGHWAY LEGENDS -->
+          <article class="game-card card-myvi" id="box-myvi">
+            <div class="card-banner">
+              <div class="banner-top-row">
+                <span class="engine-pill">BABYLON.JS 7</span>
+                <span class="number-tag">01</span>
+              </div>
+              <div class="card-icon">🚗⚡</div>
+              <h3 class="card-title">KING MYVI</h3>
+              <div class="card-genre">Highway Legends • Point A to B Sprint</div>
+            </div>
+
+            <div class="card-body">
+              <p class="card-desc">
+                The cult-classic Malaysian expressway runner! Race 5,000 meters down the PLUS North-South Highway from Sungai Besi to Ayer Keroh Toll Plaza. High-beam slow lorries, slalom around potholes, and hit supersonic SmartTAG boost ramps before dinner gets cold!
+              </p>
+
+              <div class="mechanics-list">
+                <div class="mech-row">
+                  <span class="mech-icon">⚡</span>
+                  <div class="mech-text"><b>High-Beam Flash [Space]</b>: Flash slow cars in the fast lane to make them move over.</div>
+                </div>
+                <div class="mech-row">
+                  <span class="mech-icon">🚀</span>
+                  <div class="mech-text"><b>SmartTAG Booster Ramps</b>: Hit green toll ramps for supersonic leaps across gantries.</div>
+                </div>
+                <div class="mech-row">
+                  <span class="mech-icon">🇲🇾</span>
+                  <div class="mech-text"><b>Malaysian Props</b>: KLCC gantry, road signboards, palm trees, and the iconic Myvi 3D model.</div>
+                </div>
+              </div>
+
+              <div class="card-actions">
+                <a href="./myvi.html" class="btn-play-game" id="btn-play-myvi">
+                  <span>▶</span> PLAY KING MYVI
+                </a>
+                <div class="sub-actions-grid">
+                  <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/docs/GAME_DESIGN_DOCUMENT.md" target="_blank" class="btn-sub-link highlight">
+                    <span>📖</span> GDD Document
+                  </a>
+                  <a href="./slides.html" target="_blank" class="btn-sub-link">
+                    <span>📑</span> Workshop Slides
+                  </a>
+                  <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/docs/ALEPH_PLUS_HIGHWAY_GUIDE.md" target="_blank" class="btn-sub-link">
+                    <span>🛣️</span> Highway Guide
+                  </a>
+                  <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/docs/BLENDER_3D_PIPELINE.md" target="_blank" class="btn-sub-link">
+                    <span>🎨</span> 3D Pipeline
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- BOX 2: MAKCIK CANTEEN: HAZE FIGHTER -->
+          <article class="game-card card-canteen" id="box-canteen">
+            <div class="card-banner">
+              <div class="banner-top-row">
+                <span class="engine-pill">BABYLON.JS + WEB AUDIO</span>
+                <span class="number-tag">02</span>
+              </div>
+              <div class="card-icon">🍲❄️</div>
+              <h3 class="card-title">MAKCIK CANTEEN</h3>
+              <div class="card-genre">Haze Fighter • Time-Attack Action</div>
+            </div>
+
+            <div class="card-body">
+              <p class="card-desc">
+                Hazardous haze has engulfed SMK Sri Bangsar canteen! Students arrive in 60 seconds for recess. Help Makcik blow away toxic smoke with an industrial fan, freeze clusters with dry ice bombs, and serve Teh Tarik & Milo Dinosaur to survive!
+              </p>
+
+              <div class="mechanics-list">
+                <div class="mech-row">
+                  <span class="mech-icon">💨</span>
+                  <div class="mech-text"><b>Industrial Blower [Space]</b>: Direct aerodynamic wind currents to clear heavy haze particles.</div>
+                </div>
+                <div class="mech-row">
+                  <span class="mech-icon">❄️</span>
+                  <div class="mech-text"><b>Dry Ice AOE Bombs [E / Click]</b>: Throw freezing bombs to shatter dense toxic smoke.</div>
+                </div>
+                <div class="mech-row">
+                  <span class="mech-icon">🎙️</span>
+                  <div class="mech-text"><b>Procedural Sound & Voice</b>: 100% self-contained Web Audio speech synthesis and arcade SFX.</div>
+                </div>
+              </div>
+
+              <div class="card-actions">
+                <a href="./MAKCIK_CANTEEN/index.html" class="btn-play-game" id="btn-play-canteen">
+                  <span>▶</span> PLAY MAKCIK CANTEEN
+                </a>
+                <div class="sub-actions-grid">
+                  <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/MAKCIK_CANTEEN/GAME_DESIGN_DOCUMENT.md" target="_blank" class="btn-sub-link highlight">
+                    <span>📖</span> 7-Doc Spec
+                  </a>
+                  <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/MAKCIK_CANTEEN/GAME_TECH_STACK.md" target="_blank" class="btn-sub-link">
+                    <span>🔬</span> Tech & Physics
+                  </a>
+                  <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/MAKCIK_CANTEEN/README.md" target="_blank" class="btn-sub-link">
+                    <span>🤖</span> Copilot Chat
+                  </a>
+                  <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/MAKCIK_CANTEEN/README.ms-MY.md" target="_blank" class="btn-sub-link">
+                    <span>🌐</span> Panduan Melayu
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- BOX 3: NEON KART 3D -->
+          <article class="game-card card-neonkart" id="box-neonkart">
+            <div class="card-banner">
+              <div class="banner-top-row">
+                <span class="engine-pill">THREE.JS + BLENDER MCP</span>
+                <span class="number-tag">03</span>
+              </div>
+              <div class="card-icon">🏎️✨</div>
+              <h3 class="card-title">NEON KART 3D</h3>
+              <div class="card-genre">Cyber Circuit Racer • 3-Hour Lab Demo</div>
+            </div>
+
+            <div class="card-body">
+              <p class="card-desc">
+                High-speed synthwave arcade kart racer inspired by Mario Kart. Power-slide around glowing corners for drift sparks, grab mystery power-up cubes, fire homing rockets, and race against rubber-banding AI rival karts on a procedurally generated 3D circuit!
+              </p>
+
+              <div class="mechanics-list">
+                <div class="mech-row">
+                  <span class="mech-icon">🔄</span>
+                  <div class="mech-text"><b>Arcade Drift-Boost [Space]</b>: Power-slide into corners to charge up neon boost sparks.</div>
+                </div>
+                <div class="mech-row">
+                  <span class="mech-icon">🎁</span>
+                  <div class="mech-text"><b>Mystery Item Boxes [E]</b>: Fire homing rockets, deploy oil slicks, and activate nitro turbos.</div>
+                </div>
+                <div class="mech-row">
+                  <span class="mech-icon">🤖</span>
+                  <div class="mech-text"><b>Blender MCP Pipeline</b>: Connect AI agents directly into Blender to generate custom 3D karts.</div>
+                </div>
+              </div>
+
+              <div class="card-actions">
+                <a href="./neon_kart_3d/index.html" class="btn-play-game" id="btn-play-neonkart">
+                  <span>▶</span> PLAY NEON KART 3D
+                </a>
+                <div class="sub-actions-grid">
+                  <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/ai_for_gaming_3hour_lab_runbook_and_templates.md" target="_blank" class="btn-sub-link highlight">
+                    <span>📖</span> 3-Hour Lab Book
+                  </a>
+                  <a href="./neon_kart_3d/ai_for_gaming_3_hour_hands_on_lab_deck_reveal_js_markdown.html" target="_blank" class="btn-sub-link">
+                    <span>📑</span> Reveal.js Deck
+                  </a>
+                  <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/wiki.md" target="_blank" class="btn-sub-link">
+                    <span>📚</span> GitHub Wiki
+                  </a>
+                  <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/readme_ms_my.md" target="_blank" class="btn-sub-link">
+                    <span>🌐</span> Panduan Melayu
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Workshop Documentation & Tool Suites Section -->
+      <section class="docs-section">
+        <div class="section-header">
+          <h2 class="section-title">
+            <span>📚</span> Workshop Documentation & Blueprints
+          </h2>
+          <span class="section-counter">Comprehensive Guides & Prompts</span>
+        </div>
+
+        <div class="docs-grid">
+
+          <!-- Category 1: Game Design Documents -->
+          <div class="doc-category-card">
+            <div class="doc-cat-header">
+              <span class="doc-cat-icon">📐</span>
+              <h3 class="doc-cat-title">Design Documents (GDD)</h3>
+            </div>
+            <ul class="doc-link-list">
+              <li>
+                <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/docs/GAME_DESIGN_DOCUMENT.md" target="_blank" class="doc-item-link">
+                  <span>King Myvi Highway GDD</span>
+                  <span class="tag">English</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/MAKCIK_CANTEEN/GAME_DESIGN_DOCUMENT.md" target="_blank" class="doc-item-link">
+                  <span>Makcik Canteen 7-Doc Suite</span>
+                  <span class="tag">Full Spec</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/ai_for_gaming_3hour_lab_runbook_and_templates.md" target="_blank" class="doc-item-link">
+                  <span>Neon Kart 3D Lab Runbook</span>
+                  <span class="tag">3-Hour Lab</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/tree/main/TEMPLATE_DESIGN_DOCUMENT" target="_blank" class="doc-item-link">
+                  <span>10+ Modular GDD Templates</span>
+                  <span class="tag">Suite</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 2: Workshop Slide Decks -->
+          <div class="doc-category-card">
+            <div class="doc-cat-header">
+              <span class="doc-cat-icon">📑</span>
+              <h3 class="doc-cat-title">Slide Decks & Curricula</h3>
+            </div>
+            <ul class="doc-link-list">
+              <li>
+                <a href="./slides.html" target="_blank" class="doc-item-link">
+                  <span>Highway Legends Slide Deck</span>
+                  <span class="tag">Interactive</span>
+                </a>
+              </li>
+              <li>
+                <a href="./neon_kart_3d/ai_for_gaming_3_hour_hands_on_lab_deck_reveal_js_markdown.html" target="_blank" class="doc-item-link">
+                  <span>Neon Kart Reveal.js Slides</span>
+                  <span class="tag">Reveal.js</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/docs/AI_FOR_GAMING_MASTER_PLAN.md" target="_blank" class="doc-item-link">
+                  <span>AI Workshop Master Plan</span>
+                  <span class="tag">Curriculum</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/docs/WORKSHOP_HANDOUT_AND_PROMPTS.md" target="_blank" class="doc-item-link">
+                  <span>Participant Prompt Handout</span>
+                  <span class="tag">Prompts</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 3: 3D & Asset Pipelines -->
+          <div class="doc-category-card">
+            <div class="doc-cat-header">
+              <span class="doc-cat-icon">🎨</span>
+              <h3 class="doc-cat-title">3D Pipelines & Tooling</h3>
+            </div>
+            <ul class="doc-link-list">
+              <li>
+                <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/docs/BLENDER_3D_PIPELINE.md" target="_blank" class="doc-item-link">
+                  <span>Blender MCP Procedural Guide</span>
+                  <span class="tag">MCP</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/sketchup_downloader/README.md" target="_blank" class="doc-item-link">
+                  <span>3D Warehouse Model Downloader</span>
+                  <span class="tag">CLI Tool</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/docs/ALEPH_PLUS_HIGHWAY_GUIDE.md" target="_blank" class="doc-item-link">
+                  <span>Aleph GIS Expressway Mapping</span>
+                  <span class="tag">Satellite</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/wiki.md" target="_blank" class="doc-item-link">
+                  <span>Neon Kart Architecture Wiki</span>
+                  <span class="tag">Deep Dive</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Category 4: Bilingual Panduan Bahasa Melayu -->
+          <div class="doc-category-card">
+            <div class="doc-cat-header">
+              <span class="doc-cat-icon">🇲🇾</span>
+              <h3 class="doc-cat-title">Dokumentasi Bahasa Melayu</h3>
+            </div>
+            <ul class="doc-link-list">
+              <li>
+                <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/README.ms-MY.md" target="_blank" class="doc-item-link">
+                  <span>Ringkasan Bengkel Utama (BM)</span>
+                  <span class="tag">Utama</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/MAKCIK_CANTEEN/README.ms-MY.md" target="_blank" class="doc-item-link">
+                  <span>Makcik Canteen Panduan (BM)</span>
+                  <span class="tag">Kantin</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/neon_kart_3d/readme_ms_my.md" target="_blank" class="doc-item-link">
+                  <span>Neon Kart Panduan Penuh (BM)</span>
+                  <span class="tag">Kart</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/docs/GAME_DESIGN_DOCUMENT.ms-MY.md" target="_blank" class="doc-item-link">
+                  <span>GDD King Myvi (BM)</span>
+                  <span class="tag">GDD</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-content">
+        <p class="footer-text">
+          <b>KrackedDevs • AI for Gaming Workshop Suite</b> &bull; Built with Babylon.js 7, Three.js, Blender MCP, and Agentic AI Assistants.
+        </p>
+        <div class="footer-nav">
+          <a href="./myvi.html">King Myvi</a> &bull;
+          <a href="./MAKCIK_CANTEEN/index.html">Makcik Canteen</a> &bull;
+          <a href="./neon_kart_3d/index.html">Neon Kart 3D</a> &bull;
+          <a href="./slides.html">Slide Deck</a> &bull;
+          <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming" target="_blank">Source Code on GitHub</a> &bull;
+          <a href="https://github.com/C-Fu/krackeddevs-ai-for-gaming/blob/main/LICENSE" target="_blank">MIT License</a>
         </div>
       </div>
-    </div>
+    </footer>
   </div>
 
-  <!-- Game Over Screen -->
-  <div id="gameOverScreen" class="overlay-screen hidden">
-    <div class="modal-card failure">
-      <h2 class="result-title">LATE FOR DINNER!</h2>
-      <p class="result-desc">You got stuck in the infamous PLUS traffic jam. Point B was within reach!</p>
-      <div class="stats-box">
-        <div>Distance Covered: <b id="statDist">0</b> m</div>
-        <div>Traffic Parted: <b id="statYields">0</b> vehicles</div>
-      </div>
-      <button id="btnRetry" class="btn-primary">TRY AGAIN</button>
-    </div>
-  </div>
+  <!-- Background Synthwave Grid & Starfield Animation Script -->
+  <script>
+    (function() {
+      const canvas = document.getElementById('bg-canvas');
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
 
-  <!-- Victory Screen -->
-  <div id="victoryScreen" class="overlay-screen hidden">
-    <div class="modal-card victory">
-      <div class="badge-pill victory-pill">LEGENDARY FINISH</div>
-      <h2 class="result-title">HIGHWAY KING!</h2>
-      <p class="result-desc">You conquered PLUS Expressway and crossed Ayer Keroh Toll Plaza in record time!</p>
-      <div class="stats-box">
-        <div>Time Taken: <b id="statVicTime">0</b> s</div>
-        <div>Fast Lane Parted: <b id="statVicYields">0</b> cars</div>
-        <div>Final Score: <b id="statVicScore">0</b> PTS</div>
-      </div>
-      <button id="btnRestartVictory" class="btn-primary">RACE AGAIN</button>
-    </div>
-  </div>
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
 
-  <script type="module" src="./src/main.js"></script>
+      // Stars
+      const starCount = 80;
+      const stars = [];
+      for (let i = 0; i < starCount; i++) {
+        stars.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          size: Math.random() * 1.5 + 0.5,
+          alpha: Math.random() * 0.7 + 0.2,
+          speed: Math.random() * 0.3 + 0.1
+        });
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Subtle gradient background
+        const bgGrad = ctx.createRadialGradient(width * 0.5, height * 0.2, 50, width * 0.5, height * 0.5, width * 0.8);
+        bgGrad.addColorStop(0, 'rgba(15, 23, 42, 0.7)');
+        bgGrad.addColorStop(0.5, 'rgba(9, 13, 22, 0.95)');
+        bgGrad.addColorStop(1, '#070913');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, width, height);
+
+        // Animated stars
+        for (let star of stars) {
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(186, 230, 253, ${star.alpha})`;
+          ctx.fill();
+
+          star.y -= star.speed;
+          if (star.y < 0) {
+            star.y = height;
+            star.x = Math.random() * width;
+          }
+        }
+
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+
+      // Keyboard shortcuts
+      window.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        if (e.key === '1') {
+          window.location.href = './myvi.html';
+        } else if (e.key === '2') {
+          window.location.href = './MAKCIK_CANTEEN/index.html';
+        } else if (e.key === '3') {
+          window.location.href = './neon_kart_3d/index.html';
+        } else if (e.key === 's' || e.key === 'S') {
+          window.location.href = './slides.html';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

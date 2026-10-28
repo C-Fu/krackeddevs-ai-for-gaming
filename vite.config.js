@@ -13,6 +13,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'index.html',
+        myvi: 'myvi.html',
         slides: 'slides.html'
       }
     }
